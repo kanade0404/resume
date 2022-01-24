@@ -13,3 +13,13 @@ jobs:
         uses: 3rdJCG/mdtopdf-action@0.1.0
         with:
           root_file: README.md
+      - name: Commit files
+        run: |
+          git add README.pdf
+          git config --local user.email "melty0404@gmail.com"
+          git config --local user.name "kanade0404"
+          git commit -m "Generate README.pdf" -a
+          - name: Push changes
+            uses: ad-m/github-push-action@master
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
