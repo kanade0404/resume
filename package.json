@@ -1,0 +1,15 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kanade0404/resume.git",
+  "author": "kanade <melty0404@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "type": "module",
+  "dependencies": {
+    "md-to-pdf": "^5.0.2"
+  }
+}

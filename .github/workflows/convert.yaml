@@ -1,0 +1,22 @@
+name: Create PDF
+on: push
+
+jobs:
+  lint:
+    name: Create PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "13.6.0"
+      - run: |
+          node -v
+          yarn
+          node ./index.js
+      - uses: actions/upload-artifact@v1
+        with:
+          name: create-pdf
+          path: ./README.pdf
