@@ -6,10 +6,11 @@
   "author": "kanade <melty0404@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "4.5.5"
+    "textlint": "^12.1.0",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
   "type": "module",
-  "dependencies": {
-    "md-to-pdf": "^5.0.2"
-  }
+  "dependencies": {}
 }
