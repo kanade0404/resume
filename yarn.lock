@@ -2174,7 +2174,7 @@ textlint-rule-no-zero-width-spaces@^1.0.1:
   resolved "https://registry.yarnpkg.com/textlint-rule-no-zero-width-spaces/-/textlint-rule-no-zero-width-spaces-1.0.1.tgz#15a6abda05f08e483d5bb33a7034d904259d77a3"
   integrity sha512-AkxpzBILGB4YsXddzHx2xqpXmqMv5Yd+PQm4anUV+ADSJuwLP1Jd6yHf/LOtu9j3ps8K3XM9vQrXRK73z0bU3A==
 
-textlint-rule-preset-ja-spacing@^2.2.0:
+textlint-rule-preset-ja-spacing@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-preset-ja-spacing/-/textlint-rule-preset-ja-spacing-2.2.0.tgz#14529cba677d54e17647319012902df5007e5d70"
   integrity sha512-o8bCFoN5d5rnDVIIwULVIGMjsibupJ5S4J1vtXdXLar7TG7HsXHe2f/rHxP4gApy+fBC/RI6EXui62Zt6PCGZw==
@@ -2187,7 +2187,7 @@ textlint-rule-preset-ja-spacing@^2.2.0:
     textlint-rule-ja-space-around-code "^2.2.0"
     textlint-rule-ja-space-between-half-and-full-width "^2.2.0"
 
-textlint-rule-preset-ja-technical-writing@^7.0.0:
+textlint-rule-preset-ja-technical-writing@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-preset-ja-technical-writing/-/textlint-rule-preset-ja-technical-writing-7.0.0.tgz#40741e571f0af8ddd5edfc7fcf6faf67cb9402e5"
   integrity sha512-zzpMctCALdCOOfz/Gci0dgsb4Vi6sjAkxzNoruMEqMRjZyzp6CdRCi1ofe/ZusTzU5aGw452xCAg0VAD7tZeHA==
@@ -2252,7 +2252,7 @@ textlint-rule-sentence-length@^3.0.0:
     textlint-rule-helper "^2.1.1"
     textlint-util-to-string "^3.1.1"
 
-textlint-rule-spellcheck-tech-word@^5.0.0:
+textlint-rule-spellcheck-tech-word@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-spellcheck-tech-word/-/textlint-rule-spellcheck-tech-word-5.0.0.tgz#279be31fd4b395e1f87b4a1ef6392f1504894c42"
   integrity sha1-J5vjH9SzleH4e0oe9jkvFQSJTEI=
@@ -2271,7 +2271,7 @@ textlint-util-to-string@^3.0.0, textlint-util-to-string@^3.1.1:
     structured-source "^3.0.2"
     unified "^8.4.0"
 
-textlint@^12.1.0:
+textlint@12.1.0:
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/textlint/-/textlint-12.1.0.tgz#5f838d3e2fb202ea3add60305fd53c85ca963480"
   integrity sha512-VZ0iVepE0jUchMfIW0uKGdEdv3l0ajOFvUBcpB1xGOLAz3gVwpdWvlagVlFXuwjc2N+9mcjTM0PCIXNwIs2vQA==
