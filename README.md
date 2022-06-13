@@ -37,12 +37,12 @@
 
 こちらは業務委託で参画させていただいております。
 
+## 大手メーカー様内製Androidアプリのビルドパイプライン刷新
+
 - DevOps
   - [Docker](https://www.docker.com/)
   - [Docker Compose](https://docs.docker.com/compose/)
   - [Terraform](https://www.terraform.io/)
-
-## 大手メーカー様内製Androidアプリのビルドパイプライン刷新
 
 # [マキヤマブラザーズ株式会社](https://www.makiyamabrothers.jp/)
 
