@@ -33,7 +33,7 @@
 
 # 職務経歴書
 
-# [株式会社クラフトマンソフトウェア](https://craftsman-software.com/)
+# [株式会社クラフトマンソフトウェア](https://craftsman-software.com/)（2022年5月〜）
 
 こちらは業務委託で参画させていただいております。
 
@@ -44,7 +44,7 @@
   - [Docker Compose](https://docs.docker.com/compose/)
   - [Terraform](https://www.terraform.io/)
 
-# [マキヤマブラザーズ株式会社](https://www.makiyamabrothers.jp/)
+# [マキヤマブラザーズ株式会社](https://www.makiyamabrothers.jp/)（2022年5月〜）
 
 こちらは業務委託で参画させていただいております。
 
