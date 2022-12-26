@@ -31,6 +31,7 @@
     - [Frontend](#frontend)
     - [DevOop](#devoop)
     - [Others](#others)
+  - [今後の課題](#今後の課題)
   - [希望内容](#希望内容)
     - [積極的にやりたいこと・できること](#積極的にやりたいことできること)
     - [そこそこやりたいこと](#そこそこやりたいこと)
@@ -107,6 +108,7 @@ TypeScriptやGolangとGCP、Terraformでのサーバサイド・インフラ開�
       - [Sagemaker](https://aws.amazon.com/jp/sagemaker/)
       - [ECS](https://aws.amazon.com/jp/ecs/)
   - DevOps
+    - [Terraform](https://www.terraform.io/)
     - [GitHub Actions](https://github.co.jp/features/actions)
     - [Airflow](https://airflow.apache.org/)
     - [Circle CI](https://circleci.com/ja/)
@@ -498,6 +500,7 @@ PostgreSQL以外は初めてでしたが、業務中にキャッチアップを�
 ### Frontend
 
 - React or Next.js & TypeScriptでのフロントエンド開発
+
 - 1からの簡単な環境構築
   - webpackは全然分かりません。
 
@@ -523,6 +526,20 @@ PostgreSQL以外は初めてでしたが、業務中にキャッチアップを�
 - 基本的なGit操作
 
 - デジタル広告の知識
+
+## 今後の課題
+
+- 大規模サービスの知見
+  - スケーラビリティを考慮した設計
+  - Observability
+- AWSでのインフラ構築・運用
+- 低レイヤの知識
+  - 主にデータベースについての深い知識
+- k8s
+- アルゴリズム
+  - AtCoder緑相当
+- 並行処理・並列処理
+- チームリード経験
 
 ## 希望内容
 
@@ -569,9 +586,8 @@ PostgreSQL以外は初めてでしたが、業務中にキャッチアップを�
 ### 興味はある
 
 - BtoB Saas
-- 決済システム
+- レガシー産業
 - フロー効率開発
-  - トランクベース開発とも言うかもしれないがPR/MRベースの開発に課題感を感じています。
 - 科学的なエンジニア採用
 
 ### 待遇
