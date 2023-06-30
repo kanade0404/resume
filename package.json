@@ -6,7 +6,7 @@
   "author": "kanade <melty0404@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "13.3.2",
+    "textlint": "13.3.3",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-rule-preset-ja-spacing": "2.3.0",
     "textlint-rule-preset-ja-technical-writing": "7.0.0",
