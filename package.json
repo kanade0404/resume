@@ -1,17 +1,23 @@
 {
   "name": "resume",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:kanade0404/resume.git",
-  "author": "kanade <melty0404@gmail.com>",
-  "license": "MIT",
+  "author": "kanade0404 <melty0404@gmail.com>",
+  "dependencies": {},
   "devDependencies": {
+    "fixpack": "^4.0.0",
+    "markdown-pdf": "^11.0.0",
     "textlint": "13.3.3",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-rule-preset-ja-spacing": "2.3.0",
     "textlint-rule-preset-ja-technical-writing": "7.0.0",
     "textlint-rule-spellcheck-tech-word": "5.0.0"
   },
-  "type": "module",
-  "dependencies": {}
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "git@github.com:kanade0404/resume.git",
+  "scripts": {
+    "fix": "fixpack",
+    "generate": "markdown-pdf README.md -s ./style.css -o README.pdf"
+  },
+  "type": "module"
 }
