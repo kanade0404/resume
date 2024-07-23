@@ -6,7 +6,7 @@
   "devDependencies": {
     "fixpack": "^4.0.0",
     "markdown-pdf": "^11.0.0",
-    "textlint": "13.4.1",
+    "textlint": "14.0.4",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-rule-preset-ja-spacing": "2.3.0",
     "textlint-rule-preset-ja-technical-writing": "10.0.1",
