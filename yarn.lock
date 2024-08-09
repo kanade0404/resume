@@ -1121,7 +1121,7 @@ find-up@^2.0.0:
   dependencies:
     locate-path "^2.0.0"
 
-fixpack@^4.0.0:
+fixpack@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/fixpack/-/fixpack-4.0.0.tgz#28b9fb8ca04f89aab382021cfa826b36dc381dfd"
   integrity sha512-5SM1+H2CcuJ3gGEwTiVo/+nd/hYpNj9Ch3iMDOQ58ndY+VGQ2QdvaUTkd3otjZvYnd/8LF/HkJ5cx7PBq0orCQ==
@@ -1892,7 +1892,7 @@ lru_map@^0.4.1:
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.4.1.tgz#f7b4046283c79fb7370c36f8fca6aee4324b0a98"
   integrity sha512-I+lBvqMMFfqaV8CJCISjI3wbjmwVu/VyOoU7+qtu9d7ioW5klMgsTTiUOUp+DJvfTTzKXoPbyC6YfgkNcyPSOg==
 
-markdown-pdf@^11.0.0:
+markdown-pdf@11.0.0:
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/markdown-pdf/-/markdown-pdf-11.0.0.tgz#9916faec08dd3d8300622ea36447866fb299eecc"
   integrity sha512-h75sQdlJeTDWB/Q3U39iHBlwGDU9oCoZ4fsv/7bB/fK8/ergDK2r8CPrEKFg0DqT8coA+d8EhUB2+i1UNBaDag==
@@ -2979,7 +2979,7 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-textlint-filter-rule-allowlist@^4.0.0:
+textlint-filter-rule-allowlist@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/textlint-filter-rule-allowlist/-/textlint-filter-rule-allowlist-4.0.0.tgz#44b62a3bf7f0586daeca6d14c2c6332b164cc6af"
   integrity sha512-rOlWr12sff9ZS8mOtRACPB3l1yK0oW21Owz8XsTAgFWmRhOnBbCKw8tKMDm6EtQHO92SOfyJmT4nowxiJ85Qiw==
