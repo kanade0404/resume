@@ -17,7 +17,9 @@
   "repository": "git@github.com:kanade0404/resume.git",
   "scripts": {
     "fix": "fixpack",
-    "generate": "markdown-pdf README.md -s ./style.css -o README.pdf"
+    "generate": "markdown-pdf README.md -s ./style.css -o README.pdf",
+    "lint": "textlint *.md",
+    "lint:fix": "textlint --fix *.md"
   },
   "type": "module"
 }

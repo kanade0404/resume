@@ -5,12 +5,10 @@
 - [Resume(details)](#resumedetails)
   - [Table Of Contents](#table-of-contents)
   - [自己紹介](#自己紹介)
-    - [性格](#性格)
-      - [16personalities](#16personalities)
-      - [DiSC](#disc)
   - [経歴一覧](#経歴一覧)
     - [株式会社Speee(2022年8月~)](#株式会社speee2022年8月)
       - [広告配信プラットフォームの開発](#広告配信プラットフォームの開発)
+      - [SaaS](#saas)
     - [株式会社良品計画(2022年8月~10月)](#株式会社良品計画2022年8月10月)
       - [ECサイトのバックエンド・フロントエンド開発](#ecサイトのバックエンドフロントエンド開発)
     - [株式会社クラフトマンソフトウェア（2022年5月〜7月）](#株式会社クラフトマンソフトウェア2022年5月7月)
@@ -44,6 +42,9 @@
     - [Infrastructure](#infrastructure)
     - [Frontend](#frontend)
     - [DevOop](#devoop)
+    - [性格](#性格)
+      - [16personalities](#16personalities)
+      - [DiSC](#disc)
 
 ## 自己紹介
 
@@ -53,7 +54,7 @@
 
 主たる領域はサーバサイド開発とクラウドを使ったインフラ構築、多少はWebフロントエンド開発の心得があります。
 
-TypeScriptやGolangとGCP、Terraformでのサーバサイド・インフラ開発が得意です。
+TypeScriptやGolangとクラウド、Terraformでのサーバサイド・インフラ開発が得意です。
 
 [twitter](https://twitter.com/py_kanade0404)
 
@@ -67,16 +68,6 @@ TypeScriptやGolangとGCP、Terraformでのサーバサイド・インフラ開�
 
 [Scrapbox（ほぼ停止）](https://scrapbox.io/pykanade/)
 
-### 性格
-
-#### 16personalities
-
-[管理者(ISTJ-A)](https://www.16personalities.com/ja/istj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[巨匠(ISTP-A)](https://www.16personalities.com/ja/istp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[論理学者(INTP-A)](https://www.16personalities.com/ja/intp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)
-
-#### DiSC
-
-CSタイプ2
-
 ## 経歴一覧
 
 技術スタックは私が関わった範囲のみ記載しており、そのシステムが内包している技術全てではない可能性があります。
@@ -85,11 +76,17 @@ CSタイプ2
 
 #### 広告配信プラットフォームの開発
 
+以下のコンポーネントの設計・開発・運用を行なっていました。
+
+- 広告配信サーバ
+- バッチシステム
+- 管理画面
+- アドタグ
+- TerraformによるAWSインフラ
+
 TerraformやNode.jsのバージョンアップ、EC2で動かしていたJenkinsの2.xへのアップグレード、他社との連携機能の要件・設計・実装や新しいアドタグの開発をしています。
 
-プロパーのエンジニアが少ないので一人一プロジェクトで設計と実装を全て行う立ち回りが必要になるので、幅広い要素技術を一通り扱えることと個人PMとしてプロジェクト管理をすることが必要になります。
-
-技術負債の解消が多いですが、直近では他社との連携機能の検討と設計・実装をEMと協力して行いました。
+プロパーのエンジニアが少ないので、基本的に一人一プロジェクトで設計と実装を全て行う立ち回りが必要になるので、幅広い要素技術を一通り扱えることと個人PMとしてプロジェクト管理をすることが求められます。
 
 <details>
 
@@ -114,6 +111,53 @@ TerraformやNode.jsのバージョンアップ、EC2で動かしていたJenkins
   - [GitHub Actions](https://github.co.jp/features/actions)
   - [Airflow](https://airflow.apache.org/)
   - [Jenkins](https://www.jenkins.io/)
+
+</details>
+
+#### SaaS
+
+開発中のため詳細はリリース後に公開。
+
+以下が対応したスコープです。
+
+- PdMとのユーザーストーリーやリーンキャンバスのブラッシュアップ
+- 技術選定
+- SaaSシステム設計
+- 社内管理画面の要件定義
+- API設計・実装
+- AWSインフラ設計・構築
+- 業務委託エンジニアのタスク・進捗管理
+- その他開発全般の意思決定
+
+<details>
+<summary>技術スタック</summary>
+
+- App
+  - [Node.js](https://nodejs.org)
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Hono](https://hono.dev/)
+  - [React](https://reactjs.org/)
+  - [Next.js](https://nextjs.org/)
+- Infrastructure
+  - [AWS](https://aws.amazon.com/jp/)
+    - [ECS](https://aws.amazon.com/jp/ecs/)
+    - [Fargate](https://aws.amazon.com/jp/fargate/)
+    - [Aurora](https://aws.amazon.com/jp/rds/aurora/)
+    - [Elastic Load Balancing](https://aws.amazon.com/jp/elasticloadbalancing/)
+    - [Lambda](https://aws.amazon.com/jp/lambda/)
+    - [DynamoDB](https://aws.amazon.com/jp/dynamodb/)
+    - [Cognito](https://aws.amazon.com/jp/cognito/)
+  - [Akamai](https://www.akamai.com/)
+- DevOps
+  - [Testcontainers](https://testcontainers.com/)
+  - [Docker](https://www.docker.com/)
+  - [Sentry](https://sentry.io/)
+  - [Datadog](https://www.datadoghq.com/)
+- AI Tools
+  - [Claude Code](https://www.anthropic.com/news/claude-code)
+  - [Cursor](https://www.cursor.com/)
+  - [Devin](https://www.cognition.ai/devin)
+  - [Coderabbit](https://www.coderabbit.ai/)
 
 </details>
 
@@ -217,11 +261,11 @@ SESであることから実際にお客様のエンジニアと会話したり�
 
 ##### 案件クライアント
 
-美容系専門の広告代理店
+美容系専門の広告代理店。
 
 ##### 期間
 
-2021年1月~2021年12月
+2021年1月~2021年12月。
 
 ##### 開発人数
 
@@ -245,7 +289,7 @@ SESであることから実際にお客様のエンジニアと会話したり�
 
 初めて実務でTypeScriptやExpress、Next.jsやGCPを使いましたが、アプリケーションの仕様を含めてキャッチアップを行い、スケジュール通りに新機能をリリースできました。
 
-基盤システム開発は自社顧客向けにFacebook Conversion APIを利用した広告配信の最適化と効果測定を目的としています。要件定義から開発運用を行いました。
+基盤システム開発は自社顧客向けにFacebook Conversion APIを利用した広告配信の最適化と効果測定を目的としています。設計から開発運用を行いました。最終的に既存顧客の5社が導入、通販DXを目的としたデータ収集でも10社に導入していただきました。
 
 立ち上げ時は自分含め2名で開発をしました。プロパーではなかったですが、システム要件の策定からクラウドアーキテクチャの設計、開発と運用まで含めて任せていただきました。
 
@@ -296,12 +340,12 @@ SESであることから実際にお客様のエンジニアと会話したり�
 
 ##### 案件クライアント
 
-某外資系コンサルティングファーム
+某外資系コンサルティングファーム。
 
 ##### 期間
 
-2019年10月〜11月
-2020年4月〜12月
+2019年10月〜11月。
+2020年4月〜12月。
 
 途中参画にはなりますが、入社して初めての案件でした。
 
@@ -320,7 +364,7 @@ LaravelとAzureは初めてだったためキャッチアップを行い、既�
 
 そして設計指針を導入して実践しました。
 当初はLaravelのModelとControllerそれぞれにビジネスロジックが混在しており、Fat ControllerとFat Modelが入り混じった状態でした。
-ここに永続化層としてRepository層、ビジネスロジックを記述するService層を追加、外部とのやり取りはInfrastructure層に、Controller層はHTTPリクエストを受け付けてService層に受け渡し、Service層から受けた結果をHTTPレスポンスとして返すだけにしました。
+永続化層としてRepository層を追加しました。ビジネスロジックはService層に集約しました。外部とのやり取りはInfrastructure層に集約しました。Controller層はHTTPリクエストを受け付けてService層に受け渡し、Service層から受けた結果をHTTPレスポンスとして返すのみとしました。
 
 設計指針を作ったことで全体の設計に一貫性が保たれ、自然とモジュールの責務について考えることができるようになりました。指針もお互いシステム設計に詳しいわけではないので、深入りしすぎることはせず、共通理解として作成して本来のプロダクト開発に専念しました。
 
@@ -376,11 +420,11 @@ LaravelとAzureは初めてだったためキャッチアップを行い、既�
 
 ##### 案件クライアント
 
-大手日系メーカー子会社
+大手日系メーカー子会社。
 
 ##### 期間
 
-2018年10月〜2019年7月
+2018年10月〜2019年7月。
 
 ##### 開発内容
 
@@ -407,11 +451,11 @@ Spring Bootでのバックエンド開発とAngularでのフロントエンド�
 
 ##### 案件クライアント
 
-中小SIer
+中小SIer。
 
 ##### 期間
 
-2018年7月〜2019年9月
+2018年7月〜2019年9月。
 
 ##### 開発内容
 
@@ -434,7 +478,7 @@ C#でのWindowsアプリケーションの開発をしました。
 
 ##### 期間
 
-2018年4月〜6月
+2018年4月〜6月。
 
 ##### 開発内容
 
@@ -510,3 +554,13 @@ PostgreSQL以外は初めてでしたが、業務中にキャッチアップを�
 - renovate導入
 
 - Docker & Docker Composeでの環境構築
+
+### 性格
+
+#### 16personalities
+
+[管理者(ISTJ-A)](https://www.16personalities.com/ja/istj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[巨匠(ISTP-A)](https://www.16personalities.com/ja/istp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[論理学者(INTP-A)](https://www.16personalities.com/ja/intp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)
+
+#### DiSC
+
+CSタイプ2。
