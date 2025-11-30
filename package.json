@@ -5,7 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "fixpack": "4.0.0",
-    "markdown-pdf": "11.0.0",
+    "md-to-pdf": "^5.2.5",
     "textlint": "15.2.3",
     "textlint-filter-rule-allowlist": "4.0.0",
     "textlint-rule-preset-ja-spacing": "2.4.3",
@@ -17,7 +17,7 @@
   "repository": "git@github.com:kanade0404/resume.git",
   "scripts": {
     "fix": "fixpack",
-    "generate": "for f in *.md; do out=\"${f%.md}.pdf\"; echo \"Generating $out\"; markdown-pdf \"$f\" -s ./style.css -o \"$out\"; done",
+    "generate": "./convert.sh",
     "lint": "textlint *.md",
     "lint:fix": "textlint --fix *.md"
   },

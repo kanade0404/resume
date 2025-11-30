@@ -1,3 +1,14 @@
+@page {
+  size: A4;
+  margin: 18mm;
+}
+
+/* デフォの margin が二重にならないように */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 body {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;

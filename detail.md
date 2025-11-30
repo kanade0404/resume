@@ -1,22 +1,20 @@
 # Resume(details)
 
-この資料はREADME.mdの簡潔なレジュメを補完し、行動面接や技術の深掘りで参照してもらうことを目的にしています。
+この資料はREADME.mdの簡潔なレジュメを補完し、行動面接や技術の深掘りで参照してもらうことを目的としている。
 
 ## サマリー
 
-- 0→1フェーズのB2B SaaSを技術責任者として担当し、戦略検討からインフラ・サーバサイド・フロントエンドまで一気通貫で開発しています。
-- 広告配信基盤、クラウドインフラ最適化、LLM/AI Agent活用を主戦場として、事業KPIやeCPMなどの改善につなげています。
-- 個人PMとして複数プロジェクトを並走し、外部パートナーの採用や育成、コーディングAIの導入などチームづくりも担っています。
-- このドキュメントは面接やディスカッションで深掘る論点と再現性のある手法をまとめた補足資料です。
+- 0→1フェーズのB2B SaaSを技術責任者として担当し、戦略検討からインフラ・サーバサイド・フロントエンドまで一気通貫で開発している。
+- 広告配信基盤、クラウドインフラ最適化、LLM/AI Agent活用を主戦場とし、事業KPIやeCPMなどの改善につなげている。
+- 個人PMとして複数プロジェクトを並走し、外部パートナーの採用や育成、コーディングAIの導入などチームづくりも担っている。
+- このドキュメントは面接やディスカッションで深掘る論点と再現性のある手法をまとめた補足資料である。
 
 ## 経験タイムライン
 
 | 期間 | 企業 / 役割 | チーム規模 | ハイライト |
 | --- | --- | --- | --- |
 | 2022年8月〜現在 | 株式会社Speee / Tech Lead, Architect | 3〜6名（業務委託含む） | 広告配信プロダクトと広告調査SaaSの技術リード。インフラ刷新やDSP連携でeCPM改善、AI Coding Tool導入を担当。 |
-| 2022年8月〜10月 | 株式会社良品計画 / Backend & Frontend Eng. | 5名規模 | ElasticSearchの性能調査と改善案の実装、TypeScript・Storybook導入でフロントの品質を底上げ。 |
-| 2022年5月〜7月 | 株式会社クラフトマンソフトウェア / Build Pipeline Eng. | 4名規模 | 大手メーカー向け内製Androidアプリのビルドパイプラインを刷新し、Azure PipelinesとGitHub Actionsを再設計。 |
-| 2022年5月〜7月 | マキヤマブラザーズ株式会社 / Full Stack Eng. | 5名規模 | 自社WebアプリのAPI・フロント・インフラを横断して開発し、Atomic Designや責務整理を実施。 |
+| 2022年5月〜10月 | フリーランス（業務委託） / Full Stack Eng. | 基本単独 | EC検索改善や複業SaaSの機能追加をミニマムチームで支援。 |
 | 2019年8月〜2022年5月 | 株式会社ビットエー / Tech Lead | 6〜10名規模 | 広告配信DMPとAI/VR不動産プロダクトを担当し、GCP×TerraformでのDMP構築とPoC通過、障害ゼロ運用を達成。 |
 | 2018年7月〜2019年7月 | 株式会社スタッフサービス（エンジニアリング事業本部） / Software Eng. | 3〜6名規模 | 衛星画像分析Webアプリや製薬向けWindowsアプリを開発し、テスト観点と品質保証を実務で習得。 |
 | 2018年4月〜6月 | FIT株式会社 / Junior Eng. | 3名規模 | 太陽光発電パネルの統計Webアプリを担当し、複数技術のキャッチアップと短納期開発を経験。 |
@@ -29,45 +27,19 @@
   - [Table Of Contents](#table-of-contents)
   - [自己紹介](#自己紹介)
   - [経歴一覧](#経歴一覧)
-    - [株式会社Speee(2022年8月~)](#株式会社speee2022年8月)
+    - [株式会社Speee（2022年8月〜）※2022年8月〜2023年4月は業務委託](#株式会社speee2022年8月2022年8月2023年4月は業務委託)
       - [広告配信プラットフォームの開発](#広告配信プラットフォームの開発)
-      - [SaaS](#saas)
-    - [株式会社良品計画(2022年8月~10月)](#株式会社良品計画2022年8月10月)
-      - [ECサイトのバックエンド・フロントエンド開発](#ecサイトのバックエンドフロントエンド開発)
-    - [株式会社クラフトマンソフトウェア（2022年5月〜7月）](#株式会社クラフトマンソフトウェア2022年5月7月)
-      - [大手メーカー様の内製Androidアプリのビルドパイプライン刷新](#大手メーカー様の内製androidアプリのビルドパイプライン刷新)
-        - [業務内容](#業務内容)
-    - [マキヤマブラザーズ株式会社（2022年5月〜7月）](#マキヤマブラザーズ株式会社2022年5月7月)
-      - [自社Webアプリケーションの開発](#自社webアプリケーションの開発)
+      - [広告調査SaaS立ち上げ](#広告調査saas立ち上げ)
+    - [フリーランス（業務委託、2022年5月〜10月）](#フリーランス業務委託2022年5月10月)
+      - [EC検索改善／複業マッチングSaaS支援（計6カ月）](#ec検索改善複業マッチングsaas支援計6カ月)
     - [株式会社ビットエー（2019年8月〜2022年5月）](#株式会社ビットエー2019年8月2022年5月)
-      - [広告配信の最適化の基盤システムの開発・運用](#広告配信の最適化の基盤システムの開発運用)
-        - [案件クライアント](#案件クライアント)
-        - [期間](#期間)
-        - [開発人数](#開発人数)
-      - [AI/VRを活用した不動産仲介プラットフォーム開発](#aivrを活用した不動産仲介プラットフォーム開発)
-        - [案件クライアント](#案件クライアント-1)
-        - [期間](#期間-1)
+      - [広告配信の最適化基盤・社内Webアプリ（美容系広告代理店向け）](#広告配信の最適化基盤社内webアプリ美容系広告代理店向け)
+      - [AI/VRを活用した不動産仲介プラットフォーム](#aivrを活用した不動産仲介プラットフォーム)
     - [株式会社スタッフサービス（エンジニアリング事業本部）（2018年7月〜2019年7月）](#株式会社スタッフサービスエンジニアリング事業本部2018年7月2019年7月)
-      - [衛生画像の分析支援Webアプリケーション開発](#衛生画像の分析支援webアプリケーション開発)
-        - [案件クライアント](#案件クライアント-2)
-        - [期間](#期間-2)
-        - [開発内容](#開発内容)
-      - [製薬開発支援Windowsアプリケーション開発](#製薬開発支援windowsアプリケーション開発)
-        - [案件クライアント](#案件クライアント-3)
-        - [期間](#期間-3)
-        - [開発内容](#開発内容-1)
-    - [FIT株式会社](#fit株式会社)
-      - [太陽光発電パネルの統計情報管理Webアプリケーション](#太陽光発電パネルの統計情報管理webアプリケーション)
-        - [期間](#期間-4)
-        - [開発内容](#開発内容-2)
+      - [衛星画像の分析支援Webアプリケーション](#衛星画像の分析支援webアプリケーション)
+      - [製薬開発支援Windowsアプリケーション](#製薬開発支援windowsアプリケーション)
+    - [FIT株式会社（2018年4月〜6月）](#fit株式会社2018年4月6月)
   - [できること・得意なこと](#できること得意なこと)
-    - [Backend](#backend)
-    - [Infrastructure](#infrastructure)
-    - [Frontend](#frontend)
-    - [DevOop](#devoop)
-    - [性格](#性格)
-      - [16personalities](#16personalities)
-      - [DiSC](#disc)
 
 ## 自己紹介
 
@@ -76,8 +48,6 @@
 2018年4月よりWebのエンジニアとしてキャリアを開始しています。
 
 主たる領域はサーバサイド開発とクラウドを使ったインフラ構築、多少はWebフロントエンド開発の心得があります。
-
-TypeScriptやGolangとクラウド、Terraformでのサーバサイド・インフラ開発が得意です。
 
 [twitter](https://twitter.com/py_kanade0404)
 
@@ -93,454 +63,160 @@ TypeScriptやGolangとクラウド、Terraformでのサーバサイド・イン�
 
 ## 経歴一覧
 
-技術スタックは私が関わった範囲のみ記載しており、そのシステムが内包している技術全てではない可能性があります。
+※各プロジェクトはChallenge/Role/Actions/Result/Scale/Teamに並べた独自テンプレート（STAR系）で記述している。
 
-### [株式会社Speee](https://speee.jp/)(2022年8月~)
+### [株式会社Speee](https://speee.jp/)（2022年8月〜）※2022年8月〜2023年4月は業務委託
 
 #### 広告配信プラットフォームの開発
 
-以下のコンポーネントの設計・開発・運用を行なっていました。
+- **Challenge:** 広告配信サーバやバッチ、管理画面、アドタグなど複数のコンポーネントを限られた正社員だけで保守しながら、バージョン老朽化と外部DSP連携の要求を解消する必要がありました。
+- **Role:** Tech Lead兼個人PMとして、要件整理から設計・実装・運用までを一人称で担当。
+- **Actions:**
+  - Node.js／Terraform／Jenkins／Goなど主要ランタイムを最新LTSへアップグレード（Goではloopvar対応も実施）し、IaCとCDパイプラインを共通化。
+  - EC2上のJenkinsを2.xにリプレースし、ジョブ設計と周辺AWSリソースをまとめて再構築。
+  - 外部DSP連携機能、新しいアドタグ、社内バッチ群を要件定義〜実装までリード。
+  - アドベリツール導入に合わせ、ブロック対象IPを配信サーバへ連携し事前除外を自動化。
+- **Result:**
+  - eCPM向上につながる外部在庫接続を実現。
+  - 不正クリック監視の自動化で突発タスクを削減。
+  - Auroraアップデート後に遅延したSQLを改善し、配信運用の安定性を向上。
+- **Scale:** 広告配信サーバ、バッチ、管理画面、アドタグ。
+  AWS（EC2, RDS, S3）/ Akamai / Terraform / Airflow / Go / Python / Node.js(TypeScript) / MySQL。
+- **Team:** 正社員1名＋業務委託0〜2名でスプリント単位に再編し、外部協力会社とはAPI仕様書と進捗レポートで連携。
 
-- 広告配信サーバ
-- バッチシステム
-- 管理画面
-- アドタグ
-- TerraformによるAWSインフラ
+#### 広告調査SaaS立ち上げ
 
-TerraformやNode.jsのバージョンアップ、EC2で動かしていたJenkinsの2.xへのアップグレード、他社との連携機能の要件・設計・実装や新しいアドタグの開発をしています。
+- **Challenge:** 0→1の新規SaaSで、事業側が作成したリーンキャンバスやユーザーストーリーマッピングを見直し、短期間でMVPを確定させる必要がありました。
+- **Role:** 技術選定からアーキテクチャ設計、AWSインフラ構築、API実装、社内外調整、業務委託採用・進行管理までを担う技術責任者。
+- **Actions:**
+  - PdMと共にリーンキャンバス／ユーザーストーリーを再構築し、MVPスコープを再定義。
+  - Node.js×React×Hono.js構成でマルチテナントSaaSアーキテクチャを設計し、TerraformでAWSインフラをコード化。
+  - 管理画面の要件整理、API設計、SendGrid連携、業務委託エンジニアの採用・タスク管理を実施。
+- **Result:**
+  - ベータ版ローンチを完了し、社内モニタリングと顧客インタビューを回せる状態を構築。
+  - クローラー領域は継続的に機能拡張を進行中。
+- **Scale:** Node.js(TypeScript) / React / Next.js / Hono.js。
+  AWS（ECS on Fargate, RDS, S3, CloudWatch Logs）/ Terraform / SendGrid / 各種AI Coding Tool。
+- **Team:** PdM1名＋社内エンジニア1名＋業務委託2名（フロント担当1名、クローラー担当1名）。タスクはNotionで管理し、クローラー担当は現在も開発を継続中。
 
-プロパーのエンジニアが少ないので、基本的に一人一プロジェクトで設計と実装を全て行う立ち回りが必要になるので、幅広い要素技術を一通り扱えることと個人PMとしてプロジェクト管理をすることが求められます。
+### フリーランス（業務委託、2022年5月〜10月）
 
-- Go
-- Python
-- Ruby on Rails
-- Node.js(TypeScript)
-- MySQL
-- AWS
-- Terraform
-- Airflow
-- GitHub Copilot
-- Cline
-- Roo Code
+#### EC検索改善／複業マッチングSaaS支援（計6カ月）
 
-#### SaaS
-
-開発中のため詳細はリリース後に公開。
-
-立ち上げ時は事業推進担当から声をかけてもらいましたが、リーンキャンバスやユーザーストーリーマッピングが自分の目から見てもあまり良くなかったのでPdMと一緒にブラッシュアップを行いました。
-その後は技術選定、SaaSアーキテクチャ設計、AWSインフラ設計・構築、社内管理画面の要件定義、業務委託エンジニアの採用とタスク・進捗管理、API設計と実装、その他開発関連の社内調整などを行なってローンチを実現しました。
-
-- Node.js(TypeScript)
-- React
-- Next.js
-- Hono.js
-- AWS
-- Terraform
-- SendGrid
-- Claude Code
-- Cursor
-- Devin
-
-### [株式会社良品計画](https://www.ryohin-keikaku.jp/)(2022年8月~10月)
-
-#### ECサイトのバックエンド・フロントエンド開発
-
-主に2つの業務内容があります。
-
-1つ目はElasticSearchのパフォーマンス改善の調査とパフォーマンス改善をするための修正実装のプロトタイピングを行いました。
-
-2つ目はWebフロントエンドのTypeScript化とStorybookの導入、カタログ作成をしました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - [Java8](https://www.java.com/)
-  - [Spring Boot](https://spring.io/projects/spring-boot)
-  - [PHP](https://www.php.net/)
-  - [Lumen](https://lumen.laravel.com/docs/9.x)
-  - [Go](https://go.dev/)
-  - [MySQL](https://www.mysql.com/)
-- Frontend
-  - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [React](https://reactjs.org/)
-  - [Redux-Saga](https://redux-saga.js.org/)
-  - [Ant Design](https://ant.design/)
-  - [Storybook](https://storybook.js.org/)
-  - [Jest](https://jestjs.io/ja/)
-
-</details>
-
-### [株式会社クラフトマンソフトウェア](https://craftsman-software.com/)（2022年5月〜7月）
-
-こちらは業務委託で参画させていただいております。
-
-#### 大手メーカー様の内製Androidアプリのビルドパイプライン刷新
-
-##### 業務内容
-
-ビルドパイプラインのインフラで使用しているAWSの構築を担当しました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Infrastructure
-  - [AWS](https://aws.amazon.com/jp/)
-    - [ECR](https://aws.amazon.com/jp/ecr/)
-    - [S3](https://aws.amazon.com/jp/s3/)
-- DevOps
-  - [Terraform](https://www.terraform.io/)
-
-</details>
-
-### [マキヤマブラザーズ株式会社](https://www.makiyamabrothers.jp/)（2022年5月〜7月）
-
-こちらは業務委託で参画させていただいております。
-
-#### 自社Webアプリケーションの開発
-
-マキヤマブラザーズ株式会社様が提供している複業サービス「DeLMO」の開発に携わりました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - [Go](https://go.dev/)
-  - [MySQL](https://www.mysql.com/)
-  - [gqlgen](https://github.com/99designs/gqlgen)
-  - [SQLBoiler](https://github.com/volatiletech/sqlboiler)
-- Frontend
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [Next.js](https://nextjs.org/)
-  - [Ant Design](https://ant.design/)
-  - [Apollo Client](https://www.apollographql.com/)
-
-</details>
+- **Challenge:** EC案件ではElasticSearch検索の性能低下とレガシーJavaScriptが課題だった。  
+  複業SaaS案件では小規模体制のままGraphQL＋Next.jsの新機能を迅速に提供する必要があった。
+- **Role:** フリーランスのフルスタックエンジニアとして単独（EC）とCTO＋自分（SaaS）で参画し、要件に沿って実装からレビューまで担当。
+- **Actions:**
+  - ElasticSearchのクエリ／インデックスを調査し、改善PoCと優先度付けを実施。
+  - レガシーなフロントをTypeScript化し、Storybook＋Jestの検証基盤を整備。
+  - Go＋gqlgen＋SQLBoilerでGraphQL APIのエンドポイント追加やスキーマ拡張を実装。
+  - Next.js＋Apollo Clientでデータ取得／表示ロジックを改修し、依頼機能を短期リリース。
+- **Result:**
+  - EC検索のボトルネックを特定し、改善方針とモダナイゼーションの土台を提示。
+  - 複業SaaSではCTO要望の機能を計画どおりリリースし、利用フロー改善に寄与。
+- **Scale:**
+  - Backend: Java 8 / Spring Boot / PHP(Lumen) / Go / MySQL
+  - Frontend: React / Redux-Saga / TypeScript
+  - UI/Testing: Storybook / Jest / Next.js / Apollo Client
+  - GraphQL: gqlgen / SQLBoiler
+- **Team:** ECは単独。SaaSはCTO＋自分。
 
 ### [株式会社ビットエー](https://bita.jp/)（2019年8月〜2022年5月）
 
-ビットエーではサーバサイドからインフラの設計・運用、フロントエンド開発の開発業務に携わりました。
+SESとして顧客常駐し、サーバサイド・インフラ・フロントエンドを横断して開発と運用を担当していた。社外調整に加えて、社内の勉強会企画や採用面接、GitHubでのスカウトなど組織面の活動にも関わった。
 
-SESであることから実際にお客様のエンジニアと会話したり非技術職の方ともコミュニケーションを取って業務を進めておりました。入社当時は課題感がありましたが、現在は指摘されないので非技術職の方とのコミュニケーションは問題ないと思っております。
+#### 広告配信の最適化基盤・社内Webアプリ（美容系の広告代理店向け）
 
-また開発業務以外では、主に知見共有と採用業務を行いました。
+- **Challenge:** 既存MAツールにFacebook Conversion API連携を組み込み、Pixel欠損を補完するDMPを短期間で構築する必要があった。  
+  イベントとカスタムオーディエンスを安定送信する仕組みを整えることも必須だった。  
+  また社内WebアプリではCore Web Vitalsを計測し、SEO改善の起点を用意することが求められた。
+- **Role:** Tech LeadとしてDMPと社内Webアプリ双方の要件定義・アーキテクチャ設計・実装を担当。社内アプリには新卒メンバーをアサインし、DMPは少数精鋭で推進した。
+- **Actions:**
+  - Facebook Conversion API向け計測サーバをGCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQL）で構築。
+  - MAツールのイベントを正規化し、Facebookへ安定送信してPixel欠損を補完。
+  - カスタムオーディエンス生成と送信オペレーションを自動化し、広告運用チームの負担を軽減。
+  - 社内Webアプリ（TypeScript＋Express＋Next.js）にCore Web Vitals計測機能と管理UIを実装。
+  - 新卒3名に社内アプリ機能の実装を任せ、レビューとメンタリングで支援。
+  - GitHub Actions／CircleCI／TerraformでIaCとCI/CDを整備し、Git-flow＋Planning Pokerでプロセスを共通化。
+- **Result:**
+  - MAツール経由でFacebookへ安定的にイベント／カスタムオーディエンスを送信できるようになり、既存顧客5社・新規10社へ展開。
+  - Core Web Vitalsの定常計測データがSEOチームの改善サイクルに活用され、社内Webアプリの改善リードタイムが短縮。
+- **Scale:**
+  - Tech stack: TypeScript / Node.js / Express / Next.js / React / Jest / Playwright / Puppeteer
+  - GCP: Cloud Run / Cloud Functions / Pub/Sub / Cloud SQL / BigQuery
+  - GCP（続き）: Datastore / Compute Engine / Cloud Storage / Cloud Load Balancing
+  - IaC: Terraform
+- **Team:** DMPは正社員2名中心、社内Webアプリは新卒3名＋自分で構成。
 
-社内で技術知見を広めるために勉強会の主催やLT会での多数登壇をしました。
-勉強会は普段業務では直接関わらないが現代の基礎となっている技術について取り上げています。現在はマスタリングTCP/IPを題材にネットワークについて勉強をしています。
+#### AI/VRを活用した不動産仲介プラットフォーム
 
-採用業務では実際に社員・業務委託の面接に複数回出席して応募者様のスキルをヒアリングしたり会社とマッチングするかを会話しました。
-採用面接以外でも毎日良さそうなエンジニアの方を見つけてはGitHubの実装を見て実際に声をかけたりプログラミングテストの採点を行なっておりました。
-
-開発業務のみならず、会社が楽になるように日々動いています。
-
-#### 広告配信の最適化の基盤システムの開発・運用
-
-##### 案件クライアント
-
-美容系専門の広告代理店。
-
-##### 期間
-
-2021年1月~2021年12月。
-
-##### 開発人数
-
-2〜5人（途中で増加）
-
-開発全体としてはスクラム開発の手法を一部採用してGit-flowで開発をしました。
-1週間を1スプリントとして、スプリントの最初にSprint Planningをしてスプリント最後にRetrospectiveをしてKPTについて話し合いました。
-新たに発生したタスクに対してはstory pointをplanning pokerで見積もりをしました。
-
-当初は自分と弊社の別メンバーのみで開発をしましたが、メンターをしていた常駐先クライアントの新卒3名を開発に加えて最終的には5名で開発をしました。
-
-主に2つの開発をしました。
-
-1つは常駐先クライアント様の社内で広告運用に使用している社内Webアプリケーションの機械学習を使った予算配分の最適化機能の開発です。
-
-もう1つは自社顧客向けの効果測定と広告配信の最適化の基盤システム開発です。
-
-社内Webアプリケーションは自分がアサインされる以前に弊社の別メンバーが開発していたアプリケーションにエンハンスで新規のページから作成をしました。
-
-構成はBackendがTypeScript+Expressで、FrontendがTypeScript+Next.jsでCloud Runにデプロイしています。
-
-初めて実務でTypeScriptやExpress、Next.jsやGCPを使いましたが、アプリケーションの仕様を含めてキャッチアップを行い、スケジュール通りに新機能をリリースできました。
-
-基盤システム開発は自社顧客向けにFacebook Conversion APIを利用した広告配信の最適化と効果測定を目的としています。設計から開発運用を行いました。最終的に既存顧客の5社が導入、通販DXを目的としたデータ収集でも10社に導入していただきました。
-
-立ち上げ時は自分含め2名で開発をしました。プロパーではなかったですが、システム要件の策定からクラウドアーキテクチャの設計、開発と運用まで含めて任せていただきました。
-
-現在ではリリース済みで、いくつかの企業様に導入していただいております。
-
-この開発では、多くのGCPサービスを使い倒す機会を得ることができたこと、実務未経験でしたがIaCにTerraformを自分から導入し、インフラを安全に管理できるようにしました。
-
-この2つの開発以外の業務では、広告運用チームとそのチームの担当顧客様とのFacebook Conversion APIの導入相談を受けたり、常駐先クライアント様の新卒のメンターを行いました。
-
-開発面ではIaCの旗振り役をやったりテストコードの推奨、アプリケーションやTerraformのCI/CD自動化を導入しておりました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [Node.js](https://nodejs.org)
-  - [Express](https://expressjs.com/)
-  - [Jest](https://jestjs.io/ja/)
-  - [Puppeteer](https://github.com/puppeteer/puppeteer)
-- Frontend
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [Next.js](https://nextjs.org/)
-  - [React](https://reactjs.org/)
-  - [Jest](https://jestjs.io/ja/)
-  - [Ant Design](https://ant.design/)
-  - [styled-components](https://styled-components.com/)
-- Infrastructure
-  - [Google Cloud Platform](https://console.cloud.google.com/)
-    - [Cloud Run](https://cloud.google.com/run)
-    - [App Engine](https://cloud.google.com/appengine)
-    - [BigQuery](https://cloud.google.com/bigquery)
-    - [Cloud SQL](https://cloud.google.com/sql)
-    - [Cloud Pub/Sub](https://cloud.google.com/pubsub)
-    - [Cloud Tasks](https://cloud.google.com/tasks)
-    - [Dataflow](https://cloud.google.com/dataflow)
-    - [DataStore](https://cloud.google.com/datastore)
-    - [Cloud Storage](https://cloud.google.com/storage)
-  - [MySQL](https://www.mysql.com/)
-- DevOps
-  - [Terraform](https://www.terraform.io/)
-  - [GitHub Actions](https://github.co.jp/features/actions)
-
-</details>
-
-#### AI/VRを活用した不動産仲介プラットフォーム開発
-
-##### 案件クライアント
-
-某外資系コンサルティングファーム。
-
-##### 期間
-
-2019年10月〜11月。
-2020年4月〜12月。
-
-途中参画にはなりますが、入社して初めての案件でした。
-
-Laravelを使ったバックエンド開発とVue.jsを使ったフロントエンド開発、詳細設計とテストを行いました。
-
-LaravelとAzureは初めてだったためキャッチアップを行い、既存メンバーよりも詳しくなりました。
-
-また以下のような実績があります。
-
-- テストコードの導入
-- Clean Architecture likeな設計導入
-- Bus EventをVuexに置き換え
-- Atomic Designの導入
-
-まずバックエンドのフロントエンドともにテストコードがなかったため、テストコードの追加とテストコードを書く意識を作りました。テストコードを書くことで実装の理解が早まり、CircleCIやAzure Pipelinesとの相乗効果からリグレッションを未然に検知できる仕組みを整備しました。結果として在籍している間はPoCもしましたが障害ゼロを達成できました。
-
-そして設計指針を導入して実践しました。
-当初はLaravelのModelとControllerそれぞれにビジネスロジックが混在しており、Fat ControllerとFat Modelが入り混じった状態でした。
-永続化層としてRepository層を追加しました。ビジネスロジックはService層に集約しました。外部とのやり取りはInfrastructure層に集約しました。Controller層はHTTPリクエストを受け付けてService層に受け渡し、Service層から受けた結果をHTTPレスポンスとして返すのみとしました。
-
-設計指針を作ったことで全体の設計に一貫性が保たれ、自然とモジュールの責務について考えることができるようになりました。指針もお互いシステム設計に詳しいわけではないので、深入りしすぎることはせず、共通理解として作成して本来のプロダクト開発に専念しました。
-
-フロントエンドでは2つあります。まずBus EventをVuexに置き換えました。
-
-当時はBus Eventでコンポーネントの状態の受け渡しをしていました。これをVuexに置き換えましたが、本来Vuexで扱うべきではない状態も入り込んでしまいました。ある程度は成功ですが、一部は理想とは程遠い状態となってしまいました。あらかじめ現在のstateを洗い出した上で、Vuexに持たせるべきstateは何か、他はコンポーネントの依存関係を整理して解決できないかなどを考えるべきでした。
-
-またフロントエンドも設計指針がなかったのでAtomic Designを導入しました。これも一部では設計指針として分かりやすかったのでよかったですが、安易が導入は微妙だったという結論に至りました。Atomic Designは本来UIデザイナー向けの設計手法であり、エンジニアが導入するなら当時導入していたFigmaのコンポーネントからAtomic Designを踏まえて設計するべきでした。当時はAtomic Designに準拠したデザインではなかったため、atomsやmolucules、organismsの粒度が曖昧になってしまい混乱が生じました。
-
-現在もフロントエンドのコンポーネント設計は模索中ですが、安易にAtomic Designを選ぶべきではないという教訓を得ました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - [PHP7.4](https://www.php.net/)
-  - [Python3.6](https://www.python.org/)
-  - [Laravel](https://laravel.com/)
-  - [PHPUnit](https://phpunit.de/)
-  - [SendGrid](https://sendgrid.kke.co.jp/)
-  - [Splunk](https://www.splunk.com/ja_jp)
-- Frontend
-  - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-  - [A-Frame](https://aframe.io/)
-  - [Vue2](https://jp.vuejs.org/index.html)
-  - [Vuex](https://vuex.vuejs.org/ja/)
-  - [Jest](https://jestjs.io/ja/)
-  - [Sass](https://sass-lang.com/)
-  - [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript?hl=ja)
-  - [Geocoding API](https://developers.google.com/maps/documentation/geocoding?hl=ja)
-  - [Places API for Web](https://developers.google.com/maps/documentation?hl=ja)
-  - [Figma](https://www.figma.com/)
-- Infrastructure
-  - [MySQL](https://www.mysql.com/)
-  - [SQL Server](https://www.microsoft.com/ja-jp/sql-server/)
-  - [Azure](https://azure.microsoft.com/ja-jp/)
-    - [Virtual Machine](https://azure.microsoft.com/ja-jp/services/virtual-machines/)
-    - [Azure Functions](https://azure.microsoft.com/ja-jp/services/functions/)
-    - [Azure SQL Database](https://azure.microsoft.com/ja-jp/products/azure-sql/database/)
-    - [Azure Storage](https://azure.microsoft.com/ja-jp/product-categories/storage/)
-    - [Azure DevOps](https://azure.microsoft.com/ja-jp/services/devops/)
-    - [Traffic Manager](https://docs.microsoft.com/ja-jp/azure/traffic-manager/traffic-manager-overview)
-    - [Azure CDN](https://azure.microsoft.com/ja-jp/services/cdn/)
-- DevOps
-  - [Circle CI](https://circleci.com/ja/)
-
-</details>
+- **Challenge:** PoCフェーズのLaravel＋Vue.jsアプリで設計・品質課題が顕在化し、短期間でテスト基盤と設計指針を整える必要があった。
+- **Role:** Backend/Frontend Engineerとして途中参画し、Laravel/Azure/Vue.jsを短期でキャッチアップして改善をリード。
+- **Actions:**
+  - Repository/Service/Infrastructureのレイヤーを設計し、Fat Controller化したコードを整理。
+  - PHPUnit＋Jestで自動テストを導入し、Azure Pipelinesでリグレッション検知を実現。
+  - Vuexベースの状態管理とAtomic Designを試行し、Figmaと連動したUIコンポーネント設計を共有。
+- **Result:**
+  - PoC期間中は障害ゼロを維持し、顧客の信頼を確保。
+  - 設計・テストの共通言語を整備し、学びを後続案件へ展開。
+- **Scale:**
+  - Languages: PHP 7.4 / Laravel / Python 3.6 / Vue 2 / Vuex / A-Frame / Jest / Sass
+  - Services: Maps/Geocoding/Places API / Figma / MySQL / SQL Server
+  - Azure: VM / Functions / SQL Database / Storage / DevOps / Traffic Manager / CDN
+  - CI: CircleCI
+- **Team:** 弊社エンジニア2名＋PdM1名、先方2名の計5名。
 
 ### [株式会社スタッフサービス](https://www.staffservice-engineering.jp/)（エンジニアリング事業本部）（2018年7月〜2019年7月）
 
-#### 衛生画像の分析支援Webアプリケーション開発
+#### 衛星画像の分析支援Webアプリケーション
 
-##### 案件クライアント
+- **Challenge:** 衛星画像解析データを扱う社内Webアプリの表示が10秒以上かかっており、性能改善とテスト体制の強化が求められていた。
+- **Role:** フルスタックエンジニアとして、Spring Boot＋Angular構成の実装と総合試験を担当。
+- **Actions:** 処理分割とキャッシュ戦略を見直し、描画時間を10秒→2秒に短縮。社内総合試験ではテストケース外のシナリオも洗い出し、クリティカルなバグを報告。
+- **Result:**
+  - 画面表示を10秒→2秒へ短縮。
+  - テスト観点の幅出しでクリティカルなバグを早期検知。
+- **Scale:** 2018年10月〜2019年7月 / Java 8, Spring Boot, Angular 1.x。
+#### 製薬開発支援Windowsアプリケーション
 
-大手日系メーカー子会社。
+- **Challenge:** 製薬開発業務の管理ツールをC#で刷新するにあたり、要件を満たすテストケースマトリックスを用意する必要があった。
+- **Role:** Windowsアプリエンジニアとして、実装とテスト計画を担当。
+- **Actions:** 画面設計とドメインロジックを整理し、事前にテストケースマトリックスを提出してレビューを通過。品質確保のための手順化を学習。
+- **Result:**
+  - C#アプリをリリースし、業務フローをデジタル化。
+  - テストケースマトリックス設計のスキルを習得。
+- **Scale:** 2018年7月〜2019年9月 / C# / Windowsアプリ。
+### [FIT株式会社](https://www.fit4u.co.jp/)（2018年4月〜6月）
 
-##### 期間
-
-2018年10月〜2019年7月。
-
-##### 開発内容
-
-Spring Bootでのバックエンド開発とAngularでのフロントエンド開発、開発後のテストで社内のみの総合試験を行いました。
-
-開発では元々画面の描画完了まで10秒かかっていた処理を2秒まで短縮したこと、総合試験で不要ログ削除ツールのバグを発見するなどをしました。
-
-また総合テストではテスト項目以外でも自分で考えてテストを行い、非常にクリティカルなバグを発見し報告しています。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - Java 8
-  - Spring Boot
-- Frontend
-  - JavaScript
-  - Angular 1.x
-
-</details>
-
-#### 製薬開発支援Windowsアプリケーション開発
-
-##### 案件クライアント
-
-中小SIer。
-
-##### 期間
-
-2018年7月〜2019年9月。
-
-##### 開発内容
-
-C#でのWindowsアプリケーションの開発をしました。
-
-実装前にテストケースのマトリックスを提出する必要があり、ここでソフトウェアテストの観点やテストの意義について学びました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Application
-  - C#
-
-</details>
-
-### [FIT株式会社](https://www.fit4u.co.jp/)
-
-#### 太陽光発電パネルの統計情報管理Webアプリケーション
-
-##### 期間
-
-2018年4月〜6月。
-
-##### 開発内容
-
-太陽光パネルを設置している顧客向けに発電量やCO2削減量などを確認できるWebアプリケーションを開発しました。
-
-エンジニアとして初めての業務で、最初のリリースは4月中と決められていたため頑張って開発をして期日に間に合わせました。
-
-PostgreSQL以外は初めてでしたが、業務中にキャッチアップを行って先輩に質問しながら開発を進めました。
-
-リリース後はエンハンスでチャート画面の拡張などを行いました。
-
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - C#
-  - .NET MVC
-- Frontend
-  - Angular 1.x
-- Infrastructure
-  - PostgreSQL
-  - IIS
-
-</details>
+- **Challenge:** エンジニア1年目として4月中リリースが決まった太陽光発電モニタリングWebアプリを自分主体で仕上げる必要があった。  
+  先輩はレビューとフォローに専念する体制だった。
+- **Role:** ジュニアエンジニアとして、C#/.NET MVC＋Angularでの機能実装とデータモデル設計を担当。
+- **Actions:** PostgreSQLやAngularを業務で初キャッチアップし、自分が実装をリードしつつ先輩に随時レビューを受けた。  
+  チャートやCO2削減量の表示機能を開発し、リリース後もチャート拡張などのエンハンスを継続。
+- **Result:**
+  - 期日どおりに初リリースを完了。
+  - エンハンスを継続できる体制と知識移転を実現。
+- **Scale:**
+  - C# / .NET MVC / Angular 1.x
+  - PostgreSQL / IIS
+- **Team:** 3名規模（先輩2名＋自身）で進行。
 
 ## できること・得意なこと
 
-### Backend
+- **0→1のB2B SaaS推進と広告プロダクト改善**  
+  Speeeでの広告調査SaaS立ち上げや広告配信基盤リプレイス、ビットエーでのFacebook Conversion API連携など、事業KPIに直結する開発を技術責任者としてリード。要件整理→アーキ設計→実装→運用までワンストップで担っている。
 
-- 以下要素技術でのAPI開発
-  - Laravel8
-  - Node.js(TypeScript)
-  - Python
-  - Go
-- テストコードでのunit testとintegration test
-- playwright or puppeteerでのE2Eテスト
+- **サーバサイド／データ基盤／クラウドのフルスタック実装**  
+  Go・TypeScript・Pythonを中心にAPIやバッチを開発し、GCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQLなど）やAWS（ECS on Fargate, Lambda, Aurora等）でインフラを構築。TerraformとGitHub Actions / CircleCIでIaCとCI/CDを整備し、本番運用まで引き上げている。
 
-### Infrastructure
+- **広告計測・データパイプラインの構築と可観測性の強化**  
+  Facebook Conversion APIを既存MAに組み込み、イベントとカスタムオーディエンスを安定送信。Core Web Vitals計測やBigQuery/Athenaでの集計を通じて、データ活用と品質計測を両立させている。
 
-- RDBでの論理設計
+- **TypeScriptフロントエンドのモダナイゼーションと検証基盤**  
+  Next.js/React＋Storybook＋Jest/Playwright構成でUIを再設計し、レガシーJSのTypeScript化やデザインシステム整備を推進。GraphQL（gqlgen, Apollo Client）でのフロント／API連携やE2Eテスト自動化も得意である。
 
-- GCPでのインフラ構築
-  - Cloud Run+Pub/Sub+Dataflow+Cloud SQL+BigQueryみたいな構成
-  - GCLB+Serverless NEGも構築したことあり
+- **少人数チームの設計・育成と開発プロセス整備**  
+  新卒メンバーや業務委託を巻き込み、Planning PokerやGit-flowを取り入れたスクラム/カンバン運用を設計。RenovateやAI Coding Toolの導入も推進し、個人PM的に複数プロジェクトを並走しながらNotion/Jiraでタスクとレビュー文化を整えている。
 
-- AWSでのインフラ構築
-  - CloudFront+ALB+ECS on EC2+Auroraみたいな構成
-  - SageMaker
-
-- BigQueryでのデータ操作
-
-- Athenaでのデータ操作
-
-- TerraformでのIaC
-
-- Jenkinsサーバ構築
-
-### Frontend
-
-- (React or Next.js) and TypeScriptでのフロントエンド開発
-
-- jestを使ったテスト
-
-- playwright or puppeteerなどでのE2Eテスト実装
-
-- storybookでのカタログ作成とインタラクションテスト
-
-### DevOop
-
-- GitHub ActionsやCircleCIでのCI/CD構築
-
-- renovate導入
-
-- Docker & Docker Composeでの環境構築
-
-### 性格
-
-#### 16personalities
-
-[管理者(ISTJ-A)](https://www.16personalities.com/ja/istj%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[巨匠(ISTP-A)](https://www.16personalities.com/ja/istp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)→[論理学者(INTP-A)](https://www.16personalities.com/ja/intp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC)
-
-#### DiSC
-
-CSタイプ2。
+- **行動特性**  
+  自律性の高い環境で変化を歓迎し、実験的な取り組みから学びを得て事業貢献につなげるスタイル。16personalitiesではISTJ→ISTP→INTPと遷移し、DiSCはCSタイプ2。論理的に課題を分解しつつ、泥臭い実装や運用にも向き合う。
