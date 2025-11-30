@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e  # Exit on error
+
 for f in *.md; do
   out="${f%.md}.pdf"
   echo "Generating $out"
