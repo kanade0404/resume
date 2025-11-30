@@ -1,8 +1,31 @@
 # Resume(details)
 
+この資料はREADME.mdの簡潔なレジュメを補完し、行動面接や技術の深掘りで参照してもらうことを目的にしています。
+
+## サマリー
+
+- 0→1フェーズのB2B SaaSを技術責任者として担当し、戦略検討からインフラ・サーバサイド・フロントエンドまで一気通貫で開発しています。
+- 広告配信基盤、クラウドインフラ最適化、LLM/AI Agent活用を主戦場として、事業KPIやeCPMなどの改善につなげています。
+- 個人PMとして複数プロジェクトを並走し、外部パートナーの採用や育成、コーディングAIの導入などチームづくりも担っています。
+- このドキュメントは面接やディスカッションで深掘る論点と再現性のある手法をまとめた補足資料です。
+
+## 経験タイムライン
+
+| 期間 | 企業 / 役割 | チーム規模 | ハイライト |
+| --- | --- | --- | --- |
+| 2022年8月〜現在 | 株式会社Speee / Tech Lead, Architect | 3〜6名（業務委託含む） | 広告配信プロダクトと広告調査SaaSの技術リード。インフラ刷新やDSP連携でeCPM改善、AI Coding Tool導入を担当。 |
+| 2022年8月〜10月 | 株式会社良品計画 / Backend & Frontend Eng. | 5名規模 | ElasticSearchの性能調査と改善案の実装、TypeScript・Storybook導入でフロントの品質を底上げ。 |
+| 2022年5月〜7月 | 株式会社クラフトマンソフトウェア / Build Pipeline Eng. | 4名規模 | 大手メーカー向け内製Androidアプリのビルドパイプラインを刷新し、Azure PipelinesとGitHub Actionsを再設計。 |
+| 2022年5月〜7月 | マキヤマブラザーズ株式会社 / Full Stack Eng. | 5名規模 | 自社WebアプリのAPI・フロント・インフラを横断して開発し、Atomic Designや責務整理を実施。 |
+| 2019年8月〜2022年5月 | 株式会社ビットエー / Tech Lead | 6〜10名規模 | 広告配信DMPとAI/VR不動産プロダクトを担当し、GCP×TerraformでのDMP構築とPoC通過、障害ゼロ運用を達成。 |
+| 2018年7月〜2019年7月 | 株式会社スタッフサービス（エンジニアリング事業本部） / Software Eng. | 3〜6名規模 | 衛星画像分析Webアプリや製薬向けWindowsアプリを開発し、テスト観点と品質保証を実務で習得。 |
+| 2018年4月〜6月 | FIT株式会社 / Junior Eng. | 3名規模 | 太陽光発電パネルの統計Webアプリを担当し、複数技術のキャッチアップと短納期開発を経験。 |
+
 ## Table Of Contents
 
 - [Resume(details)](#resumedetails)
+  - [サマリー](#サマリー)
+  - [経験タイムライン](#経験タイムライン)
   - [Table Of Contents](#table-of-contents)
   - [自己紹介](#自己紹介)
   - [経歴一覧](#経歴一覧)
@@ -88,78 +111,35 @@ TerraformやNode.jsのバージョンアップ、EC2で動かしていたJenkins
 
 プロパーのエンジニアが少ないので、基本的に一人一プロジェクトで設計と実装を全て行う立ち回りが必要になるので、幅広い要素技術を一通り扱えることと個人PMとしてプロジェクト管理をすることが求められます。
 
-<details>
-
-<summary>技術スタック</summary>
-
-- Backend
-  - [Go](https://go.dev/)
-  - [Python3.9](https://www.python.org/)
-  - [unittest](https://docs.python.org/ja/3/library/unittest.html)
-  - [pandas](https://pandas.pydata.org/)
-  - [MySQL](https://www.mysql.com/)
-  - [Ruby on Rails](https://rubyonrails.org/)
-- Infrastructure
-  - [AWS](https://aws.amazon.com/jp/)
-    - [EC2](https://aws.amazon.com/jp/ec2/)
-    - [Athena](https://aws.amazon.com/jp/athena/)
-    - [S3](https://aws.amazon.com/jp/s3/)
-    - [Sagemaker](https://aws.amazon.com/jp/sagemaker/)
-    - [ECS](https://aws.amazon.com/jp/ecs/)
-- DevOps
-  - [Terraform](https://www.terraform.io/)
-  - [GitHub Actions](https://github.co.jp/features/actions)
-  - [Airflow](https://airflow.apache.org/)
-  - [Jenkins](https://www.jenkins.io/)
-
-</details>
+- Go
+- Python
+- Ruby on Rails
+- Node.js(TypeScript)
+- MySQL
+- AWS
+- Terraform
+- Airflow
+- GitHub Copilot
+- Cline
+- Roo Code
 
 #### SaaS
 
 開発中のため詳細はリリース後に公開。
 
-以下が対応したスコープです。
+立ち上げ時は事業推進担当から声をかけてもらいましたが、リーンキャンバスやユーザーストーリーマッピングが自分の目から見てもあまり良くなかったのでPdMと一緒にブラッシュアップを行いました。
+その後は技術選定、SaaSアーキテクチャ設計、AWSインフラ設計・構築、社内管理画面の要件定義、業務委託エンジニアの採用とタスク・進捗管理、API設計と実装、その他開発関連の社内調整などを行なってローンチを実現しました。
 
-- PdMとのユーザーストーリーやリーンキャンバスのブラッシュアップ
-- 技術選定
-- SaaSシステム設計
-- 社内管理画面の要件定義
-- API設計・実装
-- AWSインフラ設計・構築
-- 業務委託エンジニアのタスク・進捗管理
-- その他開発全般の意思決定
-
-<details>
-<summary>技術スタック</summary>
-
-- App
-  - [Node.js](https://nodejs.org)
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [Hono](https://hono.dev/)
-  - [React](https://reactjs.org/)
-  - [Next.js](https://nextjs.org/)
-- Infrastructure
-  - [AWS](https://aws.amazon.com/jp/)
-    - [ECS](https://aws.amazon.com/jp/ecs/)
-    - [Fargate](https://aws.amazon.com/jp/fargate/)
-    - [Aurora](https://aws.amazon.com/jp/rds/aurora/)
-    - [Elastic Load Balancing](https://aws.amazon.com/jp/elasticloadbalancing/)
-    - [Lambda](https://aws.amazon.com/jp/lambda/)
-    - [DynamoDB](https://aws.amazon.com/jp/dynamodb/)
-    - [Cognito](https://aws.amazon.com/jp/cognito/)
-  - [Akamai](https://www.akamai.com/)
-- DevOps
-  - [Testcontainers](https://testcontainers.com/)
-  - [Docker](https://www.docker.com/)
-  - [Sentry](https://sentry.io/)
-  - [Datadog](https://www.datadoghq.com/)
-- AI Tools
-  - [Claude Code](https://www.anthropic.com/news/claude-code)
-  - [Cursor](https://www.cursor.com/)
-  - [Devin](https://www.cognition.ai/devin)
-  - [Coderabbit](https://www.coderabbit.ai/)
-
-</details>
+- Node.js(TypeScript)
+- React
+- Next.js
+- Hono.js
+- AWS
+- Terraform
+- SendGrid
+- Claude Code
+- Cursor
+- Devin
 
 ### [株式会社良品計画](https://www.ryohin-keikaku.jp/)(2022年8月~10月)
 
