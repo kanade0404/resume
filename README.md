@@ -18,11 +18,11 @@
 - **株式会社Speee（2022年8月〜、2022年8月〜2023年4月は業務委託）**  
   広告配信プラットフォームをGo/TypeScript/AWSで刷新。Node.js・Terraform・Jenkinsなど主要コンポーネントをアップグレードし、外部DSP連携でeCPM改善。広告調査SaaSの技術責任者として、ECS on Fargate構成のアーキ設計や業務委託マネジメント、AI Coding Tool導入を推進。
 
-- **株式会社ビットエー（2019年8月〜2022年5月）**  
-  Facebook Conversion APIを既存MAツールに組み込むDMPをGCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQL）上で構築し、イベント／カスタムオーディエンス送信を安定化。Core Web Vitals計測を社内Webアプリに実装し、SEO改善に活用。新卒メンバー育成やGit-flow＋Planning Pokerでの開発プロセス整備も担当。
-
-- **フリーランス（業務委託、2022年5月〜10月）**  
+- **フリーランス（業務委託、2022年5月〜2023年4月）**  
   単独でECサイトのElasticSearch調査＆TypeScript/Storybook化を実施。並行してCTO直下でGo＋gqlgen＋Next.js＋Apollo Clientによる複業マッチングSaaSの機能追加を短期間でデリバリー。
+
+- **株式会社ビットエー（2019年8月〜2022年4月）**  
+  Facebook Conversion APIを既存MAツールに組み込むDMPをGCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQL）上で構築し、イベント／カスタムオーディエンス送信を安定化。Core Web Vitals計測を社内Webアプリに実装し、SEO改善に活用。新卒メンバー育成やGit-flow＋Planning Pokerでの開発プロセス整備も担当。
 
 - **株式会社スタッフサービス / FIT株式会社（2018年4月〜2019年7月）**  
   C#/.NETやSpring Boot＋Angularで衛星画像解析や太陽光モニタリングなどtoBシステムを担当。性能改善やテスト観点の洗い出しで基礎体力を培いました。
