@@ -8,7 +8,9 @@
   },
   "rules": {
     "preset-ja-spacing": true,
-    "preset-ja-technical-writing": true,
+    "preset-ja-technical-writing": {
+      "no-mix-dearu-desumasu": false
+    },
     "spellcheck-tech-word": true
   }
 }

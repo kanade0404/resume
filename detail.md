@@ -81,7 +81,7 @@
 
 #### 広告調査SaaS立ち上げ
 
-- **Challenge:** 0→1の新規SaaSで、事業責任者が作成したリーンキャンバスやユーザーストーリーマッピングを見直し、Eng1~2名で半年でリリースをする必要がありました。
+- **Challenge:** 0→1の新規SaaSにおいて、事業責任者が作成したリーンキャンバスやユーザーストーリーマッピングを見直し、Eng1~2名が半年でリリースをする必要がありました。
 - **Role:** 技術選定からアーキテクチャ設計、AWSインフラ構築、API実装、社内外調整、業務委託採用・進行管理までを担う技術責任者です。
 - **Actions:**
   - PdMと共にリーンキャンバス／ユーザーストーリーを再構築し、機能のスコープを再定義しました。
@@ -90,7 +90,7 @@
 - **Result:**
   - ベータ版ローンチを完了し、社内モニタリングと顧客インタビューを回せる状態を構築しました。
 - **Scale:** Node.js(TypeScript) / React / Next.js / Hono.js。
-  インフラはAWS（ECS on Fargate, RDS, S3, Lambda）/ Terraform / SendGrid / 各種AI Coding Tool(Claude Code / Cursor / Devin)です。
+  インフラはAWS（ECS on Fargate, RDS, S3, Lambda）/ Terraform / SendGridを使用しました。各種AI Coding Tool(Claude Code / Cursor / Devin)も活用しました。
 - **Team:** PdM1名＋社内エンジニア1名（私のみで業務委託Engは離任済）＋業務委託1名（クローラー担当）。タスクはNotionで管理し、クローラー担当は現在も開発を継続中です。
 
 ### [株式会社ビットエー](https://bita.jp/)（2019年8月〜2022年5月）
@@ -172,10 +172,10 @@ SESとして顧客常駐し、サーバサイド・インフラ・フロント�
 ## できること・得意なこと
 
 - **0→1のB2B SaaS推進と広告プロダクト改善**
-  Speeeでの広告調査SaaS立ち上げや広告配信基盤リプレイス、ビットエーでのFacebook Conversion API連携など、事業KPIに直結する開発を技術責任者としてリードしています。要件整理→アーキ設計→実装→運用までワンストップで担っています。
+  Speeeでの広告調査SaaS立ち上げや広告配信基盤リプレイスを技術責任者としてリードしています。ビットエーではFacebook Conversion API連携など、事業KPIに直結する開発を推進しました。要件整理→アーキ設計→実装→運用までワンストップで担っています。
 
 - **サーバサイド／データ基盤／クラウドのフルスタック実装**
-  Go・TypeScript・Pythonを中心にAPIやバッチを開発し、GCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQLなど）やAWS（ECS on Fargate, Lambda, Aurora等）でインフラを構築しています。TerraformとGitHub Actions / CircleCIでIaCとCI/CDを整備し、本番運用まで引き上げています。
+  Go・TypeScript・Pythonを中心にAPIやバッチを開発し、GCPやAWSでインフラを構築しています。TerraformとGitHub Actions / CircleCIでIaCとCI/CDを整備し、本番運用まで引き上げています。
 
 - **少人数チームの設計・育成と開発プロセス整備**
   新卒メンバーや業務委託を巻き込み、Planning PokerやGit-flowを取り入れたスクラム/カンバン運用を設計しています。RenovateやAI Coding Toolの導入も推進し、個人PM的に複数プロジェクトを並走しながらNotion/Jiraでタスクとレビュー文化を整えています。

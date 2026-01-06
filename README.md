@@ -22,7 +22,7 @@
   単独でECサイトのElasticSearch調査＆TypeScript/Storybook化を実施しました。並行してCTO直下でGo＋gqlgen＋Next.js＋Apollo Clientによる複業マッチングSaaSの機能追加を短期間でデリバリーしました。
 
 - **株式会社ビットエー（2019年8月〜2022年5月）**
-  Facebook Conversion APIを既存MAツールに組み込むDMPをGCP（Cloud Run, Pub/Sub, BigQuery, Cloud SQL）上で構築し、イベント／カスタムオーディエンス送信を安定化しました。Core Web Vitals計測を社内Webアプリに実装し、SEO改善に活用しました。新卒メンバー育成やGit-flow＋Planning Pokerでの開発プロセス整備も担当しました。
+  Facebook Conversion APIを既存MAツールに組み込むDMPをGCP上で構築しました。イベント／カスタムオーディエンス送信を安定化し、Core Web Vitals計測を社内Webアプリに実装してSEO改善に活用しました。新卒メンバー育成やGit-flow＋Planning Pokerでの開発プロセス整備も担当しました。
 
 - **株式会社スタッフサービス / FIT株式会社（2018年4月〜2019年7月）**  
   C#/.NETやSpring Boot＋Angularで衛星画像解析や太陽光モニタリングなどtoBシステムを担当。性能改善やテスト観点の洗い出しで基礎体力を培いました。
