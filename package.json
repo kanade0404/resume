@@ -6,7 +6,7 @@
   "devDependencies": {
     "fixpack": "4.0.0",
     "md-to-pdf": "5.2.5",
-    "textlint": "15.5.0",
+    "textlint": "15.5.1",
     "textlint-filter-rule-allowlist": "4.0.0",
     "textlint-rule-preset-ja-spacing": "2.4.3",
     "textlint-rule-preset-ja-technical-writing": "12.0.2",
