@@ -2,7 +2,7 @@
 
 [経歴書アップデート計画](./resume-update-plan.md)を確実に実行するための期限付きアクションプラン。
 
-毎週月曜に GitHub Actions が未完了タスクを Issue でリマインドする。完了したら `- [x]` に更新する。
+毎週月曜 09:00 (JST) に GitHub Actions が未完了タスクを Discord にリマインドする（要 `DISCORD_WEBHOOK_URL` シークレット）。完了したら `- [x]` に更新する。
 
 ## タスク一覧
 

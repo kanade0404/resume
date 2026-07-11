@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write
   contents: read
 
 jobs:
@@ -44,12 +43,12 @@ jobs:
             exit 0
           fi
 
-          body="@kanade0404 今週のアクションプラン状況です（[docs/action-plan.md](https://github.com/${GITHUB_REPOSITORY}/blob/master/docs/action-plan.md)）\n\n"
+          body="📋 **今週のアクションプラン状況**\nhttps://github.com/${GITHUB_REPOSITORY}/blob/master/docs/action-plan.md\n\n"
           if [ -n "$overdue" ]; then
-            body="${body}### 期限超過\n${overdue}\n"
+            body="${body}**🔥 期限超過**\n${overdue}\n"
           fi
           if [ -n "$upcoming" ]; then
-            body="${body}### 未完了\n${upcoming}"
+            body="${body}**⏳ 未完了**\n${upcoming}"
           fi
 
           {
@@ -59,19 +58,16 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
           echo "has_items=true" >> "$GITHUB_OUTPUT"
-      - name: Post reminder issue
+      - name: Send Discord reminder
         if: steps.plan.outputs.has_items == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           BODY: ${{ steps.plan.outputs.body }}
         run: |
-          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --label action-plan --state open --json number --jq '.[0].number' || true)
-          if [ -n "$existing" ] && [ "$existing" != "null" ]; then
-            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$BODY"
-          else
-            gh label create action-plan --repo "$GITHUB_REPOSITORY" --description "Action plan reminders" --color BFD4F2 2>/dev/null || true
-            gh issue create --repo "$GITHUB_REPOSITORY" \
-              --title "アクションプラン リマインダー" \
-              --label action-plan \
-              --body "$BODY"
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_WEBHOOK_URL secret is not set" >&2
+            exit 1
           fi
+          # Discord の content 上限は 2000 文字
+          jq -n --arg content "$(printf '%s' "$BODY" | head -c 1900)" '{content: $content}' \
+            | curl -sS -f -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK_URL"
