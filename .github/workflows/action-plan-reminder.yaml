@@ -1,0 +1,73 @@
+name: Action Plan Reminder
+
+on:
+  schedule:
+    # 毎週月曜 09:00 JST (00:00 UTC)
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 1
+      - name: Build reminder from action plan
+        id: plan
+        run: |
+          PLAN=docs/action-plan.md
+          if [ ! -f "$PLAN" ]; then
+            echo "has_items=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          today=$(TZ=Asia/Tokyo date +%Y-%m-%d)
+          overdue=""
+          upcoming=""
+          while IFS= read -r line; do
+            due=$(printf '%s' "$line" | grep -oE '期限: [0-9]{4}-[0-9]{2}-[0-9]{2}' | cut -d' ' -f2 || true)
+            task=$(printf '%s' "$line" | sed -E 's/^- \[ \] //; s/ \(期限: [0-9-]+\)//')
+            if [ -n "$due" ] && [ "$due" \< "$today" ]; then
+              overdue="${overdue}- ⚠️ **${task}**（期限超過: ${due}）\n"
+            else
+              upcoming="${upcoming}- ${task}（期限: ${due:-未設定}）\n"
+            fi
+          done < <(grep -E '^- \[ \]' "$PLAN" || true)
+
+          if [ -z "$overdue" ] && [ -z "$upcoming" ]; then
+            echo "has_items=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          body="📋 **今週のアクションプラン状況**\nhttps://github.com/${GITHUB_REPOSITORY}/blob/master/docs/action-plan.md\n\n"
+          if [ -n "$overdue" ]; then
+            body="${body}**🔥 期限超過**\n${overdue}\n"
+          fi
+          if [ -n "$upcoming" ]; then
+            body="${body}**⏳ 未完了**\n${upcoming}"
+          fi
+
+          {
+            echo "body<<EOF"
+            printf '%b' "$body"
+            echo ""
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "has_items=true" >> "$GITHUB_OUTPUT"
+      - name: Send Discord reminder
+        if: steps.plan.outputs.has_items == 'true'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          BODY: ${{ steps.plan.outputs.body }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_WEBHOOK_URL secret is not set" >&2
+            exit 1
+          fi
+          # Discord の content 上限は 2000 文字
+          jq -n --arg content "$(printf '%s' "$BODY" | head -c 1900)" '{content: $content}' \
+            | curl -sS -f -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK_URL"
