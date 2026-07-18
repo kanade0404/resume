@@ -1,0 +1,24 @@
+{
+  "target_skill": "code-review",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"コードレビューして","should_trigger":true,"rationale":"skill 名直接","tags":["explicit"]},
+    {"id":"t02","prompt":"PR 出す前にチェックして","should_trigger":true,"rationale":"PR 起票前 = 本スキル起動条件","tags":["explicit"]},
+    {"id":"t03","prompt":"実装見て、問題ないか","should_trigger":true,"rationale":"実装レビュー要請","tags":["explicit"]},
+    {"id":"t04","prompt":"マージ前に最終確認して","should_trigger":true,"rationale":"merge 直前 review","tags":["explicit"]},
+    {"id":"t05","prompt":"これで OK?","should_trigger":true,"rationale":"description の起動語彙「これで OK?」明示","tags":["explicit"]},
+    {"id":"t06","prompt":"diff チェックお願い","should_trigger":true,"rationale":"diff レビュー","tags":["ambiguous"]},
+    {"id":"t07","prompt":"品質確認お願い","should_trigger":true,"rationale":"品質 = レビュー観点","tags":["ambiguous"]},
+    {"id":"t08","prompt":"責務 OK か見て","should_trigger":true,"rationale":"観点 2 (責務)","tags":["ambiguous"]},
+    {"id":"t09","prompt":"実装どう?","should_trigger":true,"rationale":"実装評価依頼","tags":["ambiguous"]},
+    {"id":"t10","prompt":"review feedback ほしい","should_trigger":true,"rationale":"feedback = レビュー","tags":["ambiguous"]},
+    {"id":"t11","prompt":"テストレビューして","should_trigger":false,"rationale":"test-review 領域","tags":["adjacent"]},
+    {"id":"t12","prompt":"設計レビューして","should_trigger":false,"rationale":"design-review 領域","tags":["adjacent"]},
+    {"id":"t13","prompt":"PR コメント対応して","should_trigger":false,"rationale":"pr-review-respond 領域、PR 後","tags":["adjacent"]},
+    {"id":"t14","prompt":"CI 確認","should_trigger":false,"rationale":"ci-self-heal 領域","tags":["adjacent"]},
+    {"id":"t15","prompt":"ADR 妥当性確認","should_trigger":false,"rationale":"adr-writer 値判定","tags":["adjacent"]},
+    {"id":"t16","prompt":"review system 設計したい","should_trigger":false,"rationale":"review system の設計、別文脈","tags":["distractor"]},
+    {"id":"t17","prompt":"code search したい","should_trigger":false,"rationale":"検索照会","tags":["distractor"]},
+    {"id":"t18","prompt":"レビュー記事書きたい","should_trigger":false,"rationale":"記事執筆、別文脈","tags":["distractor"]}
+  ]
+}

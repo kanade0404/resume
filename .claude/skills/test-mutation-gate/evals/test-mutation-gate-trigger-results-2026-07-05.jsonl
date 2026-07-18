@@ -1,0 +1,23 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致"}
+{"id":"t02","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致"}
+{"id":"t03","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致(assertion監査)"}
+{"id":"t04","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致(tautologyチェック)"}
+{"id":"t05","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致"}
+{"id":"t06","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致(バグのロックイン)"}
+{"id":"t07","predicted":true,"actual":true,"reason":"tdd Step3.5(GREEN確認後・commit前)の主経路そのもの"}
+{"id":"t08","predicted":true,"actual":true,"reason":"pr-review-respond Phase C(VALID修正のテスト側diff)の主経路"}
+{"id":"t09","predicted":true,"actual":true,"reason":"verify-done Step4(完了宣言直前)の主経路"}
+{"id":"t10","predicted":true,"actual":true,"reason":"tautology-literal-sharing checkそのものの状況"}
+{"id":"t11","predicted":true,"actual":true,"reason":"boundary-gap checkそのものの状況"}
+{"id":"t12","predicted":false,"actual":false,"reason":"テストスイート全体の網羅的レビューはtest-reviewの範囲"}
+{"id":"t13","predicted":false,"actual":false,"reason":"push後のCI赤対応はci-self-healの範囲(明示的に対象外)"}
+{"id":"t14","predicted":false,"actual":false,"reason":"テスト追加(新規作成)はtdd/test-designの範囲でmutation gateの対象外"}
+{"id":"t15","predicted":false,"actual":false,"reason":"skillのtrigger eval採点はskill-builder Mode Bの範囲(明示的に対象外)"}
+{"id":"t16","predicted":false,"actual":false,"reason":"flaky原因調査はtest-reviewの範囲"}
+{"id":"t17","predicted":false,"actual":false,"reason":"実装コードのバグレビューでテスト診断ではない"}
+{"id":"t18","predicted":false,"actual":false,"reason":"ツール選定調査はresearch-practicesの範囲"}
+{"id":"t22","predicted":true,"actual":true,"reason":"description記載の起動例文と完全一致(mutation testingして)"}
+{"id":"t23","predicted":false,"actual":false,"reason":"スイート全体のmutation score運用(Stryker/mutmut相当)は明示的に対象外"}
+{"id":"t19","predicted":false,"actual":false,"reason":"意味を尋ねるだけで実行依頼ではない"}
+{"id":"t20","predicted":false,"actual":false,"reason":"assertionライブラリ選定はresearch-practices寄りでgate対象外"}
+{"id":"t21","predicted":false,"actual":false,"reason":"テスト名のリネームはtidy-first寄りでassertion品質/mutationと無関係"}

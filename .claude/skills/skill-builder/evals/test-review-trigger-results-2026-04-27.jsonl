@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"reason":"テストファイル + レビュー依頼。core 条件にマッチ。"}
+{"id":"t02","predicted":true,"reason":"description literal「このテストいい?」"}
+{"id":"t03","predicted":true,"reason":"description literal「テスト見て」"}
+{"id":"t04","predicted":true,"reason":"*_test.py + 監査依頼。新規テストファイル監査の条件。"}
+{"id":"t05","predicted":true,"reason":"RLS テスト存在確認の条件に直接対応。"}
+{"id":"t06","predicted":true,"reason":"supabase/tests/** ファイルパターン。"}
+{"id":"t07","predicted":true,"reason":"agent eval の厳密性評価条件。"}
+{"id":"t08","predicted":true,"reason":"flaky テスト原因追跡。"}
+{"id":"t09","predicted":true,"reason":"description literal「認可のテスト足りてる?」"}
+{"id":"t10","predicted":true,"reason":"n8n workflow テスト品質チェック。"}
+{"id":"t11","predicted":true,"reason":"description literal「このプロンプトテストでカバーできてる?」"}
+{"id":"t12","predicted":true,"reason":"description literal「テストスイート大丈夫?」"}
+{"id":"t13","predicted":false,"reason":"プロダクションコードのレビュー、テストファイルではない。"}
+{"id":"t14","predicted":false,"reason":"linter 修正、テスト・レビューに該当しない。"}
+{"id":"t15","predicted":false,"reason":"実装設計、テストファイルなし。"}
+{"id":"t16","predicted":false,"reason":"schema 変更、RLS テストや supabase/tests/** に直接触れない。"}
+{"id":"t17","predicted":false,"reason":"並列化は description で明示的に範囲外（『書く・直す・移行・並列化・基盤改善・パフォーマンス改善』）。"}
+{"id":"t18","predicted":false,"reason":"workflow 作成、レビューではない。"}
+{"id":"t19","predicted":false,"reason":"prompt engineering 最適化、eval review ではない。"}
+{"id":"t20","predicted":false,"reason":"テストフレームワーク移行は description で明示的に範囲外（『移行』）。"}

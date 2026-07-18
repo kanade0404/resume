@@ -1,0 +1,132 @@
+{
+  "target_skill": "handoff",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "この作業の引き継ぎ書いて",
+      "should_trigger": true,
+      "rationale": "直接的な引き継ぎ文書の要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "handoff 作っておいて",
+      "should_trigger": true,
+      "rationale": "handoff の明示要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "別のエージェントが続きをやれるようにまとめて",
+      "should_trigger": true,
+      "rationale": "別 agent への継続 = handoff の中核",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "次のセッションに引き継ぎたいので状況をまとめて",
+      "should_trigger": true,
+      "rationale": "次セッションへの state transfer",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "context が膨らんできたから別 agent に渡せる形に圧縮して",
+      "should_trigger": true,
+      "rationale": "context 圧縮して継続委譲 = handoff",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "ここで一旦切るので、後で再開できるようにしといて",
+      "should_trigger": true,
+      "rationale": "中断→再開のための引き継ぎの口語表現",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "この続き、明日別のセッションでやるから今の状態残しといて",
+      "should_trigger": true,
+      "rationale": "別セッション継続のための state 保存 = handoff",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "誰かに引き継ぐ用のメモ作って、次に何すればいいか分かるやつ",
+      "should_trigger": true,
+      "rationale": "next actions を含む引き継ぎメモ = handoff",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "hand off this to a fresh agent",
+      "should_trigger": true,
+      "rationale": "英語での handoff 要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t10",
+      "prompt": "このセッションの学びを CLAUDE.md に反映できる形で振り返って",
+      "should_trigger": false,
+      "rationale": "ハーネス改善の学び抽出 = session-retro の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t11",
+      "prompt": "PR がマージされたので retro して改善提案出して",
+      "should_trigger": false,
+      "rationale": "完了セッションからの harness 改善 = retro の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t12",
+      "prompt": "今の会話を 3 行で要約して",
+      "should_trigger": false,
+      "rationale": "継続を意図しない単なる要約 — 通常応答で足りる",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "この設計判断を ADR に残して",
+      "should_trigger": false,
+      "rationale": "設計決定の永続記録 = adr-writer の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "ここまでの変更を commit しといて",
+      "should_trigger": false,
+      "rationale": "成果物は commit — commit skill の担当",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t15",
+      "prompt": "この関数の処理を別の関数に切り出して",
+      "should_trigger": false,
+      "rationale": "「切り出す/引き継ぐ」に見えるがコードリファクタ — 範囲外",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t16",
+      "prompt": "TCP のコネクションハンドオフの仕組みを教えて",
+      "should_trigger": false,
+      "rationale": "handoff という語はあるが解説要請で成果物は説明",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t17",
+      "prompt": "実装したいことだけ書き出したので、次のセッションで着手できるよう handoff にして",
+      "should_trigger": true,
+      "rationale": "next actions 中心の引き継ぎ文書 = 中核ケース",
+      "tags": ["explicit", "edge"]
+    },
+    {
+      "id": "t18",
+      "prompt": "顧客リストを別チームに引き継ぐ手順を教えて",
+      "should_trigger": false,
+      "rationale": "「引き継ぐ」だが会話→agent の handoff でなく業務手続きの質問",
+      "tags": ["distractor"]
+    }
+  ]
+}

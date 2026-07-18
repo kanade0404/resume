@@ -1,0 +1,17 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"「テストケース考えて」は起動フレーズに明記"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「実装する前にテスト設計して」は起動フレーズそのもの"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「テスト観点洗い出して」は起動フレーズに明記"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「境界値どこ?」はBVAの起動フレーズに明記"}
+{"id":"t05","predicted":true,"actual":true,"reason":"事前条件・事後条件からテスト導出は起動フレーズそのもの"}
+{"id":"t06","predicted":true,"actual":true,"reason":"「どんなテスト書けばいい?」は起動フレーズに明記"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「property 何にする?」は起動フレーズに明記"}
+{"id":"t08","predicted":true,"actual":true,"reason":"実装前にテストケース網羅を考える依頼は本スキルの核心スコープ"}
+{"id":"t09","predicted":true,"actual":true,"reason":"条件多数の網羅範囲判断はデシジョンテーブル設計に該当"}
+{"id":"t10","predicted":false,"actual":false,"reason":"既存テストのレビューはtest-reviewの担当"}
+{"id":"t11","predicted":false,"actual":false,"reason":"RED-GREEN実行サイクルはtddの担当"}
+{"id":"t12","predicted":false,"actual":false,"reason":"検出力のPASS/BLOCK判定はtest-mutation-gateの担当"}
+{"id":"t13","predicted":false,"actual":false,"reason":"既存テストへのカバレッジ追加は設計表出力ではなく実装/改修作業"}
+{"id":"t14","predicted":false,"actual":false,"reason":"既存スイートの抜け漏れレビューはtest-reviewの担当(カバレッジ欠落指摘)"}
+{"id":"t15","predicted":false,"actual":false,"reason":"システム設計のレビューはdesignの担当でテスト設計ではない"}
+{"id":"t16","predicted":false,"actual":false,"reason":"テスト件数を数えるだけで設計導出を伴わない"}
+{"id":"t17","predicted":false,"actual":false,"reason":"実装そのものの依頼でテスト設計表の出力要請ではない"}

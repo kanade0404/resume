@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description「コードラビット対応」直マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「レビュー対応して」「コメント見て対応」直マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「Devin の指摘片付けて」直マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「捌いて」description 起動語彙"}
+{"id":"t05","predicted":true,"actual":true,"reason":"reviewer 指摘 = description 起動条件"}
+{"id":"t06","predicted":true,"actual":true,"reason":"PR + コメント = レビュー対応文脈"}
+{"id":"t07","predicted":true,"actual":true,"reason":"指摘 = レビュー、対応依頼推測"}
+{"id":"t08","predicted":true,"actual":true,"reason":"CodeRabbit resolve = 対応完了の動作"}
+{"id":"t09","predicted":true,"actual":true,"reason":"review feedback = レビューコメント"}
+{"id":"t10","predicted":true,"actual":true,"reason":"PR コメント片付け = 起動条件"}
+{"id":"t11","predicted":false,"actual":false,"reason":"「PR 出す前」+「コードレビュー」は code-review 文脈、PR 後コメント対応ではない"}
+{"id":"t12","predicted":false,"actual":false,"reason":"CI 修復 = ci-self-heal、コメント対応ではない"}
+{"id":"t13","predicted":false,"actual":false,"reason":"tdd 起動文脈"}
+{"id":"t14","predicted":false,"actual":false,"reason":"design-review 起動文脈"}
+{"id":"t15","predicted":false,"actual":false,"reason":"test-review 起動文脈"}
+{"id":"t16","predicted":false,"actual":false,"reason":"description「レビュー自体を実行することはしない」明示、本スキル外"}
+{"id":"t17","predicted":false,"actual":false,"reason":"PR 概念照会"}
+{"id":"t18","predicted":false,"actual":false,"reason":"自分発のコメント追加であり既存指摘対応ではない"}

@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"skill 名 + 出荷ターミナルステージ直マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"should-use 句ほぼ逐語 (PR/CI/レビュー全通し→merge可)"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「commit-push-pr の検証付き版」逐語"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「赤と指摘を全部潰して merge-ready に」直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"commit+PR+CI+レビュー全段の明示要請"}
+{"id":"t06","predicted":true,"actual":true,"reason":"実装後 + 「出しといて」= 実装後に出荷丸ごと任せる一般節に該当"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「よしなに全部 PR まで持って緑に」= 出荷丸投げ一般節 (例語は削減も意図節で発火)"}
+{"id":"t08","predicted":true,"actual":true,"reason":"完成後 PR 化 + 指摘対応込み = 出荷丸投げ"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「出荷して CI もレビューも面倒見て」一般節に該当"}
+{"id":"t10","predicted":true,"actual":true,"reason":"赤とコメント収束 = merge-ready 例にマッチ"}
+{"id":"t11","predicted":false,"actual":false,"reason":"negative space: コードレビューだけ → code-review"}
+{"id":"t12","predicted":false,"actual":false,"reason":"negative space: 既存 PR コメント対応だけ → pr-review-respond"}
+{"id":"t13","predicted":false,"actual":false,"reason":"negative space: CI 修復だけ → ci-self-heal"}
+{"id":"t14","predicted":false,"actual":false,"reason":"negative space: 完了確認だけ → verify-done"}
+{"id":"t15","predicted":false,"actual":false,"reason":"「レビュー対応は後で自分で」明示 → 素の commit-push-pr 領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"ローカル test のみ = 実装/検証前段、上流領域・パイプライン外"}
+{"id":"t17","predicted":false,"actual":false,"reason":"prod デプロイ、本スキルは merge-ready 停止で別物"}
+{"id":"t18","predicted":false,"actual":false,"reason":"「リリース」keyword 紛れ、別作業"}
+{"id":"t19","predicted":false,"actual":false,"reason":"「出荷」keyword distractor、別ドメイン"}
+{"id":"t20","predicted":false,"actual":false,"reason":"概念照会、作業実行要請ではない"}

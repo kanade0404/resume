@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"「設計どうする」description 直マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「アーキ考えて」description 直マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「どこに置く」description 直マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「依存方向は」description 直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"「先にデザインして」description 直マッチ"}
+{"id":"t06","predicted":true,"actual":true,"reason":"構造選択の口語表現、設計検討"}
+{"id":"t07","predicted":true,"actual":true,"reason":"責務 = Step 2 検討項目"}
+{"id":"t08","predicted":true,"actual":true,"reason":"構造選択 = 設計"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「I/O 境界どこ」description 直マッチ"}
+{"id":"t10","predicted":true,"actual":true,"reason":"全体構造 = アーキ検討"}
+{"id":"t11","predicted":false,"actual":false,"reason":"adr-writer 起動文脈"}
+{"id":"t12","predicted":false,"actual":false,"reason":"design-review 起動文脈"}
+{"id":"t13","predicted":false,"actual":false,"reason":"tdd 起動文脈"}
+{"id":"t14","predicted":false,"actual":false,"reason":"tidy-first 起動文脈"}
+{"id":"t15","predicted":false,"actual":false,"reason":"requirements-review 領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"書籍照会"}
+{"id":"t17","predicted":false,"actual":false,"reason":"UI design tool 照会"}
+{"id":"t18","predicted":false,"actual":false,"reason":"汎用照会"}

@@ -1,0 +1,40 @@
+{
+  "skill_name": "research-practices",
+  "evals": [
+    {
+      "id": 1,
+      "name": "library-comparison-n8n-alternative",
+      "prompt": "Aegisプロジェクトで n8n をオーケストレーションに採用予定なんだけど、代替候補（Temporal, Airflow, Prefect, Dagster, Windmill）と比較してほしい。我々のユースケース（AIエージェントのタスク実行、Discord HITL、Supabase連携）に合うかどうか、採用/保留/不採用を推奨してください。",
+      "expected_output": "リサーチレポート形式（TL;DR、スコープ、方法、結果、考察、推奨、付録）。各候補に信頼度タグ付き根拠。比較マトリクス。トレードオフ明示。反証1つ以上。一次情報リンク。日本語。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "academic-practices-rag-evaluation",
+      "prompt": "社内でRAGシステムを構築することになった。学術的・業界的にどうやって品質評価するのがベストプラクティスなのか、世界的な実践をまとめてほしい。",
+      "expected_output": "研究メソッドとしての評価指標（Recall@k, MRR, Faithfulness, Answer relevance等）を一次情報（論文・公式ドキュメント）で裏付け。Ragas/TruLens等のフレームワーク紹介。評価データ作成方法。信頼度タグ付き。日本語レポート。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "quick-sanity-check",
+      "prompt": "bunってnodeより速いって聞いたんだけど本当？",
+      "expected_output": "Quick Look スコープで処理。一次情報（公式ベンチ、独立第三者ベンチ）を確認。Goodhart's Law / ベンダーバイアスに言及。単純な「速い」ではなく条件付き回答。信頼度タグ付き。日本語。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "non-research-trigger-guard",
+      "prompt": "README.mdのtypoを直してPRに出して",
+      "expected_output": "このスキルをトリガーしない（調査タスクではなく実装タスク）。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "world-wide-practices-code-review",
+      "prompt": "PRレビューの世界的なベストプラクティスを調べてまとめて。Googleとかのエンジニアリング組織がどうやっているかも含めて。",
+      "expected_output": "Google 'Code Review Developer Guide'、Microsoft研究、Thoughtworks、学術論文等の一次情報を統合。バイアス（Streetlight: 大企業バイアス）に言及。日本語レポート。信頼度タグ付き。反証として『小規模チームでの適用限界』も。",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "target_skill": "design-review",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "ADR-0007 をレビューして。Considered Options 足りてるか見てほしい。",
+      "should_trigger": true,
+      "rationale": "ADR レビュー = design-review",
+      "tags": ["explicit", "adr"]
+    },
+    {
+      "id": "t02",
+      "prompt": "この設計、別エージェントで読み直してほしい。書き手バイアス排したい。",
+      "should_trigger": true,
+      "rationale": "subagent dispatch を要求している",
+      "tags": ["explicit", "bias"]
+    },
+    {
+      "id": "t03",
+      "prompt": "design proposal を出した。最終チェックお願い。",
+      "should_trigger": true,
+      "rationale": "software-design 後の最終レビュー",
+      "tags": ["explicit", "post-design"]
+    },
+    {
+      "id": "t04",
+      "prompt": "この集約境界、これで OK?",
+      "should_trigger": true,
+      "rationale": "設計の妥当性確認",
+      "tags": ["ambiguous", "ddd"]
+    },
+    {
+      "id": "t05",
+      "prompt": "Result への置き換え案、抜けない?",
+      "should_trigger": true,
+      "rationale": "設計提案の盲点確認",
+      "tags": ["ambiguous", "rop"]
+    },
+    {
+      "id": "t06",
+      "prompt": "Secure by Design 観点で監査して。",
+      "should_trigger": true,
+      "rationale": "checklist 適用",
+      "tags": ["explicit", "security"]
+    },
+    {
+      "id": "t07",
+      "prompt": "アーキテクチャ決定の Negative consequences 薄い気がする。見て。",
+      "should_trigger": true,
+      "rationale": "ADR レビュー (Negative 不足)",
+      "tags": ["explicit", "adr"]
+    },
+    {
+      "id": "t08",
+      "prompt": "この設計差分の PR レビューして。設計部分だけ。",
+      "should_trigger": true,
+      "rationale": "設計差分のレビュー",
+      "tags": ["explicit", "pr"]
+    },
+    {
+      "id": "t09",
+      "prompt": "設計ドキュメント、抜け落ちている観点ない?",
+      "should_trigger": true,
+      "rationale": "checklist 全レンズ適用",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "この提案で本当に行く? もう 1 回読んでほしい。",
+      "should_trigger": true,
+      "rationale": "外部視点のレビュー要請",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t11",
+      "prompt": "新規ドメインモデルを設計したい。集約境界どこに引く?",
+      "should_trigger": false,
+      "rationale": "software-design の担当（提案フェーズ）",
+      "tags": ["adjacent", "software-design"]
+    },
+    {
+      "id": "t12",
+      "prompt": "Result 型に置き換えたい。どう書く?",
+      "should_trigger": false,
+      "rationale": "software-design の担当（提案フェーズ）",
+      "tags": ["adjacent", "software-design"]
+    },
+    {
+      "id": "t13",
+      "prompt": "テストの flaky を直したい。",
+      "should_trigger": false,
+      "rationale": "test-review の担当",
+      "tags": ["adjacent", "test-review"]
+    },
+    {
+      "id": "t14",
+      "prompt": "pytest のテストファイルレビューして。",
+      "should_trigger": false,
+      "rationale": "test-review の担当",
+      "tags": ["adjacent", "test-review"]
+    },
+    {
+      "id": "t15",
+      "prompt": "DDD の関連書籍を調べて。",
+      "should_trigger": false,
+      "rationale": "research-practices の担当",
+      "tags": ["adjacent", "research"]
+    },
+    {
+      "id": "t16",
+      "prompt": "design-review skill 自体を改善したい。",
+      "should_trigger": false,
+      "rationale": "skill-builder の担当",
+      "tags": ["adjacent", "skill-builder"]
+    },
+    {
+      "id": "t17",
+      "prompt": "typo 直して。",
+      "should_trigger": false,
+      "rationale": "実装作業 / 設計判断なし",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t18",
+      "prompt": "ruff のエラー直して。",
+      "should_trigger": false,
+      "rationale": "lint。設計判断なし",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t19",
+      "prompt": "この設計、リファクタリングで実装直して。",
+      "should_trigger": false,
+      "rationale": "実装作業の依頼。design-review は読むだけ",
+      "tags": ["distractor", "implement"]
+    },
+    {
+      "id": "t20",
+      "prompt": "設計の最終チェックを別エージェントに頼みたい。",
+      "should_trigger": true,
+      "rationale": "subagent dispatch のレビュー要請（design-review の中核）",
+      "tags": ["explicit", "bias"]
+    }
+  ]
+}

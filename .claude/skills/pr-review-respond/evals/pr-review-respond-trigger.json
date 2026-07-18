@@ -1,0 +1,26 @@
+{
+  "target_skill": "pr-review-respond",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"PR の CodeRabbit 指摘対応して","should_trigger":true,"rationale":"CodeRabbit 指摘 + PR 対応の典型","tags":["explicit"]},
+    {"id":"t02","prompt":"レビューコメント全部見て対応して","should_trigger":true,"rationale":"レビューコメント対応の直接要請","tags":["explicit"]},
+    {"id":"t03","prompt":"Devin の指摘を片付けて","should_trigger":true,"rationale":"Devin 指摘対応 = 本スキルの主機能","tags":["explicit"]},
+    {"id":"t04","prompt":"PR の指摘いくつか溜まってるので捌いて","should_trigger":true,"rationale":"PR 指摘を捌く要請","tags":["explicit"]},
+    {"id":"t05","prompt":"reviewer から指摘ついた、対応して","should_trigger":true,"rationale":"人間 reviewer 指摘対応","tags":["explicit"]},
+    {"id":"t06","prompt":"PR が荒れてる、コメントいくつかある","should_trigger":true,"rationale":"間接的だが PR コメント対応文脈","tags":["ambiguous"]},
+    {"id":"t07","prompt":"指摘あるみたい、見ておいて","should_trigger":true,"rationale":"指摘 = レビュー、対応依頼","tags":["ambiguous"]},
+    {"id":"t08","prompt":"CodeRabbit の resolve しといて","should_trigger":true,"rationale":"CodeRabbit thread の resolve = 対応完了報告","tags":["ambiguous"]},
+    {"id":"t09","prompt":"review feedback 全部見て","should_trigger":true,"rationale":"review feedback = レビューコメント","tags":["ambiguous"]},
+    {"id":"t10","prompt":"PR にコメントいっぱいついてる、片付けて","should_trigger":true,"rationale":"PR コメント片付け","tags":["ambiguous"]},
+    {"id":"t11","prompt":"PR 出す前にコードレビューして","should_trigger":false,"rationale":"PR 起票前の review = code-review、PR 後ではない","tags":["adjacent"]},
+    {"id":"t12","prompt":"CI が落ちてるので直して","should_trigger":false,"rationale":"ci-self-heal の領域、コメント対応ではない","tags":["adjacent"]},
+    {"id":"t13","prompt":"テスト書きたい","should_trigger":false,"rationale":"tdd の領域","tags":["adjacent"]},
+    {"id":"t14","prompt":"設計レビューして","should_trigger":false,"rationale":"design-review の領域、PR コメントではない","tags":["adjacent"]},
+    {"id":"t15","prompt":"テストコードのレビューしてほしい","should_trigger":false,"rationale":"test-review の領域、PR コメントへの対応ではない","tags":["adjacent"]},
+    {"id":"t16","prompt":"PR のレビューを CodeRabbit で実行して","should_trigger":false,"rationale":"レビュー実行は本スキル外 (coderabbit-review skill 等)、本スキルは既存コメントへの後追い","tags":["distractor"]},
+    {"id":"t17","prompt":"PR とは何か説明して","should_trigger":false,"rationale":"概念照会、コメント対応ではない","tags":["distractor"]},
+    {"id":"t18","prompt":"PR にコメントを追加して、リリースノート書いて","should_trigger":false,"rationale":"自分発のコメント追加であり既存指摘対応ではない","tags":["distractor"]},
+    {"id":"t19","prompt":"修正を push したので PR のスレッド対応と監視お願い","should_trigger":true,"rationale":"push 直後のスレッド終端は本スキルの起動点 (2026-07-05 の放置事例由来)","tags":["explicit"]},
+    {"id":"t20","prompt":"レビュー対応を push した。残ってるスレッド閉じておいて","should_trigger":true,"rationale":"再 push 後の未解決スレッド終端","tags":["ambiguous"]}
+  ]
+}

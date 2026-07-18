@@ -1,0 +1,26 @@
+{
+  "target_skill": "shipping",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"ship して","should_trigger":true,"rationale":"skill 名そのもの、出荷パイプライン直要請","tags":["explicit"]},
+    {"id":"t02","prompt":"実装できたから後は全部やって。PR 出して CI 緑にしてレビュー指摘も全部対応してマージできる状態にして","should_trigger":true,"rationale":"出荷まで丸投げ、収束ターゲット明示","tags":["explicit"]},
+    {"id":"t03","prompt":"commit-push-pr の検証付き版でお願い。品質チェックしてから PR 出して CI とレビュー対応まで回して","should_trigger":true,"rationale":"description のアナロジー直マッチ","tags":["explicit"]},
+    {"id":"t04","prompt":"この変更出して。CI の赤と CodeRabbit/Devin/Copilot の指摘を全部潰して merge-ready にして","should_trigger":true,"rationale":"CI 緑化 + 全 bot レビュー対応の収束要請","tags":["explicit"]},
+    {"id":"t05","prompt":"コミットして PR 作って、CI 通るまでとレビューコメント全部捌くまで回し続けて","should_trigger":true,"rationale":"パイプライン全段の明示要請","tags":["explicit"]},
+    {"id":"t06","prompt":"実装終わったから出しといて","should_trigger":true,"rationale":"「出しといて」= ship、実装後の丸投げ","tags":["ambiguous"]},
+    {"id":"t07","prompt":"あとはよしなに全部やって PR まで持っていって緑にして","should_trigger":true,"rationale":"口語の丸投げ + 緑化要請","tags":["ambiguous"]},
+    {"id":"t08","prompt":"これで完成。PR にして指摘対応も込みで仕上げて","should_trigger":true,"rationale":"完成後の出荷 + レビュー対応込み","tags":["ambiguous"]},
+    {"id":"t09","prompt":"出荷して。CI もレビューも全部面倒見て","should_trigger":true,"rationale":"「出荷」+ CI/レビュー両面","tags":["ambiguous"]},
+    {"id":"t10","prompt":"PR 出して、赤とコメント無くなるまでよろしく","should_trigger":true,"rationale":"収束ループの口語表現","tags":["ambiguous"]},
+    {"id":"t11","prompt":"このコードレビューだけして","should_trigger":false,"rationale":"code-review 単独領域、パイプライン不要","tags":["adjacent"]},
+    {"id":"t12","prompt":"この既存 PR のコメント対応だけして","should_trigger":false,"rationale":"pr-review-respond 単独領域","tags":["adjacent"]},
+    {"id":"t13","prompt":"CI 落ちてるので直して","should_trigger":false,"rationale":"ci-self-heal 単独領域、出荷全体ではない","tags":["adjacent"]},
+    {"id":"t14","prompt":"完了したか確認して","should_trigger":false,"rationale":"verify-done 単独領域","tags":["adjacent"]},
+    {"id":"t15","prompt":"commit して push して PR 作っといて。レビュー対応とかは後で自分でやる","should_trigger":false,"rationale":"検証/収束ループ不要の素の commit-push-pr","tags":["adjacent"]},
+    {"id":"t16","prompt":"ローカルのテストだけ流して結果見せて","should_trigger":false,"rationale":"ローカル検証のみ、出荷前段","tags":["adjacent"]},
+    {"id":"t17","prompt":"本番環境に今すぐデプロイして","should_trigger":false,"rationale":"prod デプロイは別物、本スキルは merge-ready で停止","tags":["distractor"]},
+    {"id":"t18","prompt":"リリースノートを書いて","should_trigger":false,"rationale":"「リリース」keyword 紛れ込みだが別作業","tags":["distractor"]},
+    {"id":"t19","prompt":"出荷管理システムの DB 設計を見て","should_trigger":false,"rationale":"「出荷」keyword distractor、完全別ドメイン","tags":["distractor"]},
+    {"id":"t20","prompt":"GitHub で PR を作る手順を教えて","should_trigger":false,"rationale":"概念照会、作業実行ではない","tags":["distractor"]}
+  ]
+}

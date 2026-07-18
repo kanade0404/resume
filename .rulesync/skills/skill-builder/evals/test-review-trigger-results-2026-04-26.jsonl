@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"reason":"テストファイルパス + レビュー依頼。description のコア条件に直接マッチ。"}
+{"id":"t02","predicted":true,"reason":"description の literal 列挙にある口語パターン「このテストいい?」"}
+{"id":"t03","predicted":true,"reason":"description の literal 列挙にある「テスト見て」"}
+{"id":"t04","predicted":true,"reason":"*_test.py 命名 + 監査依頼。新規テストファイル監査の条件にマッチ。"}
+{"id":"t05","predicted":true,"reason":"RLS 否定系の存在確認。description の「RLS / 認可テストの存在確認時」に直接対応。"}
+{"id":"t06","predicted":true,"reason":"supabase/tests/** はファイルパターンとして description に明記。"}
+{"id":"t07","predicted":true,"reason":"agent eval の雑さ指摘。「LLM / エージェント eval の厳密性評価」条件にマッチ。"}
+{"id":"t08","predicted":true,"reason":"flaky 原因切り分け。description の「flaky テストの原因追跡時」に直接対応。"}
+{"id":"t09","predicted":true,"reason":"description の literal 列挙「認可のテスト足りてる?」"}
+{"id":"t10","predicted":true,"reason":"n8n workflow のテスト品質。description カバー対象 + 品質チェック条件。"}
+{"id":"t11","predicted":true,"reason":"description の literal 列挙「このプロンプトテストでカバーできてる?」"}
+{"id":"t12","predicted":true,"reason":"description の literal 列挙「テストスイート大丈夫?」"}
+{"id":"t13","predicted":false,"reason":"プロダクションコード（agent.py）のレビュー。test ファイルでも _test.py でもない。test-review の対象外。"}
+{"id":"t14","predicted":false,"reason":"linter 修正作業。テスト・レビュー条件のいずれにもマッチしない。"}
+{"id":"t15","predicted":false,"reason":"実装設計依頼。テストファイルや review 依頼ではない。"}
+{"id":"t16","predicted":false,"reason":"schema 変更。RLS テストや supabase/tests/** に直接触れていない。"}
+{"id":"t17","predicted":true,"reason":"borderline。'pytest 遅い' で Slow test smell + テストスイート品質連想が強く出やすい。実態は実装作業（並列化）なので本来は起動すべきでないが、description のキーワード強度で誤発火しやすい。"}
+{"id":"t18","predicted":false,"reason":"workflow 作成依頼。レビュー・監査条件のいずれにもマッチしない。"}
+{"id":"t19","predicted":false,"reason":"prompt engineering 最適化。'eval' でも 'プロンプトテスト' でもなく、レビュー要求でもない。"}
+{"id":"t20","predicted":true,"reason":"borderline。'テストフレームワーク変える' は description の 'テストスイートの品質チェック' に強く近接し、'pytest'/'unittest' のキーワード強度で誤発火しやすい。実態は移行作業で本来は対象外。"}

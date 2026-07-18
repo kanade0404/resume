@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"skill 名 + description 直マッチ (出荷パイプライン)"}
+{"id":"t02","predicted":true,"actual":true,"reason":"should-use 句ほぼ逐語、収束ターゲット明示"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「commit-push-pr の検証付き版」アナロジー逐語"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「赤と指摘を全部潰して merge-ready に」直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"パイプライン全段の明示要請"}
+{"id":"t06","predicted":true,"actual":true,"reason":"実装後 + 「出しといて」= 出荷丸投げ、「出して全部よしなに」近傍"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「よしなに全部」+ 緑化、口語丸投げ"}
+{"id":"t08","predicted":true,"actual":true,"reason":"完成後の PR 化 + レビュー対応込み"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「出荷して CI もコメントも面倒見て」逐語近傍"}
+{"id":"t10","predicted":true,"actual":true,"reason":"赤とコメント収束の口語表現"}
+{"id":"t11","predicted":false,"actual":false,"reason":"negative space: コードレビューだけ → code-review"}
+{"id":"t12","predicted":false,"actual":false,"reason":"negative space: 既存 PR コメント対応だけ → pr-review-respond"}
+{"id":"t13","predicted":false,"actual":false,"reason":"negative space: CI 修復だけ → ci-self-heal"}
+{"id":"t14","predicted":false,"actual":false,"reason":"negative space: 完了確認だけ → verify-done"}
+{"id":"t15","predicted":false,"actual":false,"reason":"「レビュー対応は後で自分で」明示 → 素の commit-push-pr 領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"ローカル test のみ、出荷前段でパイプライン外"}
+{"id":"t17","predicted":false,"actual":false,"reason":"prod デプロイ、本スキルは merge-ready 停止で別物"}
+{"id":"t18","predicted":false,"actual":false,"reason":"「リリース」keyword 紛れ、別作業"}
+{"id":"t19","predicted":false,"actual":false,"reason":"「出荷」keyword distractor、別ドメイン"}
+{"id":"t20","predicted":false,"actual":false,"reason":"概念照会、作業実行要請ではない"}

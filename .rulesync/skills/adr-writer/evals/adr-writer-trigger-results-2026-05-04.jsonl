@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"「ADR にして」description 直マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「決定記録残して」description 直マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「architecture decision」description 直マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「設計判断のドキュメント」description 直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"Nygard 形式 = description 中心概念"}
+{"id":"t06","predicted":true,"actual":true,"reason":"値判定要請、本スキル起動して値判定"}
+{"id":"t07","predicted":true,"actual":true,"reason":"決定理由 = ADR Context"}
+{"id":"t08","predicted":true,"actual":true,"reason":"根拠記録 = ADR"}
+{"id":"t09","predicted":true,"actual":true,"reason":"履歴記録 = ADR"}
+{"id":"t10","predicted":true,"actual":true,"reason":"将来参照を意図 = ADR"}
+{"id":"t11","predicted":false,"actual":false,"reason":"design 起動文脈"}
+{"id":"t12","predicted":false,"actual":false,"reason":"使用方法ドキュメント、ADR ではない"}
+{"id":"t13","predicted":false,"actual":false,"reason":"コード内コメント"}
+{"id":"t14","predicted":false,"actual":false,"reason":"commit message 領域"}
+{"id":"t15","predicted":false,"actual":false,"reason":"PR description 領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"概念照会"}
+{"id":"t17","predicted":false,"actual":false,"reason":"書籍照会"}
+{"id":"t18","predicted":false,"actual":false,"reason":"差分計算、別概念"}

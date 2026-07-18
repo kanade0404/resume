@@ -1,0 +1,148 @@
+{
+  "target_skill": "test-review",
+  "version": "1",
+  "description_hash": "2026-04-26-baseline",
+  "notes": "test-review の trigger 精度を測るためのベースラインセット。explicit / ambiguous / adjacent / distractor の 4 種でバランスを取る。",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "packages/example-agent/tests/test_agent.py をレビューして",
+      "should_trigger": true,
+      "rationale": "テストファイルの直接的なレビュー依頼。test-review のコア使用例。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "このテストいい?",
+      "should_trigger": true,
+      "rationale": "description に literal で含まれる口語パターン。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t03",
+      "prompt": "PR #42 のテスト見て",
+      "should_trigger": true,
+      "rationale": "「テスト見て」は description 列挙の口語パターン。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t04",
+      "prompt": "新しい test_run_loop.py を監査してほしい",
+      "should_trigger": true,
+      "rationale": "*_test.py / 新規テストファイル監査は description のトリガ条件。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "messages テーブルの RLS 否定系のテストカバーできてる?",
+      "should_trigger": true,
+      "rationale": "RLS / 認可テストの存在確認は description のトリガ条件。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "supabase/tests/messages.sql をチェック",
+      "should_trigger": true,
+      "rationale": "supabase/tests/** はファイルパターンとして description に明記。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t07",
+      "prompt": "このエージェント eval が雑な気がするんだけど",
+      "should_trigger": true,
+      "rationale": "LLM / エージェント eval の厳密性評価は description のトリガ条件。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "テストが flaky なんだけど原因切り分けて",
+      "should_trigger": true,
+      "rationale": "flaky テスト原因追跡は description のトリガ条件。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t09",
+      "prompt": "認可のテスト足りてる?",
+      "should_trigger": true,
+      "rationale": "description に literal で含まれる口語パターン。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "n8n workflow のテスト品質どう?",
+      "should_trigger": true,
+      "rationale": "n8n workflows は description で明示的にカバーされる対象。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t11",
+      "prompt": "このプロンプトテストでカバーできてる?",
+      "should_trigger": true,
+      "rationale": "description に literal で含まれる口語パターン（プロンプト eval）。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t12",
+      "prompt": "テストスイート全体大丈夫?",
+      "should_trigger": true,
+      "rationale": "description に literal で含まれる口語パターン。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t13",
+      "prompt": "src/example_agent/agent.py の実装をレビューして",
+      "should_trigger": false,
+      "rationale": "プロダクションコードのレビュー。test-review の対象はテストコードのレビュー。code-review 系へ振るべき。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "ruff の警告を直して",
+      "should_trigger": false,
+      "rationale": "linter 修正作業。レビューでもテストでもない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t15",
+      "prompt": "新しい authentication ロジックを設計して",
+      "should_trigger": false,
+      "rationale": "実装設計。テストファイルに触れない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t16",
+      "prompt": "Supabase の messages テーブルに新カラムを追加したい",
+      "should_trigger": false,
+      "rationale": "schema 変更。RLS テストや supabase/tests/** に触れていない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t17",
+      "prompt": "pytest の実行が遅いから並列化したい",
+      "should_trigger": false,
+      "rationale": "CI / 実行性能の改善作業。レビュー（読む作業）ではない。test-review はテストを実行しないと明記。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t18",
+      "prompt": "新しい n8n workflow を作りたい",
+      "should_trigger": false,
+      "rationale": "n8n workflow の作成。レビューではない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t19",
+      "prompt": "Claude API の prompt を最適化したい",
+      "should_trigger": false,
+      "rationale": "prompt engineering。eval のレビュー依頼ではない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t20",
+      "prompt": "テストフレームワークを pytest から unittest に変えたい",
+      "should_trigger": false,
+      "rationale": "テスト基盤の移行作業。レビューではない。",
+      "tags": ["adjacent"]
+    }
+  ]
+}

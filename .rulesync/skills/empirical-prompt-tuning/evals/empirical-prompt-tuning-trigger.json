@@ -1,0 +1,22 @@
+{
+  "target_skill": "empirical-prompt-tuning",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"この skill うまく起動しないので trigger を実測で直したい","should_trigger":true,"rationale":"起動率を実測で詰める = ept の主用途","tags":["explicit"]},
+    {"id":"t02","prompt":"このプロンプト、別エージェントに走らせて精度測りながら直して","should_trigger":true,"rationale":"バイアス排除実行者で両面評価して反復","tags":["explicit"]},
+    {"id":"t03","prompt":"skill の description を調整して起動率を測りながら詰めたい","should_trigger":true,"rationale":"指示側テキストの起動率を実測で詰める","tags":["explicit"]},
+    {"id":"t04","prompt":"この自動化プロンプト、subagent で成功率を評価して反復改善して","should_trigger":true,"rationale":"重要プロンプトの堅牢化を実測で","tags":["explicit"]},
+    {"id":"t05","prompt":"skill を大幅改訂したから堅牢化して","should_trigger":true,"rationale":"改訂直後の評価=ept、ただし口語で曖昧","tags":["ambiguous"]},
+    {"id":"t06","prompt":"プロンプトが期待通り動かない、指示が曖昧かもしれないから実測で原因を切り分けて","should_trigger":true,"rationale":"挙動不一致の原因を指示側に求める","tags":["ambiguous"]},
+    {"id":"t07","prompt":"新しい skill を作りたい","should_trigger":false,"rationale":"新規作成は skill-builder の authoring","tags":["adjacent"]},
+    {"id":"t08","prompt":"セッション振り返りしてハーネス改善提案を出して","should_trigger":false,"rationale":"retro のセッション解析","tags":["adjacent"]},
+    {"id":"t09","prompt":"このプロンプト、もっとフレンドリーな口調に書き換えて","should_trigger":false,"rationale":"書き手の主観的好みの反映=対象外","tags":["distractor"]},
+    {"id":"t10","prompt":"一回使うだけの使い捨てプロンプト書いて","should_trigger":false,"rationale":"使い捨ては評価コスト割に合わず対象外","tags":["distractor"]},
+    {"id":"t11","prompt":"このバグ直して","should_trigger":false,"rationale":"コードのバグ修正=対象外","tags":["distractor"]},
+    {"id":"t12","prompt":"この PR レビューして","should_trigger":false,"rationale":"code-review","tags":["distractor"]},
+    {"id":"t13","prompt":"CI 直して","should_trigger":false,"rationale":"ci-self-heal","tags":["distractor"]},
+    {"id":"t14","prompt":"この関数のリファクタして","should_trigger":false,"rationale":"コード構造変更=tidy-first 等","tags":["distractor"]},
+    {"id":"t15","prompt":"retro から ept-handoff。skill が不発だったので trigger 文言を実測で詰めたい","should_trigger":true,"rationale":"retro handoff の主経路","tags":["explicit"]},
+    {"id":"t16","prompt":"skill-builder Mode B として trigger を調整したい。別エージェントに走らせて成功率を見ながら直して","should_trigger":false,"rationale":"「skill-builder Mode B」は入口 skill = skill-builder が起動し、ept はその下流実体として呼ばれる。入口フレーズは skill-builder へルーティングされるのが正 (実測で確認した境界)","tags":["adjacent"]}
+  ]
+}

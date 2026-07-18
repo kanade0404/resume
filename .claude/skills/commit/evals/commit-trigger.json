@@ -1,0 +1,132 @@
+{
+  "target_skill": "commit",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "この変更をcommitして",
+      "should_trigger": true,
+      "rationale": "直接的な commit 要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "コミット作っておいて",
+      "should_trigger": true,
+      "rationale": "口語のコミット作成要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "いま編集したファイルをstageしてcommitまでやって",
+      "should_trigger": true,
+      "rationale": "staging + commit の明示要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "commit message 考えてそのままコミットして",
+      "should_trigger": true,
+      "rationale": "メッセージ作成込みの commit 要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "現状の追加されているファイルをcommitして",
+      "should_trigger": true,
+      "rationale": "本セッション実発話。untracked を含む commit 要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "きりのいいところでcommit切っといて",
+      "should_trigger": true,
+      "rationale": "口語・タイミング委任だが成果物は commit",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "ここまでの作業、一区切りだから記録しといて",
+      "should_trigger": true,
+      "rationale": "git 文脈での「記録」= commit の婉曲表現",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "リファクタ終わったから一旦保存で",
+      "should_trigger": true,
+      "rationale": "作業リポ文脈の「保存」= commit の口語",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "テスト通ったのでこの分を積んでおいて",
+      "should_trigger": true,
+      "rationale": "「積む」= commit を積む口語",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "commitしてpushしてPRまで作って",
+      "should_trigger": false,
+      "rationale": "成果物が PR — shipping / commit-push-pr の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t11",
+      "prompt": "リリースするからv1.2.0のタグ切って",
+      "should_trigger": false,
+      "rationale": "成果物がタグ — RELEASING.md の手順",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t12",
+      "prompt": "直前のcommitにこの修正をamendで足して",
+      "should_trigger": false,
+      "rationale": "履歴書き換えの明示要求 — 本 skill の既定範囲外 (明示要求として直接対応)",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "この3つのcommitをsquashしてまとめて",
+      "should_trigger": false,
+      "rationale": "履歴書き換え (rebase/squash) — 範囲外",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "commit履歴を見て、どこでバグが入ったか調べて",
+      "should_trigger": false,
+      "rationale": "調査タスク — commit という語はあるが成果物はコミットでない",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t15",
+      "prompt": "pre-commit hookでlintが走るように設定して",
+      "should_trigger": false,
+      "rationale": "hook 設定 — update-config / hook-development の領域",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t16",
+      "prompt": "gitのcommitオブジェクトの仕組みを教えて",
+      "should_trigger": false,
+      "rationale": "解説要請 — 成果物は説明であってコミットでない",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t17",
+      "prompt": "変更した2ファイルだけコミットに入れて、他は残しといて",
+      "should_trigger": true,
+      "rationale": "明示パス staging の部分 commit — 本 skill の中核ケース",
+      "tags": ["explicit", "edge"]
+    },
+    {
+      "id": "t18",
+      "prompt": "間違えてcommitしちゃったから取り消して",
+      "should_trigger": false,
+      "rationale": "reset / revert — 履歴操作で範囲外",
+      "tags": ["adjacent"]
+    }
+  ]
+}

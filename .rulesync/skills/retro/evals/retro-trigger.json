@@ -1,0 +1,22 @@
+{
+  "target_skill": "retro",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"このセッションの振り返りして","should_trigger":true,"rationale":"retro 直接","tags":["explicit"]},
+    {"id":"t02","prompt":"retro して","should_trigger":true,"rationale":"skill 名直接","tags":["explicit"]},
+    {"id":"t03","prompt":"セッション分析して改善点出して","should_trigger":true,"rationale":"session 分析 = retro","tags":["explicit"]},
+    {"id":"t04","prompt":"ハーネスの改善余地ある?","should_trigger":true,"rationale":"harness 改善 = retro","tags":["explicit"]},
+    {"id":"t05","prompt":"allow リスト見直したい","should_trigger":true,"rationale":"権限拒否ログからの settings 改善 = retro lever","tags":["explicit"]},
+    {"id":"t06","prompt":"hooks 候補ある?","should_trigger":true,"rationale":"hook lever 提案 = retro","tags":["explicit"]},
+    {"id":"t07","prompt":"なんでこの skill 起動しなかったんだろう","should_trigger":true,"rationale":"skill 不発の運用分析 = retro","tags":["ambiguous"]},
+    {"id":"t08","prompt":"さっきの作業、無駄が多かった気がする","should_trigger":true,"rationale":"運用の振り返り意図","tags":["ambiguous"]},
+    {"id":"t09","prompt":"PR マージできたから締めよう","should_trigger":true,"rationale":"merge 後の主経路 (pr-monitor → retro)","tags":["ambiguous"]},
+    {"id":"t10","prompt":"このバグなんで起きた?","should_trigger":false,"rationale":"コードのバグ分析、systematic-debugging 領域","tags":["adjacent"]},
+    {"id":"t11","prompt":"skill 作って","should_trigger":false,"rationale":"skill 新規作成は skill-builder","tags":["adjacent"]},
+    {"id":"t12","prompt":"このdescription最適化して","should_trigger":false,"rationale":"trigger 調整の実行は skill-builder / ept","tags":["adjacent"]},
+    {"id":"t13","prompt":"PR のコメント対応して","should_trigger":false,"rationale":"pr-review-respond 領域","tags":["adjacent"]},
+    {"id":"t14","prompt":"CI 直して","should_trigger":false,"rationale":"ci-self-heal 領域","tags":["distractor"]},
+    {"id":"t15","prompt":"retro って何?","should_trigger":false,"rationale":"概念照会","tags":["distractor"]},
+    {"id":"t16","prompt":"このコードレビューして","should_trigger":false,"rationale":"code-review 領域","tags":["distractor"]}
+  ]
+}

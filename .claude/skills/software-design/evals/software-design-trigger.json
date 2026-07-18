@@ -1,0 +1,174 @@
+{
+  "target_skill": "software-design",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "新規プロダクトのドメインモデル設計を手伝って。注文・支払・在庫の集約境界をどう切るか議論したい。",
+      "should_trigger": true,
+      "rationale": "DDD 集約境界 = software-design 中核",
+      "tags": ["explicit", "ddd"]
+    },
+    {
+      "id": "t02",
+      "prompt": "この関数、例外と null だらけで読めない。Result 型で書き直したい。",
+      "should_trigger": true,
+      "rationale": "Railway / FP のレンズ",
+      "tags": ["explicit", "rop"]
+    },
+    {
+      "id": "t03",
+      "prompt": "CQRS と Event Sourcing 入れるべき? 監査要件はそんなにきつくない。",
+      "should_trigger": true,
+      "rationale": "アーキテクチャ採否判断",
+      "tags": ["explicit", "architecture"]
+    },
+    {
+      "id": "t04",
+      "prompt": "ADR 書きたい。サービス間通信を gRPC にした件を残したい。",
+      "should_trigger": true,
+      "rationale": "ADR 起票",
+      "tags": ["explicit", "adr"]
+    },
+    {
+      "id": "t05",
+      "prompt": "User テーブルが name, email, deleted_at, last_login, role, ... と何でも入っててヤバい。データモデル直したい。",
+      "should_trigger": true,
+      "rationale": "Immutable Data Model + TM法 のレンズ",
+      "tags": ["explicit", "data"]
+    },
+    {
+      "id": "t06",
+      "prompt": "API 入口でしかバリデーションしてなくて service / repo にも同じチェックが散ってる。どう直す?",
+      "should_trigger": true,
+      "rationale": "Secure by Design / ドメインプリミティブ",
+      "tags": ["explicit", "security"]
+    },
+    {
+      "id": "t07",
+      "prompt": "このクラス、メソッド 30 個あって全部 getter/setter なんだけど。",
+      "should_trigger": true,
+      "rationale": "Philosophy: shallow module 指摘",
+      "tags": ["explicit", "philosophy"]
+    },
+    {
+      "id": "t08",
+      "prompt": "TDD で進めたい。最初に書くべきテストはどれ?",
+      "should_trigger": true,
+      "rationale": "TDD レンズ",
+      "tags": ["explicit", "tdd"]
+    },
+    {
+      "id": "t09",
+      "prompt": "設計どうする?",
+      "should_trigger": true,
+      "rationale": "曖昧だが設計判断要請",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "このコード、なんかモヤッとするんだけど見てくれる?",
+      "should_trigger": true,
+      "rationale": "曖昧だが「設計レビューして」と読める。test/lint/typo の言及がない",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t11",
+      "prompt": "サブドメイン分けたい。何が Core で何が Supporting?",
+      "should_trigger": true,
+      "rationale": "DDD 戦略的設計",
+      "tags": ["explicit", "ddd"]
+    },
+    {
+      "id": "t12",
+      "prompt": "TM法でモデル化してみたい。Event と Resource の分け方が分からない。",
+      "should_trigger": true,
+      "rationale": "TM法",
+      "tags": ["explicit", "tm"]
+    },
+    {
+      "id": "t13",
+      "prompt": "Test Double 5 個も組まないとテストが書けない。何かおかしい?",
+      "should_trigger": true,
+      "rationale": "TDD/設計圧 + Functional Core 抽出",
+      "tags": ["ambiguous", "tdd"]
+    },
+    {
+      "id": "t14",
+      "prompt": "認可判定が service の if で散ってる。これって正しい?",
+      "should_trigger": true,
+      "rationale": "Secure by Design",
+      "tags": ["explicit", "security"]
+    },
+    {
+      "id": "t15",
+      "prompt": "アーキテクチャ特性を絞りたい。性能・進化容易性・デプロイ容易性、全部欲しい。",
+      "should_trigger": true,
+      "rationale": "Fundamentals: trade-off",
+      "tags": ["explicit", "architecture"]
+    },
+    {
+      "id": "t16",
+      "prompt": "このプロダクト、microservices にすべき?",
+      "should_trigger": true,
+      "rationale": "アーキテクチャスタイル選定",
+      "tags": ["explicit", "architecture"]
+    },
+    {
+      "id": "t17",
+      "prompt": "テストが flaky なんだけど、どう直す?",
+      "should_trigger": false,
+      "rationale": "test-review の担当（テスト本体のレビュー）",
+      "tags": ["adjacent", "test-review"]
+    },
+    {
+      "id": "t18",
+      "prompt": "pytest のテストファイルレビューして。",
+      "should_trigger": false,
+      "rationale": "test-review の担当",
+      "tags": ["adjacent", "test-review"]
+    },
+    {
+      "id": "t19",
+      "prompt": "DDD の本でおすすめは? 学術的にも評価されてる本を教えて。",
+      "should_trigger": false,
+      "rationale": "research-practices の担当（調査依頼）",
+      "tags": ["adjacent", "research"]
+    },
+    {
+      "id": "t20",
+      "prompt": "新しい skill を 1 本作りたい。design 系で。",
+      "should_trigger": false,
+      "rationale": "skill-builder の担当",
+      "tags": ["adjacent", "skill-builder"]
+    },
+    {
+      "id": "t21",
+      "prompt": "この typo 直して。",
+      "should_trigger": false,
+      "rationale": "実装作業（タイポ）。設計判断なし",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t22",
+      "prompt": "ruff のエラーが出てる。fix して。",
+      "should_trigger": false,
+      "rationale": "lint。設計判断なし",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t23",
+      "prompt": "この関数の戻り値が遅い。SQL を EXPLAIN して直して。",
+      "should_trigger": false,
+      "rationale": "純粋なパフォーマンスチューニング。設計判断は含まない場合が多い",
+      "tags": ["distractor", "perf"]
+    },
+    {
+      "id": "t24",
+      "prompt": "設計レビューしたあとの最終チェックを別エージェントに頼みたい。",
+      "should_trigger": false,
+      "rationale": "design-review の担当（明示的に \"別エージェント\" と言っている）",
+      "tags": ["adjacent", "design-review"]
+    }
+  ]
+}

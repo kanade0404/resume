@@ -1,0 +1,13 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"claude:ready ラベル処理は description 冒頭の主経路。lock/jq 関連の追記は判定に影響しない"}
+{"id":"t02","predicted":true,"actual":true,"reason":"owner/repo#123 の手動再実行を明示。実行環境が git/gh/jq に変わっても判定不変"}
+{"id":"t03","predicted":true,"actual":true,"reason":"issue→PR ヘッドレス完遂は中核記述のまま変更なし"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「この issue やっておいて」を明示列挙 (変更なし)"}
+{"id":"t05","predicted":true,"actual":true,"reason":"無人での issue 委譲は主目的として継続"}
+{"id":"t06","predicted":true,"actual":true,"reason":"Routine 起動を主経路として明示 (継続)"}
+{"id":"f01","predicted":false,"actual":false,"reason":"negative space で linear-issue-driven-development を名指し (継続)"}
+{"id":"f02","predicted":false,"actual":false,"reason":"negative space で shipping を名指し (継続)"}
+{"id":"f03","predicted":false,"actual":false,"reason":"negative space で ci-self-heal を名指し (継続)"}
+{"id":"f04","predicted":false,"actual":false,"reason":"negative space で pr-review-respond を名指し (継続)"}
+{"id":"f05","predicted":false,"actual":false,"reason":"「PR の merge (人間ゲート)」を範囲外に明示 (継続)"}
+{"id":"f06","predicted":false,"actual":false,"reason":"issue テンプレ作成は処理対象の語彙に無い (継続)"}
+{"id":"f07","predicted":false,"actual":false,"reason":"トリアージは実装自走の語彙に無い (継続)"}

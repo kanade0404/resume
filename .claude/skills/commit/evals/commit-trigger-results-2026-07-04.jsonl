@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の「commit して」に直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「コミット作って」が verbatim で列挙されている"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「stage して commit」が verbatim で列挙されている"}
+{"id":"t04","predicted":true,"actual":true,"reason":"メッセージ作成込みでも成果物は commit 作成"}
+{"id":"t05","predicted":true,"actual":true,"reason":"「この変更コミットしといて」系の直接要請"}
+{"id":"t06","predicted":true,"actual":true,"reason":"「きりのいいところで commit 切って」verbatim"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「一区切りだから記録して」verbatim"}
+{"id":"t08","predicted":true,"actual":true,"reason":"弱マッチ: 「保存」は非掲載だがリポ文脈+リファクタ完了で commit 要請と解釈可能。FN リスク箇所として記録"}
+{"id":"t09","predicted":true,"actual":true,"reason":"弱マッチ: 「テスト通った」= tdd サイクル終端の commit 局面が description に明記"}
+{"id":"t10","predicted":false,"actual":false,"reason":"push・PR は shipping / commit-push-pr へ、と negative space に明記"}
+{"id":"t11","predicted":false,"actual":false,"reason":"リリースタグは RELEASING.md へ、と明記"}
+{"id":"t12","predicted":false,"actual":false,"reason":"履歴書き換え (amend) は範囲外と明記 (初稿の曖昧文を修正済み)"}
+{"id":"t13","predicted":false,"actual":false,"reason":"squash = 履歴書き換えで範囲外"}
+{"id":"t14","predicted":false,"actual":false,"reason":"成果物が調査結果であり commit でない"}
+{"id":"t15","predicted":false,"actual":false,"reason":"hook 設定は範囲外 (commit という語のみ共通の distractor)"}
+{"id":"t16","predicted":false,"actual":false,"reason":"成果物が解説であり commit でない"}
+{"id":"t17","predicted":true,"actual":true,"reason":"部分 staging での commit 作成 — 明示パス staging の中核ケース"}
+{"id":"t18","predicted":false,"actual":false,"reason":"取り消し (revert / reset) は範囲外に明記"}

@@ -1,0 +1,118 @@
+{
+  "target_skill": "session-retro",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "このセッションの振り返りをして",
+      "should_trigger": true,
+      "rationale": "明示的な振り返り要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "retro お願い",
+      "should_trigger": true,
+      "rationale": "retro は description に列挙した直接トリガ",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "今回の学びを rule / sensor / issue に振り分けて",
+      "should_trigger": true,
+      "rationale": "4 分岐そのものの要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "リリースまで終わったので、振り返って教訓をまとめておいて",
+      "should_trigger": true,
+      "rationale": "release 後の振り返りは主経路",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "このセッションで失敗したやつ、golden set の eval ケースにしておいて",
+      "should_trigger": true,
+      "rationale": "eval-case 分岐の明示要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "さっきのミス、二度と起きないようにしておいて",
+      "should_trigger": true,
+      "rationale": "再発防止 = rule/sensor 昇格の口語形",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "今回わかったこと、CLAUDE.md に反映しといて",
+      "should_trigger": true,
+      "rationale": "今セッションの学び由来の rule 提案 (全体監査ではない)",
+      "tags": ["ambiguous", "edge"]
+    },
+    {
+      "id": "t08",
+      "prompt": "今日詰まったところ、あとでやる issue にしといて",
+      "should_trigger": true,
+      "rationale": "セッション由来の deferred work 切り出し = issue 分岐",
+      "tags": ["ambiguous", "edge"]
+    },
+    {
+      "id": "t09",
+      "prompt": "作業終わり。次に活かせることあったら残しておいて",
+      "should_trigger": true,
+      "rationale": "終端での学び抽出の口語形",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "f01",
+      "prompt": "CLAUDE.md 全体を監査して品質レポートを出して",
+      "should_trigger": false,
+      "rationale": "全体監査は claude-md-improver 系の領域",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f02",
+      "prompt": "このテストがなぜ落ちるのか根本原因を調べて",
+      "should_trigger": false,
+      "rationale": "渦中のデバッグは systematic-debugging (retro は事後)",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f03",
+      "prompt": "session-retro skill が発火しないので description を直して",
+      "should_trigger": false,
+      "rationale": "skill のチューニングは skill-builder",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f04",
+      "prompt": "このセッションで何をやったか要約して",
+      "should_trigger": false,
+      "rationale": "要約文だけの依頼に 4 分岐は過剰 (成果物が違う)",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f05",
+      "prompt": "PR に付いたレビューコメントに対応して",
+      "should_trigger": false,
+      "rationale": "pr-review-respond の領域",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f06",
+      "prompt": "チームでやるスプリントレトロスペクティブの進め方を調べて",
+      "should_trigger": false,
+      "rationale": "レトロという語を含むが調査依頼 (research-practices)",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "f07",
+      "prompt": "loop-ops のイベント JSONL を集計して今月の成功率を出して",
+      "should_trigger": false,
+      "rationale": "計測データの集計であって振り返りの 4 分岐ではない",
+      "tags": ["distractor"]
+    }
+  ]
+}

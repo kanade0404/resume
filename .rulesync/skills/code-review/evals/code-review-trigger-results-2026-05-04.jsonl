@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"skill 名直接"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「PR 出す前にチェック」description 直マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「実装見て」description 直マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「マージ前確認」description 直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"「これで OK?」description 直マッチ"}
+{"id":"t06","predicted":true,"actual":true,"reason":"diff チェック = レビュー"}
+{"id":"t07","predicted":true,"actual":true,"reason":"品質確認 = レビュー観点"}
+{"id":"t08","predicted":true,"actual":true,"reason":"観点 2 (責務)"}
+{"id":"t09","predicted":true,"actual":true,"reason":"実装評価依頼"}
+{"id":"t10","predicted":true,"actual":true,"reason":"review feedback = レビュー"}
+{"id":"t11","predicted":false,"actual":false,"reason":"test-review 起動文脈"}
+{"id":"t12","predicted":false,"actual":false,"reason":"design-review 起動文脈"}
+{"id":"t13","predicted":false,"actual":false,"reason":"pr-review-respond 起動文脈、PR 後"}
+{"id":"t14","predicted":false,"actual":false,"reason":"ci-self-heal 起動文脈"}
+{"id":"t15","predicted":false,"actual":false,"reason":"adr-writer 値判定"}
+{"id":"t16","predicted":false,"actual":false,"reason":"レビューシステム自体の設計"}
+{"id":"t17","predicted":false,"actual":false,"reason":"検索照会"}
+{"id":"t18","predicted":false,"actual":false,"reason":"記事執筆"}

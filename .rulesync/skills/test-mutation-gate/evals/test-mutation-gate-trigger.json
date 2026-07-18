@@ -1,0 +1,167 @@
+{
+  "target_skill": "test-mutation-gate",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "このテスト検出力ある?",
+      "should_trigger": true,
+      "rationale": "description に明記された口語トリガーの直接一致。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "このテスト弱くない?",
+      "should_trigger": true,
+      "rationale": "description に明記された口語トリガーの直接一致。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "assertion 監査して",
+      "should_trigger": true,
+      "rationale": "スキルの中心機能 (静的 assertion 監査) を直接名指し。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "tautology チェックして",
+      "should_trigger": true,
+      "rationale": "4 チェックのうち critical 判定になる tautology-literal-sharing を直接名指し。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "このテスト実装をなぞってるだけじゃない?",
+      "should_trigger": true,
+      "rationale": "description に明記された口語トリガー。oracle copy-paste 系の懸念表明。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "テストがバグをロックインしてないか見て",
+      "should_trigger": true,
+      "rationale": "description に明記された口語トリガー。tautological/self-consistent assertion の懸念そのもの。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t07",
+      "prompt": "実装できてテストも通ったから、commit する前にテストの方ちょっと見といて。",
+      "should_trigger": true,
+      "rationale": "tdd Step 3.5 (GREEN 確認後・commit 前) の埋め込み呼び出し文脈と一致。skill 名は出ないが強制サブステップの起動条件に該当。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "PR のこの指摘、テストも直したから返信する前に確認しておいて。",
+      "should_trigger": true,
+      "rationale": "pr-review-respond Phase C (VALID 修正のテスト側 diff) の埋め込み呼び出し文脈。返信前という位置づけが Step 3 の判定タイミングと一致。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "実装もテストも直し終わったので、これで完了報告していい?",
+      "should_trigger": true,
+      "rationale": "verify-done Step 4 (完了宣言直前) の埋め込み呼び出し文脈。テスト変更を含む完了宣言のため対象。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "expected の値、実装の戻り値をそのままコピペしたんだけどこれで大丈夫だよね?",
+      "should_trigger": true,
+      "rationale": "tautology-literal-sharing の典型パターン (実装出力を expected にそのまま使う) を、チェック名を出さずに記述している。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t11",
+      "prompt": "このテスト、0件とか空配列みたいな境界のケース入ってたっけ?",
+      "should_trigger": true,
+      "rationale": "boundary-gap チェックが扱う境界値の有無を、チェック名を出さずに尋ねている。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t12",
+      "prompt": "テストスイート全体をレビューして。",
+      "should_trigger": false,
+      "rationale": "network 全体の smell / seam / flakiness を扱う test-review の領域。本スキルは静的 assertion 監査に限定。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "CI のテストが落ちてるから直して。",
+      "should_trigger": false,
+      "rationale": "push 後の CI 赤対応は ci-self-heal の領域。本スキルは commit 前の静的読解のみで CI 実行はしない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "この機能のテスト追加して。",
+      "should_trigger": false,
+      "rationale": "新規テスト作成そのものは tdd の領域。本スキルは既存の diff に対する審査であり、テスト執筆はしない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t15",
+      "prompt": "この skill の trigger eval 採点して。",
+      "should_trigger": false,
+      "rationale": "eval trigger JSON の should_trigger 妥当性採点は skill-builder Mode B の成果物。本スキル自身はテスト diff を監査するだけで eval を採点しない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t16",
+      "prompt": "このテストなんで flaky なのか原因調べて。",
+      "should_trigger": false,
+      "rationale": "flakiness の原因分類 (非同期レース / ネットワーク / clock 等) は test-review §6 の領域。本スキルは assertion の検出力のみを見る。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t17",
+      "prompt": "実装コードをレビューして、バグないか見て。",
+      "should_trigger": false,
+      "rationale": "実装コード全般のレビューは code-review の領域。本スキルはテストファイルの assertion のみを対象とする。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t18",
+      "prompt": "mutation testing のツール選定を調査して。",
+      "should_trigger": false,
+      "rationale": "Stryker / mutmut 等の外部ツール選定調査は research-practices の領域。本スキルは Phase 2 で unit テスト限定の mutation smoke (scripts/mutate_and_run.py) を実行するが、外部ツールの選定・導入検討そのものは行わない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t22",
+      "prompt": "このテスト mutation testing して",
+      "should_trigger": true,
+      "rationale": "description に明記された口語トリガーの直接一致。Phase 2 (unit テスト限定の mutation smoke) が実装済みで範囲内になったため、明示的な mutation testing 要請は起動対象。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t23",
+      "prompt": "mutation score を CI で強制したい",
+      "should_trigger": false,
+      "rationale": "テストスイート全体の mutation score 算出・CI 強制運用は Stryker/mutmut 相当の網羅的計測であり、本スキルの変更 diff 周辺の unit テスト smoke とはスコープが異なる distractor。「このスキルがやらないこと」に明記済み。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t19",
+      "prompt": "gate の意味教えて。",
+      "should_trigger": false,
+      "rationale": "「gate」という語を含むが一般的な用語解説の照会であり、実行や監査の要請ではない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t20",
+      "prompt": "assertion library どれがいいか教えて。",
+      "should_trigger": false,
+      "rationale": "「assertion」を含むがライブラリ選定の照会であり、既存テストの検出力監査ではない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t21",
+      "prompt": "このテスト名、意味わかりにくいから直して。",
+      "should_trigger": false,
+      "rationale": "命名の可読性修正はリネーム (tidy-first) または test-review §2 の naming smell の領域。assertion の検出力監査とは別軸。",
+      "tags": ["distractor"]
+    }
+  ]
+}

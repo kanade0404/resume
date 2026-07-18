@@ -1,0 +1,20 @@
+{
+  "target_skill": "pr-monitor",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"この PR 監視して","should_trigger":true,"rationale":"PR 監視直接","tags":["explicit"]},
+    {"id":"t02","prompt":"マージされるまで見張って","should_trigger":true,"rationale":"merge まで監視 = pr-monitor","tags":["explicit"]},
+    {"id":"t03","prompt":"PR がマージかクローズしたら振り返りまで回して","should_trigger":true,"rationale":"決着→retro の主経路","tags":["explicit"]},
+    {"id":"t04","prompt":"pr-monitor 123 --check-only","should_trigger":true,"rationale":"明示コマンド","tags":["explicit"]},
+    {"id":"t05","prompt":"出荷したから後はマージ待ちを見ておいて","should_trigger":true,"rationale":"shipping 後の終端監視","tags":["ambiguous"]},
+    {"id":"t06","prompt":"この PR どうなったか定期的に確認したい","should_trigger":true,"rationale":"state 長期ポーリング = pr-monitor","tags":["ambiguous"]},
+    {"id":"t07","prompt":"マージできる状態か見て","should_trigger":false,"rationale":"merge-ready 判定は shipping、状態監視ではない","tags":["adjacent"]},
+    {"id":"t08","prompt":"CI 緑になるまで待って","should_trigger":false,"rationale":"CI 監視は ci-self-heal","tags":["adjacent"]},
+    {"id":"t09","prompt":"この PR マージして","should_trigger":false,"rationale":"merge 操作はしない","tags":["adjacent"]},
+    {"id":"t10","prompt":"PR のコメント対応して","should_trigger":false,"rationale":"pr-review-respond 領域","tags":["adjacent"]},
+    {"id":"t11","prompt":"PR の状態って gh でどう見るの?","should_trigger":false,"rationale":"概念照会","tags":["distractor"]},
+    {"id":"t12","prompt":"ブランチ削除して","should_trigger":false,"rationale":"別操作","tags":["distractor"]},
+    {"id":"t13","prompt":"PR 作って","should_trigger":false,"rationale":"PR 作成は commit-push-pr / shipping","tags":["distractor"]},
+    {"id":"t14","prompt":"マージ後の振り返りして","should_trigger":false,"rationale":"既に決着済み→直接 retro","tags":["distractor"]}
+  ]
+}

@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の「完了した」「最終確認」が直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「PR 作成前」+ 「テスト通った」が起動条件に明示"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「修正できました」「マージできますか」 = merge 直前"}
+{"id":"t04","predicted":true,"actual":true,"reason":"skill 名を明示指名"}
+{"id":"t05","predicted":true,"actual":true,"reason":"skill の機能定義そのもの"}
+{"id":"t06","predicted":true,"actual":true,"reason":"「動くはず」が description の禁止語リストに含まれる"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「たぶん」「思います」+ merge 直前"}
+{"id":"t08","predicted":true,"actual":true,"reason":"成功系 (ビルド通った) + 完了系 (オッケー) の連結"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「pass」「終わり」両方 hit"}
+{"id":"t10","predicted":true,"actual":true,"reason":"should + I think の英語禁止語"}
+{"id":"t11","predicted":false,"actual":false,"reason":"レビュー要請は test-review に落ちる、完了宣言なし"}
+{"id":"t12","predicted":false,"actual":false,"reason":"CI 失敗修復は ci-self-heal、本スキルは CI を見ない"}
+{"id":"t13","predicted":false,"actual":false,"reason":"TDD RED フェーズ、完了文脈ではない"}
+{"id":"t14","predicted":false,"actual":false,"reason":"pr-review-respond の領域、コメント取得 → 修正フロー"}
+{"id":"t15","predicted":true,"actual":false,"reason":"description「PR 作成前」が code-review 要請にも hit する。本来 code-review が先で verify-done は後段だが description だけだと区別不能。FP 候補"}
+{"id":"t16","predicted":false,"actual":false,"reason":"「verify」単語のみで rename 文脈、完了系語彙なし"}
+{"id":"t17","predicted":false,"actual":false,"reason":"「完了」を含むが照会であり完了宣言ではない"}
+{"id":"t18","predicted":false,"actual":false,"reason":"純粋な照会。完了系・成功系・推測系のいずれにも該当しない"}

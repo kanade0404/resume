@@ -1,0 +1,97 @@
+{
+  "target_skill": "harness-distribution",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "このルール、他の repo でも使いたいので rulesync で配布して",
+      "should_trigger": true,
+      "rationale": "配布要請の直接形",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "これは汎用だから skills リポジトリに置こう",
+      "should_trigger": true,
+      "rationale": "配布元への収録要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "この教訓、クラウド実行でも効くようにしておいて",
+      "should_trigger": true,
+      "rationale": "クラウド到達性 = 配布層判定の主目的",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "この hook を全プロジェクトで共通化したい",
+      "should_trigger": true,
+      "rationale": "hooks 枠への配布判定",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "retro で出た rule、どこに書くのがいい?",
+      "should_trigger": true,
+      "rationale": "session-retro handoff の宛先判定",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t06",
+      "prompt": "この slash command、他でも使えそうだけどどうする?",
+      "should_trigger": true,
+      "rationale": "commands 枠の置き場所判定の口語形",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "CLAUDE.md に書くべき? それとも別の場所?",
+      "should_trigger": true,
+      "rationale": "置き場所判定そのもの",
+      "tags": ["ambiguous", "edge"]
+    },
+    {
+      "id": "f01",
+      "prompt": "新しい skill を作って",
+      "should_trigger": false,
+      "rationale": "skill 本体の作成は skill-builder",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f02",
+      "prompt": "このセッションの学びを rule にまとめて",
+      "should_trigger": false,
+      "rationale": "rule の中身の考案は session-retro (宛先判定の段になれば本スキル)",
+      "tags": ["adjacent", "edge"]
+    },
+    {
+      "id": "f03",
+      "prompt": "この repo だけ npm コマンドを許可する設定にして",
+      "should_trigger": false,
+      "rationale": "単一プロジェクトの permissions は update-config 系",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f04",
+      "prompt": "リリースタグの切り方を教えて",
+      "should_trigger": false,
+      "rationale": "リリース手順単体は RELEASING.md 直読",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f05",
+      "prompt": "rulesync ってどういうツール?",
+      "should_trigger": false,
+      "rationale": "ツールの一般説明は調査/通常応答 (配布作業ではない)",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "f06",
+      "prompt": "LOOP_OPS_TOKEN を各 repo に配布して",
+      "should_trigger": false,
+      "rationale": "secret の配布は本スキルの対象外 (機密は配布しない判定の対象)",
+      "tags": ["distractor", "edge"]
+    }
+  ]
+}

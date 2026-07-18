@@ -1,0 +1,125 @@
+{
+  "target_skill": "test-design",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "この関数のテストケース考えて",
+      "should_trigger": true,
+      "rationale": "テストケース導出の直接要求",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "実装する前にテスト設計して",
+      "should_trigger": true,
+      "rationale": "skill 名に直結する表現、書く前の設計要求",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "このバリデーション関数のテスト観点を洗い出してほしい",
+      "should_trigger": true,
+      "rationale": "観点洗い出し = ケース導出",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "この文字列長チェック、境界値どこになるか教えて",
+      "should_trigger": true,
+      "rationale": "BVA の直接要求",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "この関数の事前条件・事後条件は? そこからテスト考えたい",
+      "should_trigger": true,
+      "rationale": "契約明文化からのケース導出要求",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "この API、どんなテスト書けばいい?",
+      "should_trigger": true,
+      "rationale": "口語だが書く前のケース検討要求",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "この正規化処理、property 何にする?",
+      "should_trigger": true,
+      "rationale": "property-based の property 選定要求",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "実装する前に、この関数のテストケースを漏れなく考えたい",
+      "should_trigger": true,
+      "rationale": "体系的導出への要求（漏れなく）",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "この割引ロジック、条件多いんだけどどこまでケース網羅すればいい?",
+      "should_trigger": true,
+      "rationale": "条件組合せのケース導出、デシジョンテーブル領域",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "このテストレビューして",
+      "should_trigger": false,
+      "rationale": "既存テストコードのレビューは test-review の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t11",
+      "prompt": "TDD で実装して",
+      "should_trigger": false,
+      "rationale": "RED-GREEN-REFACTOR の実行サイクル全体は tdd の担当。本スキルは tdd Step 1 の前段に留まる",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t12",
+      "prompt": "このテストって実装のバグ検出できてる? 検出力見て",
+      "should_trigger": false,
+      "rationale": "書かれたテストの mutation 耐性監査は test-mutation-gate の担当",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "このテストのカバレッジ上げて",
+      "should_trigger": false,
+      "rationale": "機械的なテスト追加作業。分析ではなく実装なので tdd 側",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "既存のテストスイート、抜けてるケースないかレビューして",
+      "should_trigger": false,
+      "rationale": "既存テストへの coverage-gap 指摘は test-review の担当。本スキルは新規導出のみ",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t15",
+      "prompt": "このシステムの設計をレビューして",
+      "should_trigger": false,
+      "rationale": "「設計」を含むが対象はアーキテクチャ全体のレビューで design-review の担当",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t16",
+      "prompt": "このモジュール、テストが何件あるか数えて",
+      "should_trigger": false,
+      "rationale": "「テスト」を含むが単純カウントで設計判断を伴わない",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t17",
+      "prompt": "このAPI、境界チェックを入れてエラーハンドリングを実装して",
+      "should_trigger": false,
+      "rationale": "「境界」を含むが実装依頼であり、テストケース導出の要求ではない",
+      "tags": ["distractor"]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "target_skill": "verify-done",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "実装完了しました、最終確認お願いします。",
+      "should_trigger": true,
+      "rationale": "完了宣言の典型形。Iron Law が直接当たる。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "全テスト通ったので、PR 出していいですか?",
+      "should_trigger": true,
+      "rationale": "PR 起票直前 = description の起動条件に明示。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "修正できました、これでマージできますか?",
+      "should_trigger": true,
+      "rationale": "merge 直前 + 完了宣言。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "verify-done を呼んでこの実装が完了したか確認して。",
+      "should_trigger": true,
+      "rationale": "skill 名直接指名。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "完了宣言する前に検証して。",
+      "should_trigger": true,
+      "rationale": "skill 機能を直接記述。",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "これで動くはずです。",
+      "should_trigger": true,
+      "rationale": "「動くはず」は description の禁止語リストに含まれる推測語。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "たぶん大丈夫だと思います。マージしてください。",
+      "should_trigger": true,
+      "rationale": "「たぶん」「思います」が禁止語、加えてマージ直前。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "ビルド通ったしオッケーかな。",
+      "should_trigger": true,
+      "rationale": "ビルド成功の自己評価 + 「オッケー」完了系の口語。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "テスト pass したので終わりにします。",
+      "should_trigger": true,
+      "rationale": "成功系 + 完了系の連結。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t10",
+      "prompt": "should work, I think.",
+      "should_trigger": true,
+      "rationale": "英語禁止語 should + I think の連発。",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t11",
+      "prompt": "テストコードのレビューしてほしい。",
+      "should_trigger": false,
+      "rationale": "test-review の領域。verify-done は完了門番でレビューはしない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t12",
+      "prompt": "CI が落ちてるので直して。",
+      "should_trigger": false,
+      "rationale": "ci-self-heal の領域。本スキルはローカル検証のみで CI を見ない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "実装する前にテスト書きたい。",
+      "should_trigger": false,
+      "rationale": "tdd RED フェーズ。完了文脈ではない。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "PR レビューのコメント対応して。",
+      "should_trigger": false,
+      "rationale": "pr-review-respond の領域。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t15",
+      "prompt": "実装したコードを review してほしい。PR 出す前に。",
+      "should_trigger": false,
+      "rationale": "code-review の領域。最終 gate ではなく静的レビュー要請。verify-done は code-review の後に呼ばれる。",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t16",
+      "prompt": "verify という関数名を変えたいんだけど。",
+      "should_trigger": false,
+      "rationale": "「verify」単語のみ含む rename 相談。完了文脈なし。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t17",
+      "prompt": "完了済みのタスクは何件ありますか?",
+      "should_trigger": false,
+      "rationale": "「完了」単語含むが照会であり完了宣言ではない。",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t18",
+      "prompt": "この test 何のために書かれたコードか教えて。",
+      "should_trigger": false,
+      "rationale": "「test」「pass」など含まず純粋な照会。完了文脈なし。",
+      "tags": ["distractor"]
+    }
+  ]
+}

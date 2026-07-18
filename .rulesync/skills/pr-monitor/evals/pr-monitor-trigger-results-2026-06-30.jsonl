@@ -1,0 +1,14 @@
+{"id": "t01", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t02", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t03", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t04", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t05", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t06", "predicted": true, "triggered_rate": 1.0, "runs": [{"run": 0, "ok": false, "triggered": true, "match_count": 1}], "reason": "observed by claude -p (1/1 runs triggered)"}
+{"id": "t07", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t08", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t09", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t10", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t11", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t12", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t13", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}
+{"id": "t14", "predicted": false, "triggered_rate": 0.0, "runs": [{"run": 0, "ok": false, "triggered": false, "match_count": 0}], "reason": "observed by claude -p (0/1 runs triggered)"}

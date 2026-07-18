@@ -1,0 +1,13 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"claude:ready ラベル処理は description の主経路"}
+{"id":"t02","predicted":true,"actual":true,"reason":"owner/repo#N の手動識別子モードを明示"}
+{"id":"t03","predicted":true,"actual":true,"reason":"issue→PR ヘッドレス完遂は中核記述"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「この issue やっておいて」を明示列挙"}
+{"id":"t05","predicted":true,"actual":true,"reason":"無人での issue 委譲は主目的"}
+{"id":"t06","predicted":true,"actual":true,"reason":"Routine 起動を主経路として明示"}
+{"id":"f01","predicted":false,"actual":false,"reason":"negative space で linear-issue-driven-development を名指し"}
+{"id":"f02","predicted":false,"actual":false,"reason":"negative space で shipping を名指し"}
+{"id":"f03","predicted":false,"actual":false,"reason":"negative space で ci-self-heal を名指し"}
+{"id":"f04","predicted":false,"actual":false,"reason":"negative space で pr-review-respond を名指し"}
+{"id":"f05","predicted":false,"actual":false,"reason":"「PR の merge (人間ゲート)」を範囲外に明示"}
+{"id":"f06","predicted":false,"actual":false,"reason":"issue テンプレ作成は処理対象の語彙に無い"}
+{"id":"f07","predicted":false,"actual":false,"reason":"トリアージは実装自走の語彙に無い"}

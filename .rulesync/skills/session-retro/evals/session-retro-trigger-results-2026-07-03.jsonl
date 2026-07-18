@@ -1,0 +1,16 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の「振り返りして」に直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「retro」を明示列挙"}
+{"id":"t03","predicted":true,"actual":true,"reason":"rule/sensor/issue の 4 分岐は本文の中核語彙"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「release 後」を発火条件に明示"}
+{"id":"t05","predicted":true,"actual":true,"reason":"eval-case / golden set 候補を description に明示"}
+{"id":"t06","predicted":true,"actual":true,"reason":"「二度と起きないようにして」を明示列挙"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「学びを CLAUDE.md に反映して」を明示列挙 (全体監査は negative space で除外済み)"}
+{"id":"t08","predicted":true,"actual":true,"reason":"「詰まったことを issue 化しておいて」を明示列挙"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「教訓を残して」に近接、終端の学び抽出は主目的"}
+{"id":"f01","predicted":false,"actual":false,"reason":"negative space に「CLAUDE.md 全体の監査 (claude-md-improver 等)」を明示"}
+{"id":"f02","predicted":false,"actual":false,"reason":"negative space に systematic-debugging を明示 (retro は事後、debug は渦中)"}
+{"id":"f03","predicted":false,"actual":false,"reason":"negative space に skill-builder を明示"}
+{"id":"f04","predicted":false,"actual":false,"reason":"negative space に「セッションの単純要約」を明示"}
+{"id":"f05","predicted":false,"actual":false,"reason":"レビュー対応の語彙は description に無く、pr-review-respond が拾う領域"}
+{"id":"f06","predicted":false,"actual":false,"reason":"「レトロ」を含むが調査依頼。FP リスク最有力ケースとして継続監視"}
+{"id":"f07","predicted":false,"actual":false,"reason":"計測集計の語彙は retro の発火条件に含まれない"}

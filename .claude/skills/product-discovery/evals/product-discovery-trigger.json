@@ -1,0 +1,147 @@
+{
+  "target_skill": "product-discovery",
+  "version": "1",
+  "notes": "skill-builder Mode B 用の trigger eval 雛形。should-trigger / should-skip 計 20 件。explicit / ambiguous / adjacent / distractor の混合。Mode B で計測する際は別途 evals/product-discovery-trigger-results-<YYYY-MM-DD>.jsonl を生成する。",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "新しいプロダクトを作りたい。PRDをドラフトしてほしい。",
+      "should_trigger": true,
+      "rationale": "明示的な PRD ドラフト依頼 + 新規プロダクト",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "/product-discovery",
+      "should_trigger": true,
+      "rationale": "slash command 直接指定",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "PM視点で要求を整理してほしい。outcomeとopportunityまで降ろしたい。",
+      "should_trigger": true,
+      "rationale": "PM視点 + outcome/opportunity の語が明示",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "discovery セッションを回したい。riskiest assumption を出したい。",
+      "should_trigger": true,
+      "rationale": "discovery / riskiest assumption は CDH/INSPIRED の中核語",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t05",
+      "prompt": "PRD書いて。Lean PRDでいい。",
+      "should_trigger": true,
+      "rationale": "成果物名で直接指定",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t06",
+      "prompt": "Slack bot 作りたいなって思ってるんだけど、何から考えればいい?",
+      "should_trigger": true,
+      "rationale": "アイデア整理段階。build trap を疑う必要あり、本 skill が outcome を確認する",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t07",
+      "prompt": "これって作る価値ある?",
+      "should_trigger": true,
+      "rationale": "value risk の問い。本 skill の Phase B/D が答える領域",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t08",
+      "prompt": "アイデアがあるんだけど、整理したい。",
+      "should_trigger": true,
+      "rationale": "PM 整理依頼の口語パターン",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t09",
+      "prompt": "自分用の bot 欲しいなと思ってる。週次でレシピ提案するやつ。",
+      "should_trigger": true,
+      "rationale": "顧客=自分自身パターン。本 skill の Self-check 領域",
+      "tags": ["ambiguous", "self-customer"]
+    },
+    {
+      "id": "t10",
+      "prompt": "家族で使うレシピ管理アプリ作りたい。",
+      "should_trigger": true,
+      "rationale": "self-and-close-circle パターン",
+      "tags": ["ambiguous", "self-customer"]
+    },
+    {
+      "id": "t11",
+      "prompt": "なんとなく週次レポート機能があったらいいなと思ってる。",
+      "should_trigger": true,
+      "rationale": "outcome 不明瞭な機能依頼。Phase B で深掘る対象",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t12",
+      "prompt": "z/{task}/requirements.md を書いてほしい。EARS 記法で。",
+      "should_trigger": false,
+      "rationale": "spec 段階 → requirements skill。本 skill の範囲外",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t13",
+      "prompt": "docs/prd/foo.md をレビューして。must / imo を出して。",
+      "should_trigger": false,
+      "rationale": "PRD のレビュー → prd-review skill",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t14",
+      "prompt": "API のエンドポイント設計を相談したい。RESTful にすべきかGraphQL か。",
+      "should_trigger": false,
+      "rationale": "設計フェーズ → design / feature-dev",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t15",
+      "prompt": "Prisma schema に新しいテーブルを足したい。設計を相談したい。",
+      "should_trigger": false,
+      "rationale": "データモデル設計 → data-modeling skill",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t16",
+      "prompt": "テストファイルをレビューして。AI 生成の smell をチェックして。",
+      "should_trigger": false,
+      "rationale": "テストレビュー → test-review skill",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t17",
+      "prompt": "実装したい。コードを書いて。",
+      "should_trigger": false,
+      "rationale": "実装フェーズ。要求段階を超えている",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "t18",
+      "prompt": "Tanstack Query と SWR どっちが良い? 比較して。",
+      "should_trigger": false,
+      "rationale": "ライブラリ比較 → research-practices skill",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t19",
+      "prompt": "PostgreSQL の slow query を最適化したい。",
+      "should_trigger": false,
+      "rationale": "DB パフォーマンス → postgres skill。PRD の語感はないが「最適化したい」が単発で来た場合に誤起動しないか確認",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "t20",
+      "prompt": "PRD は書いた。次の段取りどうする?",
+      "should_trigger": false,
+      "rationale": "本 skill 完了後の handoff 案内段階。本 skill を再度起動する必要なし（completion 報告で済む）。誤起動の検知用 distractor",
+      "tags": ["distractor", "edge"]
+    }
+  ]
+}

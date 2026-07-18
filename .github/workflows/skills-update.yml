@@ -1,0 +1,35 @@
+name: skills update
+
+# kanade0404/skills の新リリースタグへ rulesync pin を追随させる (pull 型)。
+# 実体は skills 側の reusable workflow (consumer-update.yml)。新タグを検知すると
+# pin 更新 + 再生成の PR が自動で立つ (merge は人間)。急ぐ場合は workflow_dispatch。
+#
+# 注意: reusable workflow は caller token の権限を downgrade しかできないため、
+# permissions はここで明示する。GITHUB_TOKEN が作る PR は CI をトリガしない —
+# PR 上で CI が必要になったら repo secret に fine-grained PAT を登録し、下の job に
+#   secrets:
+#     pr_token: ${{ secrets.<SECRET名> }}
+# のマッピングを追加する。
+
+on:
+  schedule:
+    - cron: '47 21 * * *' # 06:47 JST daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    # write 権限を渡す reusable は SHA pin。行末の ref コメントは Renovate の
+    # github-actions manager が追随先を判別するために必須 (無いと bump PR が
+    # 作られず pin が凍結する)
+    uses: kanade0404/skills/.github/workflows/consumer-update.yml@98cb469f4cd9b268cff09549fa2814f303c8ac70 # v0.8.0
+    with:
+      update_command: |
+        corepack enable
+        pnpm install --frozen-lockfile
+        npm pkg set scripts.rulesync:fetch="rulesync fetch kanade0404/skills@${SKILLS_TAG} --features skills,rules"
+        pnpm run rulesync:fetch
+        pnpm run rulesync:generate

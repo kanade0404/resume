@@ -1,0 +1,24 @@
+{
+  "target_skill": "design",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"この新機能の設計どうする?","should_trigger":true,"rationale":"設計検討の典型","tags":["explicit"]},
+    {"id":"t02","prompt":"アーキ考えて","should_trigger":true,"rationale":"architecture 検討","tags":["explicit"]},
+    {"id":"t03","prompt":"このロジックどこに置くべき?","should_trigger":true,"rationale":"配置 = 責務 / 境界","tags":["explicit"]},
+    {"id":"t04","prompt":"依存方向どうする","should_trigger":true,"rationale":"設計の中核観点","tags":["explicit"]},
+    {"id":"t05","prompt":"先にデザインしてから実装","should_trigger":true,"rationale":"設計先行 = 本スキル","tags":["explicit"]},
+    {"id":"t06","prompt":"ここに新機能足すならどう作る?","should_trigger":true,"rationale":"設計検討要請の口語形","tags":["ambiguous"]},
+    {"id":"t07","prompt":"責務どう分けるか","should_trigger":true,"rationale":"設計検討項目","tags":["ambiguous"]},
+    {"id":"t08","prompt":"component の構造どうする","should_trigger":true,"rationale":"構造選択 = 設計","tags":["ambiguous"]},
+    {"id":"t09","prompt":"I/O 境界どこに置く","should_trigger":true,"rationale":"設計検討項目","tags":["ambiguous"]},
+    {"id":"t10","prompt":"全体の構造を考えたい","should_trigger":true,"rationale":"アーキ検討の口語","tags":["ambiguous"]},
+    {"id":"t11","prompt":"ADR 書いて","should_trigger":false,"rationale":"adr-writer 領域、決定文書化","tags":["adjacent"]},
+    {"id":"t12","prompt":"設計レビューして","should_trigger":false,"rationale":"design-review 領域","tags":["adjacent"]},
+    {"id":"t13","prompt":"実装する","should_trigger":false,"rationale":"tdd / 直接編集","tags":["adjacent"]},
+    {"id":"t14","prompt":"先にリファクタ","should_trigger":false,"rationale":"tidy-first 領域","tags":["adjacent"]},
+    {"id":"t15","prompt":"要件確認して","should_trigger":false,"rationale":"requirements-review 領域","tags":["adjacent"]},
+    {"id":"t16","prompt":"デザインパターン本のおすすめ","should_trigger":false,"rationale":"書籍推薦の照会","tags":["distractor"]},
+    {"id":"t17","prompt":"figma の URL 共有して","should_trigger":false,"rationale":"UI design tool 照会","tags":["distractor"]},
+    {"id":"t18","prompt":"設計図ってどう書く?","should_trigger":false,"rationale":"汎用照会、本スキルの起動文脈ではない","tags":["distractor"]}
+  ]
+}

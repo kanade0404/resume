@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description が明示する「コードラビット対応」の要請文言に直接一致"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「レビューコメント対応して」= description の「レビュー対応して」「コメント見て対応して」に一致"}
+{"id":"t03","predicted":true,"actual":true,"reason":"description が明示する「Devin の指摘片付けて」に直接一致"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「PR の指摘を捌く」= description の「PR のコメント全部捌いて」相当"}
+{"id":"t05","predicted":true,"actual":true,"reason":"「人間レビュアーが新規コメントを残した時...必ず起動」に該当"}
+{"id":"t06","predicted":true,"actual":true,"reason":"PR + コメント在中の文脈は「新規コメントを残した時」の検知条件に含まれる"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「指摘」は指摘対応の口語表現、対応依頼と読める"}
+{"id":"t08","predicted":true,"actual":true,"reason":"CodeRabbit thread の resolve 運用は本スキルの Phase D/E の手順そのもの"}
+{"id":"t09","predicted":true,"actual":true,"reason":"「review feedback」= レビューコメントの言い換えで description の起動条件に該当"}
+{"id":"t10","predicted":true,"actual":true,"reason":"「PR にコメントいっぱいついてる、片付けて」は「PR のコメント全部捌いて」とほぼ同義"}
+{"id":"t11","predicted":false,"actual":false,"reason":"「PR 出す前」は code-review の領域。description は「既にレビュー済みの PR に後追いで対応する」と明示し PR 起票前を除外"}
+{"id":"t12","predicted":false,"actual":false,"reason":"CI 修復は ci-self-heal の領域。description に CI 修理への言及は無い"}
+{"id":"t13","predicted":false,"actual":false,"reason":"テスト新規作成は tdd の領域、レビューコメント対応ではない"}
+{"id":"t14","predicted":false,"actual":false,"reason":"設計レビューは design-review の領域、PR コメント対応ではない"}
+{"id":"t15","predicted":false,"actual":false,"reason":"テストコードレビューは test-review の領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"description が「レビュー自体を実行することはしない」と明示的に除外"}
+{"id":"t17","predicted":false,"actual":false,"reason":"PR の概念説明は対応作業ではない"}
+{"id":"t18","predicted":false,"actual":false,"reason":"自分発のコメント追加は既存指摘への対応ではない"}
+{"id":"t19","predicted":true,"actual":true,"reason":"description が明示する「既存 PR ブランチへ push した直後 (レビュー対応後の再 push を含む)」に直接一致"}
+{"id":"t20","predicted":true,"actual":true,"reason":"「push したのでスレッド対応して」+「未解決スレッドが残る PR を離れる前に必ず一度起動する」に該当"}

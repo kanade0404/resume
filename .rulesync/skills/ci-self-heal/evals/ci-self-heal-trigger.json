@@ -1,0 +1,24 @@
+{
+  "target_skill": "ci-self-heal",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"CI 直して","should_trigger":true,"rationale":"skill 機能直接","tags":["explicit"]},
+    {"id":"t02","prompt":"ビルド失敗してる","should_trigger":true,"rationale":"CI fail 報告","tags":["explicit"]},
+    {"id":"t03","prompt":"pipeline 緑にして","should_trigger":true,"rationale":"CI 修復要請","tags":["explicit"]},
+    {"id":"t04","prompt":"checks が落ちてる","should_trigger":true,"rationale":"PR checks 失敗","tags":["explicit"]},
+    {"id":"t05","prompt":"CI が赤になった","should_trigger":true,"rationale":"CI 失敗の報告","tags":["explicit"]},
+    {"id":"t06","prompt":"PR 通らないので見て","should_trigger":true,"rationale":"PR の CI 失敗を示唆","tags":["ambiguous"]},
+    {"id":"t07","prompt":"workflow が失敗してる","should_trigger":true,"rationale":"GitHub Actions workflow 失敗","tags":["ambiguous"]},
+    {"id":"t08","prompt":"actions 落ちた","should_trigger":true,"rationale":"GitHub Actions = CI","tags":["ambiguous"]},
+    {"id":"t09","prompt":"rerun じゃなく原因見て","should_trigger":true,"rationale":"root cause first の起動条件","tags":["ambiguous"]},
+    {"id":"t10","prompt":"CI ログから直してくれ","should_trigger":true,"rationale":"CI ログ → 修正のループ","tags":["ambiguous"]},
+    {"id":"t11","prompt":"ローカルテストが落ちる","should_trigger":false,"rationale":"verify-done 前段、CI ではない","tags":["adjacent"]},
+    {"id":"t12","prompt":"コードレビューして","should_trigger":false,"rationale":"code-review 領域","tags":["adjacent"]},
+    {"id":"t13","prompt":"PR コメント対応","should_trigger":false,"rationale":"pr-review-respond 領域","tags":["adjacent"]},
+    {"id":"t14","prompt":"設計レビュー","should_trigger":false,"rationale":"design-review 領域","tags":["adjacent"]},
+    {"id":"t15","prompt":"TDD で実装","should_trigger":false,"rationale":"tdd 領域","tags":["adjacent"]},
+    {"id":"t16","prompt":"CI って何ですか?","should_trigger":false,"rationale":"概念照会","tags":["distractor"]},
+    {"id":"t17","prompt":"pipeline 設計したい","should_trigger":false,"rationale":"CI yaml 設計、別文脈 (本スキルは fail 対応)","tags":["distractor"]},
+    {"id":"t18","prompt":"self-healing system の論文教えて","should_trigger":false,"rationale":"別概念の照会","tags":["distractor"]}
+  ]
+}

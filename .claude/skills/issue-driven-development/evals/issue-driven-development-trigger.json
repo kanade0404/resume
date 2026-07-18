@@ -1,0 +1,97 @@
+{
+  "target_skill": "issue-driven-development",
+  "version": "1",
+  "cases": [
+    {
+      "id": "t01",
+      "prompt": "claude:ready ラベルの issue を処理して PR まで作って",
+      "should_trigger": true,
+      "rationale": "ラベル駆動の主経路そのもの",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t02",
+      "prompt": "kanade0404/skills#11 をやって PR 作成まで自走して",
+      "should_trigger": true,
+      "rationale": "手動識別子モード",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t03",
+      "prompt": "GitHub issue から実装して PR 出すところまでヘッドレスでやって",
+      "should_trigger": true,
+      "rationale": "issue→PR の自走要請",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "t04",
+      "prompt": "この issue やっておいて",
+      "should_trigger": true,
+      "rationale": "issue 対応の委譲 (口語)",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t05",
+      "prompt": "issue #42 の対応、離席中に終わらせておいて",
+      "should_trigger": true,
+      "rationale": "無人完遂の要請",
+      "tags": ["ambiguous"]
+    },
+    {
+      "id": "t06",
+      "prompt": "毎時の Routine から: claude:ready の issue を 1 件選んで処理",
+      "should_trigger": true,
+      "rationale": "Routine 主経路",
+      "tags": ["explicit"]
+    },
+    {
+      "id": "f01",
+      "prompt": "Linear の ENG-123 を処理して",
+      "should_trigger": false,
+      "rationale": "Linear issue は linear-issue-driven-development",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f02",
+      "prompt": "実装できたから ship して。CI もレビューも全部通して",
+      "should_trigger": false,
+      "rationale": "ローカル実装後の出荷は shipping",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f03",
+      "prompt": "PR の CI が落ちてるから直して",
+      "should_trigger": false,
+      "rationale": "CI 修正単体は ci-self-heal (イベント分割の後半)",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f04",
+      "prompt": "CodeRabbit のコメントに対応して",
+      "should_trigger": false,
+      "rationale": "レビュー対応単体は pr-review-respond",
+      "tags": ["adjacent"]
+    },
+    {
+      "id": "f05",
+      "prompt": "この PR を merge して",
+      "should_trigger": false,
+      "rationale": "merge は人間ゲート (本スキルは merge しない)",
+      "tags": ["adjacent", "edge"]
+    },
+    {
+      "id": "f06",
+      "prompt": "issue のテンプレートを作って",
+      "should_trigger": false,
+      "rationale": "issue という語を含むが issue 処理ではない",
+      "tags": ["distractor"]
+    },
+    {
+      "id": "f07",
+      "prompt": "今週の open issue を一覧して優先度を付けて",
+      "should_trigger": false,
+      "rationale": "トリアージであって実装自走ではない",
+      "tags": ["distractor"]
+    }
+  ]
+}

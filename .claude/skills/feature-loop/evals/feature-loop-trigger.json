@@ -1,0 +1,21 @@
+{
+  "target_skill": "feature-loop",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"この変更、最初から最後まで回して","should_trigger":true,"rationale":"end-to-end 委任","tags":["explicit"]},
+    {"id":"t02","prompt":"受け入れ条件決めて実装して PR 決着まで面倒見て","should_trigger":true,"rationale":"intake→…→monitor の全経路","tags":["explicit"]},
+    {"id":"t03","prompt":"feature を頭から ship・監視・振り返りまでやって","should_trigger":true,"rationale":"全段委任","tags":["explicit"]},
+    {"id":"t04","prompt":"この要望、設計から実装出荷マージ監視まで全部おまかせ","should_trigger":true,"rationale":"end-to-end","tags":["explicit"]},
+    {"id":"t05","prompt":"これ実装したいんだけど全部やっといて","should_trigger":true,"rationale":"曖昧だが end-to-end 委任の意図","tags":["ambiguous"]},
+    {"id":"t06","prompt":"新機能ひとつ、頭からやって","should_trigger":true,"rationale":"feature 単位の通し","tags":["ambiguous"]},
+    {"id":"t07","prompt":"設計を詰めたい","should_trigger":false,"rationale":"grill-with-docs / 設計のみ","tags":["adjacent"]},
+    {"id":"t08","prompt":"TDD で実装して","should_trigger":false,"rationale":"実装のみ = tdd","tags":["adjacent"]},
+    {"id":"t09","prompt":"ship して","should_trigger":false,"rationale":"出荷のみ = shipping","tags":["adjacent"]},
+    {"id":"t10","prompt":"この PR 監視して","should_trigger":false,"rationale":"監視のみ = pr-monitor","tags":["adjacent"]},
+    {"id":"t11","prompt":"振り返りして","should_trigger":false,"rationale":"retro のみ","tags":["adjacent"]},
+    {"id":"t12","prompt":"コードレビューして","should_trigger":false,"rationale":"code-review","tags":["distractor"]},
+    {"id":"t13","prompt":"CI 直して","should_trigger":false,"rationale":"ci-self-heal","tags":["distractor"]},
+    {"id":"t14","prompt":"バグ直して","should_trigger":false,"rationale":"単一バグ修正、end-to-end ループではない","tags":["distractor"]},
+    {"id":"t15","prompt":"このタイポ直して","should_trigger":false,"rationale":"単発編集","tags":["distractor"]}
+  ]
+}

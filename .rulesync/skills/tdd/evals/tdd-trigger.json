@@ -1,0 +1,24 @@
+{
+  "target_skill": "tdd",
+  "version": "1",
+  "cases": [
+    {"id":"t01","prompt":"TDD で実装して","should_trigger":true,"rationale":"skill 名直接","tags":["explicit"]},
+    {"id":"t02","prompt":"先にテスト書いてから実装","should_trigger":true,"rationale":"テスト先行 = TDD","tags":["explicit"]},
+    {"id":"t03","prompt":"赤にしてから実装","should_trigger":true,"rationale":"RED → GREEN の表現","tags":["explicit"]},
+    {"id":"t04","prompt":"failing test から実装する","should_trigger":true,"rationale":"failing test = RED","tags":["explicit"]},
+    {"id":"t05","prompt":"テスト先行で機能追加","should_trigger":true,"rationale":"テスト先行 = TDD","tags":["explicit"]},
+    {"id":"t06","prompt":"この機能を実装して","should_trigger":true,"rationale":"behavioral change → TDD 起動条件","tags":["ambiguous"]},
+    {"id":"t07","prompt":"バグ修正して","should_trigger":true,"rationale":"バグ修正 = behavioral change","tags":["ambiguous"]},
+    {"id":"t08","prompt":"再現テスト書いて修正","should_trigger":true,"rationale":"再現テスト → 修正 = TDD","tags":["ambiguous"]},
+    {"id":"t09","prompt":"API 仕様変更を入れて","should_trigger":true,"rationale":"仕様変更 = behavioral","tags":["ambiguous"]},
+    {"id":"t10","prompt":"この処理を直して","should_trigger":true,"rationale":"処理修正 = behavioral","tags":["ambiguous"]},
+    {"id":"t11","prompt":"先にリファクタして","should_trigger":false,"rationale":"tidy-first 領域、structural change のみ","tags":["adjacent"]},
+    {"id":"t12","prompt":"テストコードのレビューして","should_trigger":false,"rationale":"test-review 領域","tags":["adjacent"]},
+    {"id":"t13","prompt":"設計考えて","should_trigger":false,"rationale":"design 領域","tags":["adjacent"]},
+    {"id":"t14","prompt":"ADR 残して","should_trigger":false,"rationale":"adr-writer 領域","tags":["adjacent"]},
+    {"id":"t15","prompt":"デプロイして","should_trigger":false,"rationale":"運用領域、TDD ではない","tags":["adjacent"]},
+    {"id":"t16","prompt":"TDD って何ですか?","should_trigger":false,"rationale":"概念照会","tags":["distractor"]},
+    {"id":"t17","prompt":"テスト件数を数えて","should_trigger":false,"rationale":"照会、振る舞い変更ではない","tags":["distractor"]},
+    {"id":"t18","prompt":"テスト pass した、終わり","should_trigger":false,"rationale":"verify-done 領域、完了系","tags":["distractor"]}
+  ]
+}

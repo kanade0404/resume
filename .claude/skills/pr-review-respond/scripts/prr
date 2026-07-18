@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# pr-review-respond entry point.
+# Dispatches to per-action scripts in this same directory.
+#
+# Usage:
+#   prr fetch    <pr-number>
+#   prr reply    <pr-number> <root-comment-id> <body-file>
+#   prr resolve  <pr-number> <root-comment-id> <classification> [body-file]
+#   prr summary  <pr-number> <body-file>
+#   prr wait-ci  <pr-number> [interval-seconds]
+#   prr defer    <pr-number> <thread-url> <title> <body-file>
+#   prr escalate <pr-number> <reason> <body-file>
+#
+# Why this wrapper exists:
+#   Claude Code permission rules (`allowed-tools`) match against the literal
+#   command string. With per-script invocation we'd need a separate rule per
+#   script and per install path. Routing every action through a single `prr`
+#   entry point lets a single rule (`Bash(bash *prr *)`) cover everything.
+#
+# Why the per-action scripts are dispatched via `exec bash "<script>"`
+# instead of `exec "<script>"`:
+#   Rulesync-generated mirrors (e.g. the Codex `.agents/` distribution) are
+#   committed without the executable bit, since rulesync's writer does not
+#   preserve source file permissions. Invoking the target file directly
+#   would exit 126 ("Permission denied") from that mirror even though the
+#   file itself is valid. Explicitly running it through `bash` sidesteps the
+#   executable bit entirely and works from any mirror regardless of how it
+#   was materialized.
+
+set -euo pipefail
+
+# gh は CLICOLOR_FORCE=1 / GH_FORCE_TTY の環境だと pipe 先にも ANSI 色付き JSON を
+# 出力し、下流の jq (--argjson / parse) を静かに壊す。ここは機械処理専用の経路
+# なので、全 subcommand に先立って色と TTY 強制を無効化する。NO_COLOR も合わせて
+# 明示することで、gh 以外の下流ツールが色判定に NO_COLOR を見る場合にも効く。
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY 2>/dev/null || true
+
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+
+usage() {
+  cat <<'EOF'
+prr — pr-review-respond entry point
+
+Usage:
+  prr fetch    <pr>
+  prr reply    <pr> <root-comment-id> <body-file>
+  prr resolve  <pr> <root-comment-id> <classification> [body-file]
+  prr summary  <pr> <body-file>
+  prr wait-ci  <pr> [interval-sec]
+  prr defer    <pr> <thread-url> <title> <body-file>
+  prr escalate <pr> <reason> <body-file>
+
+All subcommands shell out to <scripts-dir>/<action>_*.sh.
+EOF
+}
+
+cmd="${1:-}"
+shift || true
+
+case "$cmd" in
+  fetch)
+    exec bash "$SCRIPT_DIR/fetch_threads.sh" "$@"
+    ;;
+  reply)
+    exec bash "$SCRIPT_DIR/reply_thread.sh" "$@"
+    ;;
+  resolve)
+    exec bash "$SCRIPT_DIR/resolve_thread.sh" "$@"
+    ;;
+  summary)
+    exec bash "$SCRIPT_DIR/post_summary.sh" "$@"
+    ;;
+  wait-ci)
+    exec bash "$SCRIPT_DIR/wait_ci.sh" "$@"
+    ;;
+  defer)
+    exec bash "$SCRIPT_DIR/defer_issue.sh" "$@"
+    ;;
+  escalate)
+    exec bash "$SCRIPT_DIR/escalate.sh" "$@"
+    ;;
+  help|--help|-h)
+    usage
+    exit 0
+    ;;
+  "")
+    usage >&2
+    exit 2
+    ;;
+  *)
+    printf 'error: unknown subcommand: %s\n\n' "$cmd" >&2
+    usage >&2
+    exit 2
+    ;;
+esac

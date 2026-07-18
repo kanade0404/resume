@@ -1,0 +1,18 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"「先に整理してから」description 直マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「巨大関数を分割」description 直マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「dead code 消す」description 直マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「ガード節に直す」description 直マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"「先に rename」description 直マッチ"}
+{"id":"t06","predicted":true,"actual":true,"reason":"「読みづらい」「整える」description 起動語彙"}
+{"id":"t07","predicted":true,"actual":true,"reason":"「変数名を意味あるものに」description 直マッチ"}
+{"id":"t08","predicted":true,"actual":true,"reason":"nesting 深い = Guard Clauses 候補"}
+{"id":"t09","predicted":true,"actual":true,"reason":"extract = Tidying カタログ"}
+{"id":"t10","predicted":true,"actual":true,"reason":"「リファクタしてから直す」description 直マッチ"}
+{"id":"t11","predicted":false,"actual":false,"reason":"tdd 起動文脈"}
+{"id":"t12","predicted":false,"actual":false,"reason":"behavioral change のみ、tidy 文脈なし"}
+{"id":"t13","predicted":false,"actual":false,"reason":"adr-writer 起動文脈"}
+{"id":"t14","predicted":false,"actual":false,"reason":"design 起動文脈"}
+{"id":"t15","predicted":false,"actual":false,"reason":"verify-done 起動文脈"}
+{"id":"t16","predicted":false,"actual":false,"reason":"概念照会"}
+{"id":"t17","predicted":false,"actual":false,"reason":"書籍照会"}
+{"id":"t18","predicted":false,"actual":false,"reason":"ツール照会、本スキルの整理対象ではない"}
