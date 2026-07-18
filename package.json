@@ -2,10 +2,10 @@
   "name": "resume",
   "version": "1.0.0",
   "author": "kanade0404 <melty0404@gmail.com>",
-  "dependencies": {},
   "devDependencies": {
     "fixpack": "4.0.0",
     "md-to-pdf": "5.2.5",
+    "rulesync": "9.6.3",
     "textlint": "15.7.1",
     "textlint-filter-rule-allowlist": "4.0.0",
     "textlint-rule-preset-ja-spacing": "2.4.3",
@@ -19,7 +19,11 @@
     "fix": "fixpack",
     "generate": "./convert.sh",
     "lint": "textlint *.md",
-    "lint:fix": "textlint --fix *.md"
+    "lint:fix": "textlint --fix *.md",
+    "rulesync:check": "rulesync generate --targets claudecode --features skills,rules --check",
+    "rulesync:fetch": "rulesync fetch kanade0404/skills@v0.8.0 --features skills,rules",
+    "rulesync:generate": "rulesync generate --targets claudecode --features skills,rules"
   },
-  "type": "module"
+  "type": "module",
+  "packageManager": "pnpm@11.9.0"
 }

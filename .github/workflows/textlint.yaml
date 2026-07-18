@@ -18,6 +18,8 @@ jobs:
         with:
           node-version: 24.18.0
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile
       - name: Run textlint
-        run: yarn lint
+        run: pnpm run lint
