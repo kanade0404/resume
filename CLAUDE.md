@@ -42,6 +42,7 @@ pnpm run rulesync:check           # ドリフト検出(CI 用)
 ```
 
 `grill-me` と `grilling` はこのリポジトリ固有のローカルskillで、配布物ではない。
+`career-grilling` もこのリポジトリ固有のローカルskillで、配布物ではない。
 
 ## CI / 自動化
 
