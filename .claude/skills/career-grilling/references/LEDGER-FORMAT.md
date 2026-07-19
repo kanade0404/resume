@@ -9,7 +9,7 @@
 Phase 0 の成果物。ユーザに見せる1メッセージ、または scratch 領域のメモとして
 持つ(gitignore対象、コミットしない)。スキーマ:
 
-```
+```yaml
 - topic: <一言でトピック名>
   status: fact | decided
   summary: <1行>

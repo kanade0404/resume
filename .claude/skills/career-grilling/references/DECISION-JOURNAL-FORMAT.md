@@ -1,12 +1,12 @@
 # DECISION-JOURNAL-FORMAT: Phase 4 の記録スキーマ
 
 各決定が解決した時点で**即座に**記録する。先送りしない。過去セッションの反省:
-「継続/撤退基準が最後まで明文化されなかった」ことがSaaS失敗の反省点として本人
-から明確に語られており、本skillはこれを制度として二度と起こさない。
+「継続/撤退基準が最後まで明文化されないまま決定だけが先行する」パターンが繰り返し
+起きており、本skillはこれを制度として二度と起こさない。
 
 ## スキーマ
 
-```
+```markdown
 ### Decision: <決定の名前>
 - 決定: <確定した内容>
 - 却下した代替案: <最低1つ、理由付きで>
@@ -35,7 +35,7 @@ Phase 0 で候補化した Tier4 サンプル(daily report等)と現在の profi
 何か」を1問として立てる。これは [BLIND-SPOT-PROBES.md](BLIND-SPOT-PROBES.md) の
 パターン1と同じ突合だが、Decision Journal 上では以下の追加欄を使う:
 
-```
+```markdown
 ### Reflection Diff: <トピック>
 - 当時の記述(要旨): <Tier4サンプルの要旨、逐語は書かない>
 - 現在の記述(要旨): <profileの要旨>
@@ -48,9 +48,12 @@ Phase 0 で候補化した Tier4 サンプル(daily report等)と現在の profi
 Decision Journal の記録先は
 [DECISION-TREE-FORMAT.md](DECISION-TREE-FORMAT.md) の保存場所と同じ規約に従う:
 
-- セッションの scratchpad ディレクトリがあればそこの `decision-journal.md`
-- 無ければ `.claude/skills/career-grilling/scratch/decision-journal.md`
-  (いずれも gitignore 対象。コミットしない)
+- セッションの scratchpad ディレクトリが本リポジトリの外(OS一時領域等)であることを
+  確認できる場合のみ、そこの `decision-journal.md` に書く
+- 本リポジトリ内のパスしか得られない場合、または外部であることを確認できない場合は
+  `.claude/skills/career-grilling/scratch/decision-journal.md` に書く(gitignore対象)
+- いずれの場合も、vault由来の機微情報を含みうるファイルをコミット対象になり得る
+  パスに書かない(gitignore対象であることが確認できないパスには書かない)
 
 最終的な蒸留は Phase 6 の書き戻しで `profile/<topic>.md` の frontmatter
 `sources` 欄と本文要約に反映する([WRITEBACK-SCHEMA.md](WRITEBACK-SCHEMA.md) 参照)。

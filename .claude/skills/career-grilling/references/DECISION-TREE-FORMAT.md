@@ -5,13 +5,16 @@ Phase 2 で構築する決定木のノードスキーマ。`grilling` の「deci
 
 ## 保存場所
 
-- セッションの scratchpad ディレクトリがあればそこの `decision-tree.md`
-- 無ければ `.claude/skills/career-grilling/scratch/decision-tree.md`
-  (いずれも gitignore 対象。コミットしない)
+- セッションの scratchpad ディレクトリが本リポジトリの外(OS一時領域等)であることを
+  確認できる場合のみ、そこの `decision-tree.md` に書く
+- 本リポジトリ内のパスしか得られない場合、または外部であることを確認できない場合は
+  `.claude/skills/career-grilling/scratch/decision-tree.md` に書く(gitignore対象)
+- いずれの場合も、vault由来の機微情報を含みうるファイルをコミット対象になり得る
+  パスに書かない(gitignore対象であることが確認できないパスには書かない)
 
 ## ノードスキーマ
 
-```
+```text
 ### Node <id>: <ノード名>
 - kind: fact | decision
 - depends_on: [<親ノードid>, ...]
@@ -45,7 +48,8 @@ Phase 2 で構築する決定木のノードスキーマ。`grilling` の「deci
 5. 初回メッセージの送信と並行して、`status: open` のまま残る葉ノードのうち既知台帳や
    コードベース調査で埋まらないものだけを `Skill` ツールで `research-practices` へ
    発注してよい。発注は葉ノード単位、事前の全面発注はせず、ユーザの設問1への回答を
-   待たずに裏で進めてよい
+   待たずに裏で進めてよい。発注時のサニタイズ・完全スコープ済みプロンプトの要件は
+   [SKILL.md](../SKILL.md) の Phase 2 手順4 と同一(勝手に緩めない)
 
 ## Resolved 時の追加ルール
 

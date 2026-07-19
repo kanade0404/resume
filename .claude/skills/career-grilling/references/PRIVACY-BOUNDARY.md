@@ -13,9 +13,11 @@
 - vaultの実パスをSKILL本文・referencesに書かない。実行時に
   `.claude/skills/career-grilling/vault-paths.local`(gitignore対象)から解決する。
   このファイル自体は `.gitignore` に登録済み
-- 決定木・台帳のscratchファイル(`decision-tree.md` 等)はgitignore対象の
-  スクラッチ領域(`.claude/skills/career-grilling/scratch/` またはセッションの
-  scratchpadディレクトリ)に限定し、コミット対象にしない
+- 決定木・台帳のscratchファイル(`decision-tree.md` 等)は、本リポジトリの外と
+  確認できるセッションのscratchpadディレクトリ、またはgitignore対象の
+  `.claude/skills/career-grilling/scratch/` のいずれかに限定し、コミット対象に
+  なり得るパスには書かない([DECISION-TREE-FORMAT.md](DECISION-TREE-FORMAT.md)・
+  [DECISION-JOURNAL-FORMAT.md](DECISION-JOURNAL-FORMAT.md) の「保存場所」参照)
 
 ## write-back(書き戻し)の境界
 
