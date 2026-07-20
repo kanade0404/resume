@@ -36,6 +36,8 @@ jobs:
         uses: anthropics/claude-code-action@v1.0.178
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # v1.0.178 以降、bot 起点の実行は allowed_bots に列挙が必要 (Renovate PR で CI が落ちる)
+          allowed_bots: renovate
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
