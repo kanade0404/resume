@@ -116,3 +116,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 *.drawio*
+
+# career-grilling skill (local, not rulesync-distributed): private vault path
+# pointer and in-session scratch files must never be committed.
+.claude/skills/career-grilling/vault-paths.local
+.claude/skills/career-grilling/scratch/
