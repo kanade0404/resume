@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 9.6.3
-        version: 9.6.3(valibot@1.4.2)
+        specifier: 9.8.0
+        version: 9.8.0(valibot@1.4.2)
       textlint:
         specifier: 15.7.1
         version: 15.7.1
@@ -2002,8 +2002,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@9.6.3:
-    resolution: {integrity: sha512-KVSFksiQ5gR05veZLCpccVPI//4RbBGmef9DQfS9lZV+Uq3knnvZDQ4RRmi26gBkMXwuEpiQWfJipVXXtk99ww==}
+  rulesync@9.8.0:
+    resolution: {integrity: sha512-olhQcj5l0C0CUHyC2Yooa6TCKkd8FH8gppi0iw++YgYf8/vtKSuafDFwIicl7kqWy/icAq62KTSHii8n/c5fVA==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -4983,7 +4983,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@9.6.3(valibot@1.4.2):
+  rulesync@9.8.0(valibot@1.4.2):
     dependencies:
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
       '@octokit/request-error': 7.1.0
