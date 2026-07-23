@@ -25,5 +25,5 @@
     "rulesync:generate": "rulesync generate --targets claudecode --features skills,rules"
   },
   "type": "module",
-  "packageManager": "pnpm@11.9.0"
+  "packageManager": "pnpm@11.17.0"
 }
