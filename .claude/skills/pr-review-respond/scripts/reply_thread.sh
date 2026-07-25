@@ -15,6 +15,12 @@
 
 set -euo pipefail
 
+# 直接実行にも耐えるよう、dispatcher (prr) 頼みにせず自前でも色強制を無効化する
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY
+export GH_PAGER=cat
+
 if [ "$#" -ne 3 ]; then
   echo "usage: $0 <pr-number> <root-comment-id> <body-file>" >&2
   exit 2

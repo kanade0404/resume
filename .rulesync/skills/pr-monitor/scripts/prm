@@ -1,0 +1,557 @@
+#!/usr/bin/env bash
+# prm — pr-monitor single entry point.
+#
+# Reports a PR's lifecycle state, failing/pending checks, and the full set
+# of unresolved review threads as stable JSON on stdout. Consumers poll this
+# instead of hand-rolling `gh` + `jq` pipelines per invocation. It also owns
+# the on-disk monitor state file through a read-modify-write subcommand set,
+# so callers never Write the state file directly (F1: across long
+# self-reentrant polling loops, models tend to treat "the content I last
+# wrote" as equivalent to what's on disk and skip re-reading it before the
+# next write — moving the read-modify-write into this script closes that
+# gap structurally instead of relying on Read discipline).
+#
+# Usage:
+#   prm status      <pr-number>
+#   prm unresolved   <pr-number>
+#   prm state-init   <pr-number> <json-file>
+#   prm state-merge  <pr-number> <json-file>
+#   prm state-apply  <pr-number> <jq-filter-file> [--arg <name> <value> | --argjson <name> <value>]...
+#   prm state-get    <pr-number> [key]
+#
+# Output schema — `prm status <n>`:
+# {
+#   "pr": {
+#     "state": "OPEN|MERGED|CLOSED", "merged_at": str|null,
+#     "url": str, "branch": str, "head_sha": str
+#   },
+#   "checks": {
+#     "failing": [ {"name": str, "bucket": "fail"|"cancel", "link": str, "workflow": str} ],
+#     "pending": [ str, ... ]
+#   },
+#   "unresolved_count": int,
+#   "unresolved_threads": [
+#     {
+#       "thread_id": str, "is_outdated": bool, "comment_id": int|null,
+#       "author": str, "path": str|null, "url": str, "created_at": str,
+#       "body_head": str   # first 300 chars of the root comment body
+#     }
+#   ]
+# }
+#
+# Output schema — `prm unresolved <n>`:
+# { "unresolved_count": int, "threads": [ <same shape as unresolved_threads[]> ] }
+#
+# State subcommands — target file `.claude/.pr-monitor/PR-<n>.json`
+# (anchored to the repo root via `git rev-parse --show-toplevel`, not cwd;
+# created on first `state-init`. See state_dir resolution below for why —
+# PR #78 review):
+#   state-init  <n> <json-file>   Validate <json-file> is exactly one JSON
+#                                  object (`jq -es 'length == 1 and (.[0] |
+#                                  type == "object")'` — rejects arrays,
+#                                  scalars, and multi-document JSON streams,
+#                                  not just invalid syntax), create the state
+#                                  directory if missing, and write the (jq -S
+#                                  stabilized) content as the new state file.
+#                                  If a state file already exists it is
+#                                  overwritten, with a warning printed to
+#                                  stderr first.
+#   state-merge <n> <json-file>   Read the existing state file (error, exit
+#                                  1, if it does not exist yet — run
+#                                  state-init first), validate <json-file>
+#                                  as a JSON patch that is exactly one JSON
+#                                  object (same slurped guard as state-init),
+#                                  shallow-merge it onto the existing state
+#                                  with
+#                                  `$base + $patch`, and write the merged
+#                                  result back. Safe ONLY for patches whose
+#                                  fields are all scalars (e.g. a single
+#                                  `state` transition) — the shallow merge
+#                                  replaces array fields wholesale rather
+#                                  than appending, so a patch built from a
+#                                  `state-get` read taken before this call
+#                                  can silently discard array entries
+#                                  (known_comment_ids / known_failing_checks
+#                                  / escalations / cycle_ledger) written by a
+#                                  concurrent invocation in between. This is
+#                                  the single-writer-assumption path; in
+#                                  environments where invocations can overlap
+#                                  (pr-monitor's own cron/wakeup re-entry),
+#                                  use state-apply below for any update that
+#                                  touches an array field.
+#   state-apply <n> <jq-filter-file> [--arg <name> <value> | --argjson <name> <value>]...
+#                                  Acquire the same per-PR lock as
+#                                  state-init/state-merge, then (while still
+#                                  holding it) read the existing state file
+#                                  (error, exit 1, if it does not exist —
+#                                  run state-init first) and run the jq
+#                                  program in <jq-filter-file> against it
+#                                  with `.` bound to that freshly-read state,
+#                                  validate the result is exactly one JSON
+#                                  object (slurped: an unslurped `jq -e 'type
+#                                  == "object"'` would only inspect the last
+#                                  value of a filter that emits a JSON stream
+#                                  of several values — e.g. a stray comma
+#                                  expression — and pass as long as that last
+#                                  value happened to be an object, silently
+#                                  discarding the rest), and write it back
+#                                  atomically. Because the read
+#                                  happens inside the lock (unlike the
+#                                  state-get-then-state-merge protocol),
+#                                  array recomputation expressed in the
+#                                  filter itself — e.g.
+#                                  `.known_comment_ids = ((.known_comment_ids
+#                                  + [123]) | unique)` — always operates on
+#                                  the latest on-disk state, so two
+#                                  overlapping invocations each appending a
+#                                  different id both survive instead of the
+#                                  second stale-patch write clobbering the
+#                                  first. Use this (not state-get + patch +
+#                                  state-merge) for any update that includes
+#                                  known_comment_ids / known_failing_checks /
+#                                  escalations / cycle_ledger.
+#                                  Zero or more `--arg <name> <value>` pairs
+#                                  may follow the filter file; each is passed
+#                                  straight through to `jq --arg`, which
+#                                  binds `$name` as a jq string regardless of
+#                                  its contents (quotes, backslashes,
+#                                  newlines included). Callers whose filter
+#                                  needs a dynamic, externally-sourced string
+#                                  — e.g. a check key built from GitHub's
+#                                  free-form `"<workflow>/<name>"`, which may
+#                                  itself contain a quote or newline — MUST
+#                                  use `--arg` and reference `$name` in the
+#                                  filter instead of interpolating the raw
+#                                  string into the filter text. Splicing such
+#                                  a string directly into the filter as a
+#                                  literal (e.g. `index("<workflow>/<name>")`
+#                                  with the value substituted in by the
+#                                  caller before writing the filter file)
+#                                  breaks the jq program's syntax — or worse,
+#                                  silently matches something else — the
+#                                  moment the value contains a `"`, `\`, or a
+#                                  newline (PR #78 review). Fixed values with
+#                                  no adversarial-character risk (a git SHA,
+#                                  a numeric comment id) remain safe to
+#                                  interpolate as literals.
+#                                  `--argjson <name> <value>` pairs are also
+#                                  accepted, interspersed with `--arg` in any
+#                                  order; each is passed straight through to
+#                                  `jq --argjson`, which parses <value> as JSON
+#                                  and binds `$name` to that value's actual
+#                                  type (e.g. a bare `123` becomes the jq
+#                                  *number* 123, not the string "123"). Use
+#                                  this — not `--arg` — for any $name that a
+#                                  filter later compares against a field that
+#                                  is itself numeric elsewhere in the state
+#                                  (e.g. a review-stuck escalation's `key`,
+#                                  which must stay a number to compare equal
+#                                  to the numeric `comment_id` values in
+#                                  `known_comment_ids` / `unresolved_threads`).
+#                                  Binding such a value with `--arg` instead
+#                                  produces a JSON *string*, which never
+#                                  compares equal to the numeric `comment_id`
+#                                  it's meant to match — a filter that prunes
+#                                  "key not present in the current numeric ID
+#                                  set" then always considers the string key
+#                                  absent and deletes it on the very next
+#                                  prune, silently breaking the dedup the
+#                                  entry exists for (PR #78 review, comment
+#                                  3552918945).
+#   state-get   <n> [key]         Print the whole state object, or just
+#                                  `.<key>` when a key is given. Error (exit
+#                                  1) if the state file does not exist.
+# state-* output is passed through `jq -S` too, and these subcommands touch
+# only the local filesystem — they never call the GitHub API.
+# state-init/state-merge/state-apply serialize against each other (per PR
+# number) with an mkdir-based lock so overlapping invocations can't race a
+# read-modify-write and lose one side's update — see acquire_state_lock below.
+#
+# All output is passed through `jq -S` for stable (sorted) key ordering.
+# Bad arguments print usage to stderr and exit 2.
+#
+# Dependencies: bash, gh (authenticated), jq. Nothing else — no python etc.
+# Works when invoked as `bash <path>/prm <cmd> <n>` regardless of the
+# executable bit (rulesync-generated mirrors may not preserve it).
+
+set -euo pipefail
+
+# gh は CLICOLOR_FORCE=1 / GH_FORCE_TTY の環境だと pipe 先にも ANSI 色付き JSON を
+# 出力し、下流の jq (--argjson / parse) を静かに壊す。機械処理専用の経路なので、
+# 全 subcommand に先立って色と TTY 強制を無効化する。
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY 2>/dev/null || true
+export GH_PAGER=cat
+
+usage() {
+  cat >&2 <<'EOF'
+usage: prm <status|unresolved> <pr-number>
+       prm state-init  <pr-number> <json-file>
+       prm state-merge <pr-number> <json-file>
+       prm state-apply <pr-number> <jq-filter-file> [--arg <name> <value> | --argjson <name> <value>]...
+       prm state-get   <pr-number> [key]
+EOF
+  exit 2
+}
+
+[ "$#" -ge 2 ] || usage
+cmd="$1"
+pr="$2"
+
+case "$pr" in
+  '' | *[!0-9]*) usage ;;
+esac
+
+json_file=""
+filter_file=""
+key=""
+jq_args=()
+case "$cmd" in
+  status | unresolved)
+    [ "$#" -eq 2 ] || usage
+    ;;
+  state-init | state-merge)
+    [ "$#" -eq 3 ] || usage
+    json_file="$3"
+    ;;
+  state-apply)
+    [ "$#" -ge 3 ] || usage
+    filter_file="$3"
+    # Positional $1 ($cmd) and $2 ($pr) are already captured into named
+    # variables above, and nothing later in this script re-reads $1/$2/$3 by
+    # position, so shifting here to walk any trailing `--arg name value`
+    # pairs is safe.
+    shift 3
+    while [ "$#" -gt 0 ]; do
+      case "$1" in
+        --arg)
+          [ "$#" -ge 3 ] || usage
+          arg_name="$2"
+          case "$arg_name" in
+            '' | *[!a-zA-Z0-9_]*) usage ;;
+          esac
+          jq_args+=(--arg "$arg_name" "$3")
+          shift 3
+          ;;
+        --argjson)
+          [ "$#" -ge 3 ] || usage
+          arg_name="$2"
+          case "$arg_name" in
+            '' | *[!a-zA-Z0-9_]*) usage ;;
+          esac
+          jq_args+=(--argjson "$arg_name" "$3")
+          shift 3
+          ;;
+        *)
+          usage
+          ;;
+      esac
+    done
+    ;;
+  state-get)
+    { [ "$#" -eq 2 ] || [ "$#" -eq 3 ]; } || usage
+    key="${3:-}"
+    case "$key" in
+      '') ;;
+      *[!a-zA-Z0-9_]*) usage ;;
+    esac
+    ;;
+  *) usage ;;
+esac
+
+# state-* subcommands anchor their state directory to the repo root, not
+# cwd. Without this, invoking `prm` from a subdirectory (e.g. a package
+# checkout) makes state-init create `<subdir>/.claude/.pr-monitor/` instead
+# of the repo-root path this skill's docs and this repo's own top-level
+# .gitignore assume — a later wakeup/cron run from the repo root then can't
+# find that state file, and the subdirectory copy isn't covered by the
+# `.claude/.pr-monitor/` gitignore entry (which is anchored to the location
+# of the .gitignore file, i.e. the repo root — git-scm.com/docs/gitignore),
+# so it can end up committed by accident (PR #78 review). `status` /
+# `unresolved` never touch the filesystem (GitHub API only), so they stay
+# cwd-agnostic and don't pay for a git call they don't need.
+case "$cmd" in
+  state-init | state-merge | state-apply | state-get)
+    repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || {
+      echo "error: not inside a git working tree (state-* subcommands anchor .claude/.pr-monitor/ at the repo root; run from within a git clone)" >&2
+      exit 1
+    }
+    state_dir="$repo_root/.claude/.pr-monitor"
+    ;;
+  *)
+    state_dir=".claude/.pr-monitor"
+    ;;
+esac
+state_file="$state_dir/PR-$pr.json"
+lock_dir="$state_dir/.lock-$pr"
+
+# `state-init`/`state-merge` both do a naive read -> modify -> `mv` on the
+# same PR's state file. If two invocations overlap (e.g. a scheduled check
+# starts while the previous check-only run is still waiting on CI/review
+# dispatch), both can read the same base, merge independently, and `mv` their
+# result back — the later `mv` wins and silently drops the earlier process's
+# `known_*`/`escalations`/`cycle_ledger` update (lost update). `mkdir` is
+# atomic on every POSIX filesystem (unlike `flock`, which macOS's stock bash
+# doesn't have), so it's used here as a portable mutual-exclusion primitive:
+# of two concurrent `mkdir "$lock_dir"` calls, only one can succeed (the
+# other gets EEXIST). The trap releases the lock on any exit path (success,
+# error, or an unexpected signal) so a crash mid-merge can't wedge future
+# runs indefinitely.
+acquire_state_lock() {
+  mkdir -p "$state_dir"
+  local attempt=0 max_attempts=50
+  until mkdir "$lock_dir" 2>/dev/null; do
+    attempt=$((attempt + 1))
+    if [ "$attempt" -ge "$max_attempts" ]; then
+      echo "error: could not acquire state lock $lock_dir after ${max_attempts} attempts (stale lock left by a crashed run? remove it manually if so)" >&2
+      exit 1
+    fi
+    sleep 0.2
+  done
+  trap 'rmdir "$lock_dir" 2>/dev/null || true' EXIT
+}
+
+# state-* サブコマンドは repo root 直下の state ファイルに対する
+# read-modify-write のみで完結し (cwd ではなく `git rev-parse --show-toplevel`
+# 起点 — 上記 state_dir 解決参照)、GitHub API には一切触れない。呼び出し側
+# (skill 本文) は state ファイルを Write ツールで直接書いてはならず、必ずこの
+# 経路を通す (F1 対策)。
+case "$cmd" in
+  state-init)
+    if ! jq -es 'length == 1 and (.[0] | type == "object")' "$json_file" >/dev/null 2>&1; then
+      echo "error: invalid or non-object JSON: $json_file (must be exactly one JSON object)" >&2
+      exit 1
+    fi
+    acquire_state_lock
+    if [ -f "$state_file" ]; then
+      echo "warning: overwriting existing state file: $state_file" >&2
+    fi
+    tmp_file=$(mktemp "${state_file}.tmp.XXXXXX")
+    jq -S . "$json_file" >"$tmp_file"
+    mv "$tmp_file" "$state_file"
+    exit 0
+    ;;
+  state-merge)
+    if ! jq -es 'length == 1 and (.[0] | type == "object")' "$json_file" >/dev/null 2>&1; then
+      echo "error: invalid or non-object JSON patch: $json_file (must be exactly one JSON object)" >&2
+      exit 1
+    fi
+    acquire_state_lock
+    if [ ! -f "$state_file" ]; then
+      echo "error: state file not found: $state_file (run state-init first)" >&2
+      exit 1
+    fi
+    base_json=$(cat "$state_file")
+    patch_json=$(cat "$json_file")
+    tmp_file=$(mktemp "${state_file}.tmp.XXXXXX")
+    jq -S -n --argjson base "$base_json" --argjson patch "$patch_json" \
+      '$base + $patch' >"$tmp_file"
+    mv "$tmp_file" "$state_file"
+    exit 0
+    ;;
+  state-apply)
+    if [ ! -f "$filter_file" ]; then
+      echo "error: jq filter file not found: $filter_file" >&2
+      exit 1
+    fi
+    acquire_state_lock
+    if [ ! -f "$state_file" ]; then
+      echo "error: state file not found: $state_file (run state-init first)" >&2
+      exit 1
+    fi
+    tmp_file=$(mktemp "${state_file}.tmp.XXXXXX")
+    err_file=$(mktemp)
+    # `"${jq_args[@]+"${jq_args[@]}"}"` (not bare `"${jq_args[@]}"`) because
+    # this script runs under `set -u`, and macOS's stock bash (3.2) treats
+    # expanding an empty array under nounset as an unbound-variable error
+    # (fixed upstream in bash 4.4, but this repo targets the stock
+    # interpreter). The `+` alternate-value form only expands the inner
+    # `${jq_args[@]}` when the array is set, so a `state-apply` call with no
+    # `--arg` pairs still runs cleanly.
+    if ! jq -S "${jq_args[@]+"${jq_args[@]}"}" -f "$filter_file" "$state_file" >"$tmp_file" 2>"$err_file"; then
+      err=$(cat "$err_file")
+      rm -f "$tmp_file" "$err_file"
+      echo "error: jq filter failed: $filter_file: ${err:-<no output>}" >&2
+      exit 1
+    fi
+    rm -f "$err_file"
+    # `jq -e 'type == "object"'` unslurped only inspects the *last* value a
+    # filter produces. A filter body that emits a JSON stream of several
+    # values for a single input (e.g. an accidental comma expression like
+    # `.a = 1, .b = 2`) would pass this check as long as the last value
+    # happens to be an object — silently writing a multi-document stream to
+    # the state file. Slurping into an array first and requiring exactly one
+    # element closes that gap.
+    if ! jq -es 'length == 1 and (.[0] | type == "object")' "$tmp_file" >/dev/null 2>&1; then
+      rm -f "$tmp_file"
+      echo "error: jq filter did not produce a single JSON object: $filter_file" >&2
+      exit 1
+    fi
+    mv "$tmp_file" "$state_file"
+    exit 0
+    ;;
+  state-get)
+    if [ ! -f "$state_file" ]; then
+      echo "error: state file not found: $state_file" >&2
+      exit 1
+    fi
+    if [ -n "$key" ]; then
+      jq -S ".${key}" "$state_file"
+    else
+      jq -S . "$state_file"
+    fi
+    exit 0
+    ;;
+esac
+
+repo_view=$(gh repo view --json owner,name)
+owner=$(jq -r '.owner.login' <<<"$repo_view")
+repo=$(jq -r '.name' <<<"$repo_view")
+
+fetch_unresolved_threads() {
+  local cursor="" has_next="true" raw pr_node page all="[]" err_file rc err
+  while [ "$has_next" = "true" ]; do
+    args=(-f owner="$owner" -f repo="$repo" -F pr="$pr")
+    if [ -n "$cursor" ]; then
+      args+=(-f cursor="$cursor")
+    fi
+    # Deliberately no --jq here: when the GraphQL response carries a
+    # top-level `errors` entry (e.g. a nonexistent PR number), `gh api
+    # graphql --jq` skips the filter and dumps the raw envelope to stdout
+    # while still exiting non-zero. Capturing stdout and stderr separately
+    # (mirroring fetch_failing_checks below) lets us tell "PR not found"
+    # (a valid GraphQL response with a null pullRequest) apart from a real
+    # transport/auth/rate-limit failure (empty or non-JSON stdout) and
+    # report the correct one instead of a raw jq crash further down.
+    err_file=$(mktemp)
+    set +e
+    raw=$(gh api graphql "${args[@]}" -f query='
+      query($owner: String!, $repo: String!, $pr: Int!, $cursor: String) {
+        repository(owner: $owner, name: $repo) {
+          pullRequest(number: $pr) {
+            reviewThreads(first: 100, after: $cursor) {
+              pageInfo { hasNextPage endCursor }
+              nodes {
+                id
+                isResolved
+                isOutdated
+                comments(first: 1) {
+                  nodes { databaseId author { login } path url bodyText createdAt }
+                }
+              }
+            }
+          }
+        }
+      }' 2>"$err_file")
+    rc=$?
+    set -e
+    err=$(cat "$err_file")
+    rm -f "$err_file"
+    if [ -z "$raw" ] || ! jq -e . >/dev/null 2>&1 <<<"$raw"; then
+      echo "error: gh api graphql failed while fetching review threads for PR $pr (exit $rc): ${err:-<no output>}" >&2
+      exit 1
+    fi
+    pr_node=$(jq -c '.data.repository.pullRequest' <<<"$raw")
+    if [ "$pr_node" = "null" ]; then
+      echo "error: PR $pr not found" >&2
+      exit 1
+    fi
+    page=$(jq -c '.reviewThreads' <<<"$pr_node")
+    has_next=$(jq -r '.pageInfo.hasNextPage' <<<"$page")
+    cursor=$(jq -r '.pageInfo.endCursor // empty' <<<"$page")
+    all=$(jq -c --argjson acc "$all" '$acc + [.nodes[]]' <<<"$page")
+  done
+  jq -c '[ .[]
+    | select(.isResolved == false)
+    | {
+        thread_id: .id,
+        is_outdated: .isOutdated,
+        comment_id: (.comments.nodes[0].databaseId // null),
+        author: (.comments.nodes[0].author.login // "unknown"),
+        path: (.comments.nodes[0].path // null),
+        url: .comments.nodes[0].url,
+        created_at: .comments.nodes[0].createdAt,
+        body_head: ((.comments.nodes[0].bodyText // "") | .[0:300])
+      } ]' <<<"$all"
+}
+
+fetch_state() {
+  gh pr view "$pr" --repo "$owner/$repo" --json state,mergedAt,url,headRefName,headRefOid \
+    --jq '{state, merged_at: .mergedAt, url, branch: .headRefName, head_sha: .headRefOid}'
+}
+
+# `gh pr checks` exits 1 when a check failed, 8 when checks are still
+# pending, and 0 when everything passed — but in all three cases the JSON
+# (when --json is given) goes to stdout. Capturing into a variable first
+# (rather than piping straight into jq under `set -o pipefail`) means the
+# non-zero exit never masks or duplicates jq's own output.
+#
+# `gh pr checks` also exits non-zero with empty stdout in two situations that
+# must NOT be treated the same way:
+#   1. No checks are configured on the branch at all — `gh` prints exactly
+#      "no checks reported on the '<branch>' branch" to stderr. This is a
+#      legitimate, expected state: normalizing it to
+#      {"failing":[],"pending":[]} is correct.
+#   2. `gh` itself failed (auth expired, rate-limited, network error, GitHub
+#      API outage, ...). Empty/non-JSON stdout here means we have NO
+#      information about check state — silently returning
+#      {"failing":[],"pending":[]} would make `prm status` (and the
+#      pr-monitor loop reading it) believe the PR is green when the truth is
+#      "unknown". That defeats the purpose of a monitoring loop: the one
+#      failure mode it must never hide is its own inability to observe.
+# Distinguishing the two requires looking at stderr, since both share empty
+# stdout and a non-zero exit code (gh's generic exit codes 1/2/4 don't map
+# 1:1 to "no checks" vs "API failure" — see `gh help exit-codes`). Only the
+# exact "no checks reported" message is normalized to empty; anything else
+# is treated as a real failure and aborts this script (exit 1) so the
+# caller sees an error instead of a false-green result.
+fetch_failing_checks() {
+  local out err_file err rc
+  err_file=$(mktemp)
+  set +e
+  out=$(gh pr checks "$pr" --repo "$owner/$repo" --json name,bucket,link,workflow 2>"$err_file")
+  rc=$?
+  set -e
+  err=$(cat "$err_file")
+  rm -f "$err_file"
+
+  if [ -z "$out" ] || ! jq -e . >/dev/null 2>&1 <<<"$out"; then
+    if [[ "$err" == *"no checks reported"* ]]; then
+      echo '{"failing":[],"pending":[]}'
+      return
+    fi
+    echo "error: gh pr checks failed for PR $pr (exit $rc): ${err:-<no output>}" >&2
+    exit 1
+  fi
+  jq -c '{
+    failing: [ .[] | select(.bucket == "fail" or .bucket == "cancel") | {name, bucket, link, workflow} ],
+    pending: [ .[] | select(.bucket == "pending") | .name ]
+  }' <<<"$out"
+}
+
+case "$cmd" in
+  unresolved)
+    # Captured into a variable (rather than piped straight into jq) so that
+    # fetch_unresolved_threads' PR-not-found `exit 1` (set -euo pipefail)
+    # aborts this script directly instead of leaving jq to fail on empty
+    # stdin with an unrelated, confusing error.
+    threads_json=$(fetch_unresolved_threads)
+    jq -S '{unresolved_count: length, threads: .}' <<<"$threads_json"
+    ;;
+  status)
+    state_json=$(fetch_state)
+    checks_json=$(fetch_failing_checks)
+    threads_json=$(fetch_unresolved_threads)
+    jq -S -n \
+      --argjson pr_state "$state_json" \
+      --argjson checks "$checks_json" \
+      --argjson threads "$threads_json" \
+      '{
+        pr: $pr_state,
+        checks: $checks,
+        unresolved_count: ($threads | length),
+        unresolved_threads: $threads
+      }'
+    ;;
+esac
