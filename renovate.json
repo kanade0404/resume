@@ -2,5 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>kanade0404/renovate-config"
-  ]
+  ],
+  "minimumReleaseAge": "1 day"
 }
