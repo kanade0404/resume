@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の例示句『この PR 監視して』に直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"description の例示句『マージされるまで見張って』に直接マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"description の例示句『マージ/クローズしたら振り返りまで回して』に直接マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"同梱スクリプト prm の呼び出し形式そのもの (--check-only は本スキルのフォールバック手段として明記)"}
+{"id":"t05","predicted":true,"actual":true,"reason":"『shipping 完了直後』のマージ待ち監視要求にマッチ"}
+{"id":"t06","predicted":true,"actual":true,"reason":"『定期的に確認』が長期ポーリング監視の言い換えにマッチ"}
+{"id":"t07","predicted":false,"actual":false,"reason":"継続監視の語彙 (見張る/監視) が無く単発の状態確認に読める — shipping の merge-ready 判定寄り"}
+{"id":"t08","predicted":false,"actual":false,"reason":"CI 緑待ちは短時間監視の ci-self-heal 領域、pr-monitor は merge/close までの長期監視"}
+{"id":"t09","predicted":false,"actual":false,"reason":"merge 操作の実行要求 — description に『PR の merge 操作そのものは行わない』と明記"}
+{"id":"t10","predicted":false,"actual":false,"reason":"pr-review-respond 領域 (コメント対応そのもの)"}
+{"id":"t11","predicted":false,"actual":false,"reason":"使い方を尋ねる質問であり監視の実行要請ではない"}
+{"id":"t12","predicted":false,"actual":false,"reason":"ブランチ削除は pr-monitor と無関係"}
+{"id":"t13","predicted":false,"actual":false,"reason":"PR 作成要求であり監視要求ではない (shipping/commit-push-pr 領域)"}
+{"id":"t14","predicted":false,"actual":false,"reason":"retro 領域 — 明示的な振り返り要求であり監視要求ではない"}
+{"id":"t15","predicted":true,"actual":true,"reason":"description の例示句『CI とコメントも見張って対応まで回して』に直接マッチ"}
+{"id":"t16","predicted":true,"actual":true,"reason":"『放置防止ループ』という本スキルのタグラインに直接マッチ"}
+{"id":"t17","predicted":true,"actual":true,"reason":"マージまでの監視 + 新規指摘の dispatch という本スキルの中核機能そのもの"}
+{"id":"t18","predicted":false,"actual":false,"reason":"ci-self-heal 領域 (CI 修復そのもの)"}
+{"id":"t19","predicted":false,"actual":false,"reason":"shipping 領域 — 出荷オーケストレーション要求であり監視要求ではない"}
+{"id":"t20","predicted":false,"actual":false,"reason":"Sentry によるプロダクション監視設定であり PR 監視と無関係"}

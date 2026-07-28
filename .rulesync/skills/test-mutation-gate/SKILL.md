@@ -64,10 +64,12 @@ untracked な新規テストファイルは `--diff-file` にそのまま渡さ�
 
 ### Step 2 — 静的監査実行 (3 段 fallback)
 
+以下で `<skill-dir>` は、この SKILL.md が置かれている skill ディレクトリの絶対パスを指す。Claude Code では環境変数 `${CLAUDE_SKILL_DIR}` がこれに一致する。この変数を持たないツール (Codex / OpenCode 等) では、skill 読み込み時に提示されるこの skill のベースディレクトリを使うこと — 未定義の変数を展開したまま実行するとパスが `/scripts/...` に解れて、スクリプトが一度も走らないまま下段へ静かに fallback してしまう。
+
 観測可能な判定手順として、以下を**上から順に**試す。どの段で実行されたかを必ず gate 結果の `mode` に記録する (silent skip 禁止):
 
-1. `uv run --no-project python "${CLAUDE_SKILL_DIR}/scripts/assertion_audit.py" --diff-file <path> [--max-asserts N]` を実行する。コマンドが正常に起動すれば `mode: static-script (uv)`。
-2. `uv` が存在しない、または実行に失敗した場合、`python3 "${CLAUDE_SKILL_DIR}/scripts/assertion_audit.py" --diff-file <path>` にフォールバックする。`mode: static-script (python3)`。
+1. `uv run --no-project python "<skill-dir>/scripts/assertion_audit.py" --diff-file <path> [--max-asserts N]` を実行する。コマンドが正常に起動すれば `mode: static-script (uv)`。
+2. `uv` が存在しない、またはコマンドが**起動できない** (コマンド不在・環境構築失敗等) 場合のみ、`python3 "<skill-dir>/scripts/assertion_audit.py" --diff-file <path>` にフォールバックする。`mode: static-script (python3)`。**起動したスクリプトの exit code は確定結果であり、fallback 条件ではない** — 0=PASS / 1=BLOCK はそのまま採用し (BLOCK を下段の再実行や手動チェックで上書きしない)、2=入力エラーは diff 入力を直して同じ段で再実行する。
 3. `python3` も存在しない場合、§手動チェックリストを Claude 自身が Read/Grep のみで適用する。`mode: manual-fallback`。
 
 過去に「`python3` が実行環境に存在せず、スクリプトが一度も実走しないまま静かにゲートを素通りしていた」という実失敗がある。この段階を省略したり、実行失敗を「まあ大丈夫だろう」で握りつぶしたりしない — 3 段のどこで判定したかを結果に必ず明記する。
@@ -91,7 +93,7 @@ exit code: `PASS` = 0 / `BLOCK` = 1 / 入力エラー = 2。正規表現ベー�
 
 対象が **unit テスト** (プロセス内で完結・外部 I/O 無し) の場合のみ実行する。integration/E2E/DB テストはコスト・副作用の理由で対象外 — 実行するかどうか迷ったら対象外側に倒す (assertion 監査の Step 0 とは逆に、ここは安全側 = skip 側に倒す)。
 
-1. `uv run --no-project python "${CLAUDE_SKILL_DIR}/scripts/mutate_and_run.py" --impl-file <path> --test-cmd '<unit テストを実行するシェルコマンド>' [--max-mutations 3] [--timeout-sec 120]` を実行する。Step 2 と同じ uv → python3 の順で fallback するが、**手動 fallback は無い** — `python3` も無ければ手動で変異を作ることはせず `SKIP` 扱いにする (静的監査のみで判定し、その旨を notes に残す)。
+1. `uv run --no-project python "<skill-dir>/scripts/mutate_and_run.py" --impl-file <path> --test-cmd '<unit テストを実行するシェルコマンド>' [--max-mutations 3] [--timeout-sec 120]` を実行する (`<skill-dir>` の解決は Step 2 と同じ)。Step 2 と同じく**起動不能時のみ** uv → python3 の順で fallback する (起動したスクリプトの exit code 0/1/2 は確定結果であり fallback 条件ではない — BLOCK の exit 1 を fallback や SKIP で上書きしない) が、**手動 fallback は無い** — `python3` も無ければ手動で変異を作ることはせず `SKIP` 扱いにする (静的監査のみで判定し、その旨を notes に残す)。
 2. bool 反転 / 比較演算子反転 / off-by-one の変異を最大 `--max-mutations` 件注入し、1 件ずつ test-cmd を再実行する。全 survived を `survived: []` に列挙し、`caught`/`mutations_total` を記録する (出力形式は `scripts/mutate_and_run.py` のモジュール docstring 参照)。
 3. 変異候補が 0 件 (`SKIP`) の場合、対象コードが変異不能 seam である可能性を疑う → `references/mutation-recipes.md` の fallback (純関数抽出 → `tidy-first` の structural commit) → それも不可なら `references/waiver-fallback.md` の waiver。
 4. survived mutant が 1 件以上あれば、その行・変異種別を Step 3 の判定に持ち込む (`BLOCK`)。
@@ -109,7 +111,7 @@ exit code: `PASS` = 0 / `BLOCK` = 1 / 入力エラー = 2。正規表現ベー�
 
 ### Step 4 — 計測 emit + 結果返却
 
-`scripts/emit_gate_event.sh` を呼び、判定結果を loop-ops へ記録する (best-effort、詳細は §loop-ops 計測)。Step 2.5 を実行した場合は `mutations_caught` / `mutations_total` の 2 引数も追加で渡す (未実行なら省略し後方互換を保つ)。送信の成否に関わらず、§出力フォーマットの結果ブロックを呼び出し元に返す。
+`bash "<skill-dir>/scripts/emit_gate_event.sh" ...` を呼び (`<skill-dir>` の解決は Step 2 と同じ)、判定結果を loop-ops へ記録する (best-effort、詳細は §loop-ops 計測)。Step 2.5 を実行した場合は `mutations_caught` / `mutations_total` の 2 引数も追加で渡す (未実行なら省略し後方互換を保つ)。送信の成否に関わらず、§出力フォーマットの結果ブロックを呼び出し元に返す。
 
 ---
 
