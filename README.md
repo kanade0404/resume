@@ -16,7 +16,7 @@
 ### 主なハイライト
 
 - **株式会社Speee（2022年8月〜、2022年8月〜2023年4月は業務委託）**
-  広告配信プラットフォームをGo/TypeScript/AWSで刷新しました。Node.js・Terraform・Jenkinsなど主要コンポーネントをアップグレードし、外部DSP連携でeCPM改善しました。広告調査SaaSの技術責任者として、ECS on Fargate構成のアーキ設計や業務委託マネジメント、AI Coding Tool導入を推進しました。
+  広告配信プラットフォームをGo/TypeScript/AWSで刷新しました。Node.js・Terraform・Jenkinsなど主要コンポーネントをアップグレードし、外部DSP連携でeCPM改善しました。広告調査SaaSの技術責任者として、ECS on Fargate構成のアーキ設計や業務委託マネジメントを担い、2025年10月に正式リリースしました。2025年以降は生成AI活用の推進役として、AI Coding Tool（Claude Code / Codex / Devin）の導入・布教や利用計測基盤の開発を進めています。あわせて自身の定常業務のエージェント自動化と、レビュアー不在でも品質を担保する開発ハーネスの設計にも取り組んでいます。
 
 - **フリーランス（業務委託、2022年5月〜10月）**
   単独でECサイトのElasticSearch調査＆TypeScript/Storybook化を実施しました。並行してCTO直下でGo＋gqlgen＋Next.js＋Apollo Clientによる複業マッチングSaaSの機能追加を短期間でデリバリーしました。
