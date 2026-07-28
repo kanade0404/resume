@@ -21,7 +21,7 @@
     "lint": "textlint *.md",
     "lint:fix": "textlint --fix *.md",
     "rulesync:check": "rulesync generate --targets claudecode --features skills,rules --check",
-    "rulesync:fetch": "rulesync fetch kanade0404/skills@v0.8.0 --features skills,rules",
+    "rulesync:fetch": "rulesync fetch kanade0404/skills@v0.9.0 --features skills,rules",
     "rulesync:generate": "rulesync generate --targets claudecode --features skills,rules"
   },
   "type": "module",
