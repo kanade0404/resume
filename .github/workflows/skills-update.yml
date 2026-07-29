@@ -25,7 +25,7 @@ jobs:
     # write 権限を渡す reusable は SHA pin。行末の ref コメントは Renovate の
     # github-actions manager が追随先を判別するために必須 (無いと bump PR が
     # 作られず pin が凍結する)
-    uses: kanade0404/skills/.github/workflows/consumer-update.yml@d0837d5d652dc3163af111d6f096e34ec160b489 # v0.9.0
+    uses: kanade0404/skills/.github/workflows/consumer-update.yml@20a0a4cb433031d1d758d290f2333a2ce1f03b5e # v0.10.0
     with:
       update_command: |
         corepack enable
