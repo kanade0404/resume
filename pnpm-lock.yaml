@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 16.3.0
-        version: 16.3.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
+        specifier: 16.4.0
+        version: 16.4.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
       textlint:
         specifier: 15.7.1
         version: 15.7.1(supports-color@7.2.0)
@@ -1702,6 +1702,9 @@ packages:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  minisearch@7.2.0:
+    resolution: {integrity: sha512-dqT2XBYUOZOiC5t2HRnwADjhNS2cecp9u+TJRiJ1Qp/f5qjkeT5APcGPjHw+bz89Ms8Jp+cG4AlE+QZ/QnDglg==}
+
   mitt@3.0.1:
     resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
 
@@ -2002,8 +2005,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@16.3.0:
-    resolution: {integrity: sha512-p3Zsb8khyaoas0sfZ0nyEWsokoNuPNQ/uC29eSLYGKX1l1uZFE3uEoAu7n+XoOARcgTSEEMXjdIA0GYQg6C63g==}
+  rulesync@16.4.0:
+    resolution: {integrity: sha512-MibEUiFmyPiY+D9EU5F9EJlfDWGQ48RSL7u++/s7NGX0Ym4LEJkRjjSgj97fl4p1aPz8y8IU6Mh/Rvil8J5VJA==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -4637,6 +4640,8 @@ snapshots:
 
   minipass@7.1.3: {}
 
+  minisearch@7.2.0: {}
+
   mitt@3.0.1: {}
 
   modern-tar@0.7.6: {}
@@ -4987,7 +4992,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@16.3.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
+  rulesync@16.4.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
     dependencies:
       '@modelcontextprotocol/sdk': 1.29.0(supports-color@7.2.0)(zod@4.4.3)
       '@octokit/request-error': 7.1.0
@@ -5002,6 +5007,7 @@ snapshots:
       gray-matter: 4.0.3
       js-yaml: 5.2.1
       jsonc-parser: 3.3.1
+      minisearch: 7.2.0
       smol-toml: 1.7.0
       sury: 10.0.4
       zod: 4.4.3
