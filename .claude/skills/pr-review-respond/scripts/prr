@@ -5,7 +5,7 @@
 # Usage:
 #   prr fetch    <pr-number>
 #   prr reply    <pr-number> <root-comment-id> <body-file>
-#   prr resolve  <pr-number> <root-comment-id> <classification> [body-file]
+#   prr resolve  <pr-number> <root-comment-id> <classification> <vendor> [body-file]
 #   prr summary  <pr-number> <body-file>
 #   prr wait-ci  <pr-number> [interval-seconds]
 #   prr defer    <pr-number> <thread-url> <title> <body-file>
@@ -36,6 +36,7 @@ set -euo pipefail
 export NO_COLOR=1
 export CLICOLOR_FORCE=0
 unset GH_FORCE_TTY 2>/dev/null || true
+export GH_PAGER=cat
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
@@ -46,7 +47,7 @@ prr — pr-review-respond entry point
 Usage:
   prr fetch    <pr>
   prr reply    <pr> <root-comment-id> <body-file>
-  prr resolve  <pr> <root-comment-id> <classification> [body-file]
+  prr resolve  <pr> <root-comment-id> <classification> <vendor> [body-file]
   prr summary  <pr> <body-file>
   prr wait-ci  <pr> [interval-sec]
   prr defer    <pr> <thread-url> <title> <body-file>
