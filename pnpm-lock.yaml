@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 16.4.0
-        version: 16.4.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
+        specifier: 16.5.0
+        version: 16.5.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
       textlint:
         specifier: 15.7.1
         version: 15.7.1(supports-color@7.2.0)
@@ -103,6 +103,16 @@ packages:
 
   '@modelcontextprotocol/sdk@1.29.0':
     resolution: {integrity: sha512-zo37mZA9hJWpULgkRpowewez1y6ML5GsXJPY8FI0tBBCd77HEvza4jDqRKOXgHNn867PVGCyTdzqpz0izu5ZjQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.1
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      '@cfworker/json-schema':
+        optional: true
+
+  '@modelcontextprotocol/sdk@1.30.0':
+    resolution: {integrity: sha512-xKd8OIzlqNzcqcNumGAa6g+PW2kjD5vrpcKOnfldAUPP3j7lnqMPwlTXQm8gF+UwH72z0lqaRbjr9hqGz0eITA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -325,8 +335,8 @@ packages:
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
 
-  '@toon-format/toon@4.0.0':
-    resolution: {integrity: sha512-0mCchUNCqYX2jZapNhcX3t+Dkl+ARp6EUF41MgXOv9p0iddh9uZfdkpzgALsrxv4jiWMlBNoiwbGl5yrfYuT7g==}
+  '@toon-format/toon@4.1.0':
+    resolution: {integrity: sha512-dBB3pkEx9QYvHnHR6rtkaBAh+7x4W/oA5ONur4G0fh7Ow69PbPuM7OFxzNRABqyxC0t6SZ3RixiGbCuaFjPDAQ==}
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -765,8 +775,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  effect@3.22.0:
-    resolution: {integrity: sha512-jhYFe0zTlIRqYFrKTS+6luhmS/Tm0f+JLo0K9KUxvtFab1SUGEszQi2ehOP6QzAZvy831lDmTwwzvVDZSPNz3g==}
+  effect@3.22.1:
+    resolution: {integrity: sha512-TNoXushmPOBAjJlthF5d2QwnX2xBPEtcNJr5XKNKbRLbDvBcOYkXlYDfvGfSA0zriwLFuCll5MDtNMAdZL17PQ==}
 
   elegant-spinner@1.0.1:
     resolution: {integrity: sha512-B+ZM+RXvRqQaAmkMlO/oSe5nMUOaUnyfGYCEHoR8wrXsZR2mA0XVibsxV1bvTwxdRWah1PkQqso2EzhILGHtEQ==}
@@ -813,8 +823,8 @@ packages:
     resolution: {integrity: sha512-yPDz7wqpg1/mmHLmS3tcfTfbw5f1eryXvyghYBffGdERwe+mV7ZcWzTR8LR17Kvqt3qfPurjlonmnq3MKXIOXw==}
     engines: {node: '>= 0.4'}
 
-  es-toolkit@1.49.0:
-    resolution: {integrity: sha512-G5iZ6Pc/FNRY/soKZHC+TxGDD83rHUDXxzaWhGCX44vAv/tMs56WMusnm/KMNK+luUPsgA9U28cGr4RDlSzL2g==}
+  es-toolkit@1.50.0:
+    resolution: {integrity: sha512-OyZKhUVvEep9ITEiwHn8GKnMRQIVqoSIX7WnRbkWgJkllCujilqP2rD0u979tkl8wqyc8ICwlc1UBVv/Sl1G6w==}
 
   escalade@3.2.0:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
@@ -913,12 +923,18 @@ packages:
   fast-uri@3.1.3:
     resolution: {integrity: sha512-i70LwGWUduXqzicKXWshooq+sWL1K3WUU5rKZNG/0i3a1OSoX3HqhH5WbWwTmqWfor4urUakGPiRQcleRZTwOg==}
 
-  fastmcp@4.8.0:
-    resolution: {integrity: sha512-MHbbBL3t23OfHEZcN9QHrBW92hKYda/n6gBPtvZDaMgQ8XNkfNY4q6blM+6j3AefWgXoP0Abz30YYFPijfbyig==}
+  fastmcp@4.12.1:
+    resolution: {integrity: sha512-NdcHVr9e1xfQnajCOZ2rI83P01NN7QJaF6UyBN9PowNJ4lQs6SF442PvZB8MEGU9bj11N0KzA60gsKtyEkXskQ==}
     hasBin: true
     peerDependencies:
+      ajv: ^8.0.0
+      ajv-formats: ^3.0.0
       jose: ^5.0.0 || ^6.0.0
     peerDependenciesMeta:
+      ajv:
+        optional: true
+      ajv-formats:
+        optional: true
       jose:
         optional: true
 
@@ -1442,8 +1458,8 @@ packages:
     resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
     hasBin: true
 
-  js-yaml@5.2.1:
-    resolution: {integrity: sha512-zfLtNfQqxVqq3uaTqSkh4x4hZw3KHobGUA0fJUj4wawW8bsQLTVqpHdXSIzidh7o+4lEW36tANuAGdaFx6Zgnw==}
+  js-yaml@5.2.2:
+    resolution: {integrity: sha512-dayzUzKkJ1MkuUtZglSebU43utNXH0OWQByK9rKOOuYIO8M5TV1y+n8ALMdG0rdzBnfNkOmZEqrURepb0ejqBw==}
     hasBin: true
 
   json-schema-traverse@1.0.0:
@@ -2005,8 +2021,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@16.4.0:
-    resolution: {integrity: sha512-MibEUiFmyPiY+D9EU5F9EJlfDWGQ48RSL7u++/s7NGX0Ym4LEJkRjjSgj97fl4p1aPz8y8IU6Mh/Rvil8J5VJA==}
+  rulesync@16.5.0:
+    resolution: {integrity: sha512-S+dMKYSYz/b+I6wg+743z7W/quzPKgJhPeG7BMAd9Pgm2/rE90uq0SM2NoNk8TabDkV/p9eHNF5jfavgxNgZKg==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -2119,8 +2135,8 @@ packages:
   slide@1.1.6:
     resolution: {integrity: sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==}
 
-  smol-toml@1.7.0:
-    resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
+  smol-toml@1.7.1:
+    resolution: {integrity: sha512-PPlsspAZ4jbMBu5DMFhfUGDQLu/vrL4SyBROVS37x8ynnVmFIs1VPBz1Co8Xks3TvpIaZXmU85y4DrQ+UyVFoQ==}
     engines: {node: '>= 18'}
 
   space-separated-tokens@1.1.5:
@@ -2779,6 +2795,28 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@modelcontextprotocol/sdk@1.30.0(supports-color@7.2.0)(zod@4.4.3)':
+    dependencies:
+      '@hono/node-server': 1.19.14(hono@4.12.30)
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
+      content-type: 1.0.5
+      cors: 2.8.6
+      cross-spawn: 7.0.6
+      eventsource: 3.0.7
+      eventsource-parser: 3.1.0
+      express: 5.2.1(supports-color@7.2.0)
+      express-rate-limit: 8.6.0(express@5.2.1(supports-color@7.2.0))(supports-color@7.2.0)
+      hono: 4.12.30
+      jose: 6.2.3
+      json-schema-typed: 8.0.2
+      pkce-challenge: 5.0.1
+      raw-body: 3.0.2
+      zod: 4.4.3
+      zod-to-json-schema: 3.25.2(zod@4.4.3)
+    transitivePeerDependencies:
+      - supports-color
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -3105,7 +3143,7 @@ snapshots:
 
   '@tokenizer/token@0.3.0': {}
 
-  '@toon-format/toon@4.0.0': {}
+  '@toon-format/toon@4.1.0': {}
 
   '@types/mdast@3.0.15':
     dependencies:
@@ -3521,7 +3559,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  effect@3.22.0:
+  effect@3.22.1:
     dependencies:
       '@standard-schema/spec': 1.1.0
       fast-check: 3.23.2
@@ -3626,7 +3664,7 @@ snapshots:
       is-date-object: 1.1.0
       is-symbol: 1.1.1
 
-  es-toolkit@1.49.0: {}
+  es-toolkit@1.50.0: {}
 
   escalade@3.2.0: {}
 
@@ -3745,7 +3783,7 @@ snapshots:
 
   fast-uri@3.1.3: {}
 
-  fastmcp@4.8.0(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.0)(jose@6.2.3)(supports-color@7.2.0)(sury@10.0.4):
+  fastmcp@4.12.1(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.1)(jose@6.2.3)(supports-color@7.2.0)(sury@10.0.4):
     dependencies:
       '@modelcontextprotocol/sdk': 1.29.0(supports-color@7.2.0)(zod@4.4.3)
       '@standard-schema/spec': 1.1.0
@@ -3757,11 +3795,13 @@ snapshots:
       strict-event-emitter-types: 2.0.0
       undici: 7.28.0
       uri-templates: 0.2.0
-      xsschema: 0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.0)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
+      xsschema: 0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.1)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3)
       yargs: 18.0.0
       zod: 4.4.3
       zod-to-json-schema: 3.25.2(zod@4.4.3)
     optionalDependencies:
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
       jose: 6.2.3
     transitivePeerDependencies:
       - '@cfworker/json-schema'
@@ -4286,7 +4326,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  js-yaml@5.2.1:
+  js-yaml@5.2.2:
     dependencies:
       argparse: 2.0.1
 
@@ -4992,27 +5032,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@16.4.0(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
+  rulesync@16.5.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
     dependencies:
-      '@modelcontextprotocol/sdk': 1.29.0(supports-color@7.2.0)(zod@4.4.3)
+      '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.4.3)
       '@octokit/request-error': 7.1.0
       '@octokit/rest': 22.0.1
-      '@toon-format/toon': 4.0.0
+      '@toon-format/toon': 4.1.0
       '@valibot/to-json-schema': 1.7.1(valibot@1.4.2)
       commander: 15.0.0
-      effect: 3.22.0
-      es-toolkit: 1.49.0
-      fastmcp: 4.8.0(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.0)(jose@6.2.3)(supports-color@7.2.0)(sury@10.0.4)
+      effect: 3.22.1
+      es-toolkit: 1.50.0
+      fastmcp: 4.12.1(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.1)(jose@6.2.3)(supports-color@7.2.0)(sury@10.0.4)
       globby: 16.2.2
       gray-matter: 4.0.3
-      js-yaml: 5.2.1
+      js-yaml: 5.2.2
       jsonc-parser: 3.3.1
       minisearch: 7.2.0
-      smol-toml: 1.7.0
+      smol-toml: 1.7.1
       sury: 10.0.4
       zod: 4.4.3
     transitivePeerDependencies:
       - '@cfworker/json-schema'
+      - ajv
+      - ajv-formats
       - arktype
       - jose
       - rescript
@@ -5173,7 +5215,7 @@ snapshots:
 
   slide@1.1.6: {}
 
-  smol-toml@1.7.0: {}
+  smol-toml@1.7.1: {}
 
   space-separated-tokens@1.1.5: {}
 
@@ -5863,10 +5905,10 @@ snapshots:
 
   ws@8.21.1: {}
 
-  xsschema@0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.0)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3):
+  xsschema@0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.1)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.4.3))(zod@4.4.3):
     optionalDependencies:
       '@valibot/to-json-schema': 1.7.1(valibot@1.4.2)
-      effect: 3.22.0
+      effect: 3.22.1
       sury: 10.0.4
       zod: 4.4.3
       zod-to-json-schema: 3.25.2(zod@4.4.3)
