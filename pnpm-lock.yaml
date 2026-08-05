@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 16.6.0
-        version: 16.6.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
+        specifier: 16.7.0
+        version: 16.7.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2)
       textlint:
         specifier: 15.8.0
         version: 15.8.0(supports-color@7.2.0)
@@ -2076,8 +2076,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@16.6.0:
-    resolution: {integrity: sha512-dzjyDtgUgsdma5iTfN+FPBA9r1i5UUVajpD9Cs5WHZjzOAfhAi40WhFKJJ65dKvaHJo3ukfrRW2Bfq1lhfsGGg==}
+  rulesync@16.7.0:
+    resolution: {integrity: sha512-Qx9BKHhHIZ6nLERqVdZBN9cR6a48P7OR6eda5sKX67uozxsedIGzw224hPLhFXL8k8iwbJsJCJtZZ5K7gl7zZQ==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -5089,7 +5089,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@16.6.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
+  rulesync@16.7.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(supports-color@7.2.0)(valibot@1.4.2):
     dependencies:
       '@inquirer/checkbox': 5.2.1
       '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.4.3)
