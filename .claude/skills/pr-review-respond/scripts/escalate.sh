@@ -23,6 +23,12 @@
 
 set -euo pipefail
 
+# 直接実行にも耐えるよう、dispatcher (prr) 頼みにせず自前でも色強制を無効化する
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY
+export GH_PAGER=cat
+
 valid_reasons="budget-exceeded max-turns ci-3-fail review-5-rounds no-progress ambiguous-issue repo-unresolvable conflict security-block other"
 
 if [ "$#" -ne 3 ]; then

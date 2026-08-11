@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の例示句『ship して』に直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"description の例示句とほぼ同一表現 (実装後に PR/CI/レビューまで丸ごと)"}
+{"id":"t03","predicted":true,"actual":true,"reason":"description の例示句『commit-push-pr の検証付き版で』に直接マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"description の例示句『赤と指摘を全部潰して merge-ready に』に直接マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"commit→PR→CI green→レビュー捌きまでの一連要求で本スキルの範囲そのもの"}
+{"id":"t06","predicted":true,"actual":true,"reason":"曖昧だが『出荷』文脈でオプトアウト表現 (検証不要等) が無いため shipping 既定と判断。commit-push-pr との境界線上"}
+{"id":"t07","predicted":true,"actual":true,"reason":"『あとは全部やって』『緑にして』が出荷ループ要求にマッチ"}
+{"id":"t08","predicted":true,"actual":true,"reason":"PR 化 + 指摘対応込みの仕上げ要求で本スキルの範囲"}
+{"id":"t09","predicted":true,"actual":true,"reason":"『CI もレビューも全部面倒見て』が description の例示句にほぼ一致"}
+{"id":"t10","predicted":true,"actual":true,"reason":"『赤とコメント無くなるまで』が description の例示句『赤と指摘を全部潰して』に一致"}
+{"id":"t11","predicted":false,"actual":false,"reason":"『だけ』の限定語があり code-review 領域として明示的に範囲外"}
+{"id":"t12","predicted":false,"actual":false,"reason":"『だけ』の限定語があり pr-review-respond 領域として明示的に範囲外"}
+{"id":"t13","predicted":false,"actual":false,"reason":"CI 修復だけの要求で ci-self-heal 領域として明示的に範囲外"}
+{"id":"t14","predicted":false,"actual":false,"reason":"完了確認だけの要求で verify-done 領域として明示的に範囲外"}
+{"id":"t15","predicted":false,"actual":false,"reason":"レビュー対応を明示的に除外しており検証ループ不要の commit-push-pr 領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"ローカルテスト実行のみの要求で出荷オーケストレーションと無関係"}
+{"id":"t17","predicted":false,"actual":false,"reason":"本番デプロイであり PR 出荷 (shipping) の範囲外"}
+{"id":"t18","predicted":false,"actual":false,"reason":"リリースノート作成は RELEASING.md 領域で範囲外"}
+{"id":"t19","predicted":false,"actual":false,"reason":"『出荷管理システム』という別ドメインの DB 設計相談 — 表面上『出荷』の語を含むが無関係 (distractor)"}
+{"id":"t20","predicted":false,"actual":false,"reason":"PR 作成手順を尋ねる質問であり出荷の実行要請ではない"}
