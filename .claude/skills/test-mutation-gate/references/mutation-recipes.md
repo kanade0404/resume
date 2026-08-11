@@ -67,6 +67,26 @@ The masking above is **line-based**, not a real tokenizer:
   arrow functions are excluded from the comparison-flip regex via
   lookaround, but this is a pattern-level dodge, not a parser — unusual
   spacing or novel operators can still slip through.
+- TS/TSX generic **declaration** lines (`function f<T>()`, `type Box<T> =
+  ...`, `interface Foo<T>`, `class C<T>`) are excluded from single-char
+  `<`/`>` comparison-flip via a line-level heuristic
+  (`TS_GENERIC_DECL_LINE_RE`/`skip_generic_comparisons`), matched the same
+  way `TS_TYPE_ALIAS_LINE_RE`/`skip_type_alias_bools` guards bool-flip
+  above. This is still line-level, not a parser, so **call-site generics**
+  (`foo<Bar>(x)`), **arrow-function generics** (`const f = <T,>(...) =>
+  ...`), and **class-method generics** (`map<U>(fn)`) are not recognized by
+  this heuristic and remain a gap — a bare `<`/`>` on those lines can still
+  be picked up as a comparison-flip candidate. The inverse trade-off also
+  holds: because the skip is line-level, a *real* runtime comparison that
+  shares the declaration's physical line (a one-line body such as
+  `function isPositive<T>(x: T) { return x > 0; }`) is skipped along with
+  the generics. Restricting the skip to the `<T>` span instead would
+  re-admit type-space brackets in parameter/return annotations
+  (`x: Array<number>`, `: Map<string, T>`) — the very false positives the
+  guard removes — so the line-level form is deliberate. The cost is a
+  missed candidate (surfacing as `SKIP` when no other candidate exists,
+  never a silent pass); putting the body on its own line (standard
+  formatting) restores mutability.
 - TS type positions other than a `type X = ...` alias declaration line
   (interface fields, function parameter/return type annotations using
   literal booleans) are not distinguished from runtime bool literals — see

@@ -15,6 +15,12 @@
     {"id":"t11","prompt":"PR の状態って gh でどう見るの?","should_trigger":false,"rationale":"概念照会","tags":["distractor"]},
     {"id":"t12","prompt":"ブランチ削除して","should_trigger":false,"rationale":"別操作","tags":["distractor"]},
     {"id":"t13","prompt":"PR 作って","should_trigger":false,"rationale":"PR 作成は commit-push-pr / shipping","tags":["distractor"]},
-    {"id":"t14","prompt":"マージ後の振り返りして","should_trigger":false,"rationale":"既に決着済み→直接 retro","tags":["distractor"]}
+    {"id":"t14","prompt":"マージ後の振り返りして","should_trigger":false,"rationale":"既に決着済み→直接 retro","tags":["distractor"]},
+    {"id":"t15","prompt":"CI とレビューコメントも見張って、来たら対応まで回して","should_trigger":true,"rationale":"拡張後の検知+dispatch ループ制御そのもの","tags":["explicit"]},
+    {"id":"t16","prompt":"PR 放置しないように監視設置して","should_trigger":true,"rationale":"放置防止の監視設置要請 = pr-monitor 起動","tags":["explicit"]},
+    {"id":"t17","prompt":"マージまで面倒見て、指摘来たら捌いて","should_trigger":true,"rationale":"決着監視とレビュー対応 dispatch を包含する曖昧表現","tags":["ambiguous"]},
+    {"id":"t18","prompt":"CI が落ちてるので今すぐ直して","should_trigger":false,"rationale":"即時修復要請は ci-self-heal、監視ループの起動ではない","tags":["adjacent"]},
+    {"id":"t19","prompt":"実装できたから出荷まで全部やって","should_trigger":false,"rationale":"出荷そのものは shipping、終端監視はその後工程","tags":["adjacent"]},
+    {"id":"t20","prompt":"本番環境のエラーを Sentry で監視する設定をして","should_trigger":false,"rationale":"監視の語はあるが PR 監視ではなく本番エラー監視","tags":["distractor"]}
   ]
 }

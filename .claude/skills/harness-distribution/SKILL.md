@@ -98,6 +98,17 @@ rulesync generate
   生成して commit しなければローカル生成マシン限定のままで、本スキルの目的を達成していない
 - 複数 consumer がある場合は反映もれの repo を残さない (対象一覧を出して順に適用)
 
+## 既知の限界
+
+- **installed skill (`~/.claude/skills` 等の fetch 済みコピー) は配布元の merge に
+  自動追随しない**。skill の動作検証・ドッグフードは必ず作業ブランチ上の (配布元
+  リポジトリの working tree の) `SKILL.md` を対象にする — installed copy は
+  直近の release タグ時点のスナップショットで止まっており、merge 直後の変更を
+  含まない (実測: セッション内で installed copy が stale で分類仕様が古かった)。
+- consumer への反映は、配布元で merge しただけでは完了しない。Step 4 のタグ切り →
+  consumer 側の `rulesync fetch` 再実行 (pull 型、`RELEASING.md` 参照) まで進んで
+  初めて consumer に届く。
+
 ## 出力フォーマット
 
 ```markdown

@@ -9,6 +9,12 @@
 
 set -euo pipefail
 
+# 直接実行にも耐えるよう、dispatcher (prr) 頼みにせず自前でも色強制を無効化する
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY
+export GH_PAGER=cat
+
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
   echo "usage: $0 <pr-number> [interval-seconds]" >&2
   exit 2

@@ -86,6 +86,23 @@ INT_LEFT_RE = re.compile(r"(-?\d+)\s*$")
 # positions too).
 TS_TYPE_ALIAS_LINE_RE = re.compile(r"^\s*(export\s+)?(declare\s+)?type\s+\w+\b[^=]*=")
 
+# Narrow heuristic for TS/TSX generic *declaration* lines, e.g.
+# `function identity<T>(x: T): T {`, `export type Box<T> = ...`,
+# `interface Repo<T> {`, `export default class Container<T> {`. Only used to
+# guard comparison-flip (see discover_candidates' skip_generic_comparisons
+# docstring) against COMPARISON_RE mistaking the opening `<` / closing `>` of
+# a generic parameter list for a `<`/`>` runtime comparison. Deliberately
+# limited to the declaration keyword position (function/type/interface/class,
+# optionally export/default/declare/abstract/async prefixed) immediately
+# followed by `<` - it does not attempt to catch call-site generics
+# (`foo<Bar>(x)`), arrow-function generics (`const f = <T,>(...) => ...`), or
+# class-method generics (`map<U>(fn)`), which remain a known gap (see
+# references/mutation-recipes.md).
+TS_GENERIC_DECL_LINE_RE = re.compile(
+    r"^\s*(export\s+)?(default\s+)?(declare\s+)?(abstract\s+)?(async\s+)?"
+    r"(function\s*\*?\s*[\w$]*|type\s+[\w$]+|interface\s+[\w$]+|class\s+[\w$]+)\s*<"
+)
+
 # Generic, cross-language markers that a non-zero exit was a syntax/parse
 # failure caused by the mutation breaking the file, rather than a real
 # assertion catching the behavioral change. Still counted as "caught" (the
@@ -213,7 +230,13 @@ def find_adjacent_int(masked_line, op_start, op_end):
     return None
 
 
-def discover_candidates(lines, comment_prefixes, block_comment=None, skip_type_alias_bools=False):
+def discover_candidates(
+    lines,
+    comment_prefixes,
+    block_comment=None,
+    skip_type_alias_bools=False,
+    skip_generic_comparisons=False,
+):
     """Scan every added-nothing (this is a whole-file scan, not a diff) line
     of `lines` (as returned by readlines(), terminators included) and return
     an ordered, deduplicated list of mutation candidate dicts:
@@ -230,6 +253,37 @@ def discover_candidates(lines, comment_prefixes, block_comment=None, skip_type_a
     attempt to distinguish object/interface field type positions from
     runtime literals, since that would risk suppressing real runtime bool
     literals (e.g. `{ enabled: true }`) which are far more common.
+
+    `skip_generic_comparisons`, when True (TS/TSX files only - see call
+    site), skips *single-char* `<`/`>` comparison-flip candidates on lines
+    that are TypeScript generic declarations (`function f<T>()`,
+    `type Box<T> = ...`, `interface Foo<T>`, `class C<T>`). COMPARISON_RE has
+    no way to distinguish the opening/closing angle bracket of a generic
+    parameter list from a real `<`/`>` runtime comparison - both are a bare
+    `<` or `>` outside a string/comment. `==`/`!=`/`<=`/`>=` are never valid
+    generic-declaration syntax, so they are never skipped by this flag, even
+    on a matching line. Skipping via `continue` also skips that operator
+    match's off-by-one candidate (find_adjacent_int looks at an integer
+    adjacent to the same `<`/`>`); on a generic decl line an adjacent integer
+    is a type-position literal (e.g. `LessThan<3>`), not a runtime comparison
+    boundary, so this is the intended behavior, not a side effect to work
+    around. This is a narrow, line-level heuristic (see
+    references/mutation-recipes.md) - it only recognizes the declaration
+    keyword position (function/type/interface/class) immediately followed by
+    `<`; call-site generics, arrow-function generics, and class-method
+    generics remain a known gap.
+
+    Being line-level, the skip also swallows a *real* runtime `<`/`>`
+    comparison that shares the declaration's physical line (a one-line body:
+    `function isPositive<T>(x: T) { return x > 0; }`). This is a deliberate
+    trade-off, not an oversight: restricting the skip to the generic
+    parameter span would re-admit the far more common type-space brackets in
+    parameter/return annotations (`function f<T>(x: Array<number>):
+    Map<string, T> {`) - the very false positives this flag exists to
+    remove. The cost is a conservative false *negative* (a missed candidate,
+    surfacing as SKIP if the file has no other candidates - a visible
+    outcome, never a silent pass), and standard formatting puts bodies on
+    their own lines anyway. See references/mutation-recipes.md.
     """
     candidates = []
     seen = set()
@@ -238,6 +292,7 @@ def discover_candidates(lines, comment_prefixes, block_comment=None, skip_type_a
         masked = mask_line(line, comment_prefixes, block_comment)
 
         skip_bools = skip_type_alias_bools and TS_TYPE_ALIAS_LINE_RE.match(line)
+        skip_angle_comparisons = skip_generic_comparisons and TS_GENERIC_DECL_LINE_RE.match(line)
         for m in BOOL_RE.finditer(masked):
             if skip_bools:
                 continue
@@ -258,6 +313,8 @@ def discover_candidates(lines, comment_prefixes, block_comment=None, skip_type_a
 
         for m in COMPARISON_RE.finditer(masked):
             old_op = m.group(0)
+            if skip_angle_comparisons and old_op in ("<", ">"):
+                continue
             key = (lineno, "comparison-flip", m.start())
             if key not in seen:
                 seen.add(key)
@@ -468,9 +525,29 @@ def main(argv=None):
 
         comment_prefixes = comment_prefixes_for(impl_path)
         block_comment = block_comment_markers_for(impl_path)
-        skip_type_alias_bools = impl_path.suffix.lower() in (".ts", ".tsx")
+        is_ts = impl_path.suffix.lower() in (".ts", ".tsx")
+        skip_type_alias_bools = is_ts
+        skip_generic_comparisons = is_ts
+        if is_ts:
+            # Disclose the TS/TSX-only candidate exclusions up front so a
+            # SKIP (0 candidates) on a TS file is explainable by the reader -
+            # references/mutation-recipes.md promises these limitations are
+            # never silently swallowed.
+            notes.append(
+                "TS/TSX heuristics active: bool-flip candidates on type-alias "
+                "declaration lines and single-char </> comparison-flip "
+                "candidates on generic declaration lines "
+                "(function/type/interface/class) are excluded. The generic "
+                "skip is line-level, so a runtime comparison sharing a "
+                "generic declaration's line (one-line body) is excluded too - "
+                "see references/mutation-recipes.md."
+            )
         all_candidates = discover_candidates(
-            original_lines, comment_prefixes, block_comment, skip_type_alias_bools
+            original_lines,
+            comment_prefixes,
+            block_comment,
+            skip_type_alias_bools=skip_type_alias_bools,
+            skip_generic_comparisons=skip_generic_comparisons,
         )
         selected = all_candidates[: args.max_mutations]
 

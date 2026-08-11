@@ -26,6 +26,12 @@
 # a mid-script abort would defeat that (best-effort) design.
 set -u
 
+# 機械処理経路: 環境の色強制 (CLICOLOR_FORCE=1 等) があると gh の出力が pipe 先
+# でも色付けされ、下流の jq を静かに壊すため、入口で無効化する
+export NO_COLOR=1
+export CLICOLOR_FORCE=0
+unset GH_FORCE_TTY
+
 result_subtype="${1:-unknown}"
 caller="${2:-unknown}"
 findings_critical="${3:-0}"
