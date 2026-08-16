@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Claude Code Review
         id: claude-review
-        uses: anthropics/claude-code-action@v1.0.192
+        uses: anthropics/claude-code-action@v1.0.193
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # v1.0.178 以降、bot 起点の実行は allowed_bots に列挙が必要 (Renovate PR で CI が落ちる)
