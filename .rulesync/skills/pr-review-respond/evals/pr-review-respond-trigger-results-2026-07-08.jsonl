@@ -1,0 +1,20 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"description の例示句『コードラビット対応』に直接マッチ"}
+{"id":"t02","predicted":true,"actual":true,"reason":"description の例示句『コメント見て対応して』に直接マッチ"}
+{"id":"t03","predicted":true,"actual":true,"reason":"description の例示句『Devin の指摘片付けて』に直接マッチ"}
+{"id":"t04","predicted":true,"actual":true,"reason":"description の例示句『PR のコメント全部捌いて』に直接マッチ"}
+{"id":"t05","predicted":true,"actual":true,"reason":"レビュアーからの指摘対応要求で本スキルの中核機能"}
+{"id":"t06","predicted":true,"actual":true,"reason":"新規コメント存在の言及 — 明示要求ではないが対応に繋がる状況描写で他に該当スキルなし"}
+{"id":"t07","predicted":true,"actual":true,"reason":"『見ておいて』が指摘の確認・対応要求としてマッチ"}
+{"id":"t08","predicted":true,"actual":true,"reason":"resolve 操作は同梱スクリプト prr resolve の対象そのもの"}
+{"id":"t09","predicted":true,"actual":true,"reason":"『review feedback 全部見て』が description のコメント対応要求にマッチ"}
+{"id":"t10","predicted":true,"actual":true,"reason":"description の例示句『PR のコメント全部捌いて』に直接マッチ"}
+{"id":"t11","predicted":false,"actual":false,"reason":"『PR 出す前に』は code-review 領域 (本スキルは既に投稿されたレビューへの後追い対応が範囲)"}
+{"id":"t12","predicted":false,"actual":false,"reason":"ci-self-heal 領域 (CI 修復そのもの)"}
+{"id":"t13","predicted":false,"actual":false,"reason":"tdd 領域 (テスト作成そのもの)"}
+{"id":"t14","predicted":false,"actual":false,"reason":"design-review 領域 (設計レビュー)"}
+{"id":"t15","predicted":false,"actual":false,"reason":"test-review 領域 (テストコードレビュー)"}
+{"id":"t16","predicted":false,"actual":false,"reason":"レビュー自体の実行依頼 — description に『レビュー自体を実行することはしない』と明記され範囲外 (coderabbit:code-review 領域)"}
+{"id":"t17","predicted":false,"actual":false,"reason":"一般的な用語説明の質問であり対応の実行要請ではない"}
+{"id":"t18","predicted":false,"actual":false,"reason":"コメント追加とリリースノート作成は本スキルのレビュー対応スコープ外"}
+{"id":"t19","predicted":true,"actual":true,"reason":"description の例示句『push したのでスレッド対応して』に直接マッチ (監視部分は pr-monitor 併走)"}
+{"id":"t20","predicted":true,"actual":true,"reason":"push 後のスレッド resolve 要求で本スキルの中核機能そのもの"}
