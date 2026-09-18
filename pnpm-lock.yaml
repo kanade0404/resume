@@ -15,8 +15,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 16.30.2
-        version: 16.30.2(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.4.2)
+        specifier: 16.32.1
+        version: 16.32.1(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.4.2)
       textlint:
         specifier: 15.8.0
         version: 15.8.0(supports-color@7.2.0)
@@ -2119,8 +2119,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@16.30.2:
-    resolution: {integrity: sha512-+6lwdRapiCuFbvUnwO90p5yHfqxQ6g9lau43afPpQJTIneGGU1XdwONGE64t9adABGL68wcAXJHGAenyVK6Khg==}
+  rulesync@16.32.1:
+    resolution: {integrity: sha512-oMxPW98Q6TNDAqlcdDx3HsH+mMk4OxvzD48YFa58oVK9y4/Gc7UO8mLQj0up4nwiqI1NEFYezuj3YNT8iMrrDA==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -2767,9 +2767,6 @@ packages:
   zod@4.5.4:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
-  zod@4.6.1:
-    resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
-
   zod@4.6.2:
     resolution: {integrity: sha512-lh5RCAGFa1Cm2hjtNwLQhSs/AsqdWnTQaBER9fEwN/88pSh7KOtJavtBx/0VlkN/uFd61SwYmljLMDAsHlvzBQ==}
 
@@ -2904,33 +2901,11 @@ snapshots:
       eventsource-parser: 3.1.0
       jose: 6.2.3
       pkce-challenge: 5.0.1
-      zod: 4.6.1
+      zod: 4.6.2
 
   '@modelcontextprotocol/core@2.0.0':
     dependencies:
-      zod: 4.6.1
-
-  '@modelcontextprotocol/sdk@1.30.0(supports-color@7.2.0)(zod@4.6.1)':
-    dependencies:
-      '@hono/node-server': 1.19.14(hono@4.12.30)
-      ajv: 8.20.0
-      ajv-formats: 3.0.1(ajv@8.20.0)
-      content-type: 1.0.5
-      cors: 2.8.6
-      cross-spawn: 7.0.6
-      eventsource: 3.0.7
-      eventsource-parser: 3.1.0
-      express: 5.2.1(supports-color@7.2.0)
-      express-rate-limit: 8.6.0(express@5.2.1(supports-color@7.2.0))(supports-color@7.2.0)
-      hono: 4.12.30
-      jose: 6.2.3
-      json-schema-typed: 8.0.2
-      pkce-challenge: 5.0.1
-      raw-body: 3.0.2
-      zod: 4.6.1
-      zod-to-json-schema: 3.25.2(zod@4.6.1)
-    transitivePeerDependencies:
-      - supports-color
+      zod: 4.6.2
 
   '@modelcontextprotocol/sdk@1.30.0(supports-color@7.2.0)(zod@4.6.2)':
     dependencies:
@@ -3954,7 +3929,7 @@ snapshots:
   fastmcp@4.20.11(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4):
     dependencies:
       '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
-      '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.6.1)
+      '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.6.2)
       '@standard-schema/spec': 1.1.0
       execa: 9.6.1
       file-type: 21.3.4(supports-color@7.2.0)
@@ -3963,10 +3938,10 @@ snapshots:
       mcp-proxy: 6.7.16(supports-color@7.2.0)
       strict-event-emitter-types: 2.0.0
       uri-templates: 0.2.0
-      xsschema: 0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.2)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.6.1))(zod@4.6.1)
+      xsschema: 0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.2)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.6.2))(zod@4.6.2)
       yargs: 18.0.0
-      zod: 4.6.1
-      zod-to-json-schema: 3.25.2(zod@4.6.1)
+      zod: 4.6.2
+      zod-to-json-schema: 3.25.2(zod@4.6.2)
     optionalDependencies:
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
@@ -5208,7 +5183,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@16.30.2(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.4.2):
+  rulesync@16.32.1(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.4.2):
     dependencies:
       '@inquirer/checkbox': 5.2.5
       '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.6.2)
@@ -6081,13 +6056,13 @@ snapshots:
 
   ws@8.21.1: {}
 
-  xsschema@0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.2)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.6.1))(zod@4.6.1):
+  xsschema@0.4.4(@valibot/to-json-schema@1.7.1(valibot@1.4.2))(effect@3.22.2)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.6.2))(zod@4.6.2):
     optionalDependencies:
       '@valibot/to-json-schema': 1.7.1(valibot@1.4.2)
       effect: 3.22.2
       sury: 10.0.4
-      zod: 4.6.1
-      zod-to-json-schema: 3.25.2(zod@4.6.1)
+      zod: 4.6.2
+      zod-to-json-schema: 3.25.2(zod@4.6.2)
 
   xtend@4.0.2: {}
 
@@ -6108,10 +6083,6 @@ snapshots:
 
   zlibjs@0.3.1: {}
 
-  zod-to-json-schema@3.25.2(zod@4.6.1):
-    dependencies:
-      zod: 4.6.1
-
   zod-to-json-schema@3.25.2(zod@4.6.2):
     dependencies:
       zod: 4.6.2
@@ -6121,8 +6092,6 @@ snapshots:
   zod@4.4.3: {}
 
   zod@4.5.4: {}
-
-  zod@4.6.1: {}
 
   zod@4.6.2: {}
 
