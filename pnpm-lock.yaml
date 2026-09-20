@@ -182,7 +182,7 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(textlint@15.8.0(supports-color@7.2.0))
       textlint-rule-preset-ai-words-ja:
-        specifier: ^1.2.1
+        specifier: 1.2.1
         version: 1.2.1
       textlint-rule-preset-ja-spacing:
         specifier: 2.4.3
