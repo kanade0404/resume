@@ -7,6 +7,7 @@
     }
   },
   "rules": {
+    "preset-ai-words-ja": true,
     "preset-ja-spacing": true,
     "preset-ja-technical-writing": {
       "no-mix-dearu-desumasu": false
