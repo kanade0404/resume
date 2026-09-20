@@ -30,7 +30,7 @@ jobs:
           upcoming=""
           while IFS= read -r line; do
             due=$(printf '%s' "$line" | grep -oE '期限: [0-9]{4}-[0-9]{2}-[0-9]{2}' | cut -d' ' -f2 || true)
-            task=$(printf '%s' "$line" | sed -E 's/^- \[ \] //; s/ \(期限: [0-9-]+\)//')
+            task=$(printf '%s' "$line" | sed -E 's/^- \[ \] //; s/ ?\(期限: [0-9-]+\)$//')
             if [ -n "$due" ] && [ "$due" \< "$today" ]; then
               overdue="${overdue}- ⚠️ **${task}**（期限超過: ${due}）\n"
             else

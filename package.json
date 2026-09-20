@@ -8,6 +8,7 @@
     "rulesync": "16.35.0",
     "textlint": "15.8.0",
     "textlint-filter-rule-allowlist": "4.0.0",
+    "textlint-rule-preset-ai-words-ja": "^1.2.1",
     "textlint-rule-preset-ja-spacing": "2.4.3",
     "textlint-rule-preset-ja-technical-writing": "12.0.2",
     "textlint-rule-spellcheck-tech-word": "5.0.0"
@@ -18,8 +19,8 @@
   "scripts": {
     "fix": "fixpack",
     "generate": "./convert.sh",
-    "lint": "textlint *.md",
-    "lint:fix": "textlint --fix *.md",
+    "lint": "textlint *.md docs/*.md",
+    "lint:fix": "textlint --fix *.md docs/*.md",
     "rulesync:check": "rulesync generate --targets claudecode --features skills,rules --check",
     "rulesync:fetch": "rulesync fetch kanade0404/skills@v0.10.0 --features skills,rules",
     "rulesync:generate": "rulesync generate --targets claudecode --features skills,rules"

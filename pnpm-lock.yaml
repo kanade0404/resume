@@ -23,6 +23,9 @@ importers:
       textlint-filter-rule-allowlist:
         specifier: 4.0.0
         version: 4.0.0(textlint@15.8.0(supports-color@7.2.0))
+      textlint-rule-preset-ai-words-ja:
+        specifier: ^1.2.1
+        version: 1.2.1
       textlint-rule-preset-ja-spacing:
         specifier: 2.4.3
         version: 2.4.3
@@ -2472,6 +2475,9 @@ packages:
 
   textlint-rule-no-zero-width-spaces@1.0.1:
     resolution: {integrity: sha512-AkxpzBILGB4YsXddzHx2xqpXmqMv5Yd+PQm4anUV+ADSJuwLP1Jd6yHf/LOtu9j3ps8K3XM9vQrXRK73z0bU3A==}
+
+  textlint-rule-preset-ai-words-ja@1.2.1:
+    resolution: {integrity: sha512-yTXyIn+3QvtTBffSqLAJoGfhCNkR6hjTlGbOJ6vnlN9/qhtqMWOo69DyYeDj7WVWjlljgxbadFkLQd6winGb1w==}
 
   textlint-rule-preset-ja-spacing@2.4.3:
     resolution: {integrity: sha512-WAiWY9TOE8/bRdl14XJdjkPQcV0hLS4O+PCUYU1yxXmJhZ8V3ciw2GYqpA9GL73qAxL25UD6mkf1yfz6aJ4qSA==}
@@ -5693,6 +5699,11 @@ snapshots:
       textlint-rule-helper: 2.5.0
 
   textlint-rule-no-zero-width-spaces@1.0.1: {}
+
+  textlint-rule-preset-ai-words-ja@1.2.1:
+    dependencies:
+      kuromojin: 3.0.1
+      morpheme-match-textlint: 2.0.6
 
   textlint-rule-preset-ja-spacing@2.4.3:
     dependencies:
