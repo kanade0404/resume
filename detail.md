@@ -150,7 +150,7 @@ PMに開発を任せる運用も試しましたが、中止しました。
   - そのほか: SendGrid / Sentry / Notion
 - AIコーディングツールの変遷
   - 当初はGitHub CopilotとClineを使いました。
-  - Claude Codeの発表後は、Claude Code、Cursor、会社で使えたGitHub Copilotを使い、Devinも少し使いました。
+  - 2025年5月〜6月からは、Claude Code、Cursor、会社で使えたGitHub Copilotを使い、Devinも少し使いました。
   - その後、会社のChatGPT BusinessプランでCodexを使えるようになったため、Claude Code、Codex、Devinを使っています。
 
 #### 広告配信プラットフォーム（2022年8月〜2025年2月）
