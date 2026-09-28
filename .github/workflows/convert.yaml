@@ -19,14 +19,14 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fonts-noto-cjk fonts-ipafont-gothic fonts-ipafont-mincho
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6.1.0
       - name: Setup Node.js
         uses: actions/setup-node@v7.0.0
         with:
           node-version: 24.21.0
       - name: Install dependencies
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Build PDF
         run: pnpm run generate
       - name: Commit files
