@@ -173,8 +173,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 19.0.0
-        version: 19.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0)
+        specifier: 21.0.0
+        version: 21.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0)
       textlint:
         specifier: 15.8.0
         version: 15.8.0(supports-color@7.2.0)
@@ -196,9 +196,11 @@ importers:
 
 packages:
 
-  '@apidevtools/json-schema-ref-parser@14.0.1':
-    resolution: {integrity: sha512-Oc96zvmxx1fqoSEdUmfmvvb59/KDOnUoJ7s2t7bISyAn0XEz57LCCw8k2Y4Pf3mwKaZLMciESALORLgfe2frCw==}
-    engines: {node: '>= 16'}
+  '@apidevtools/json-schema-ref-parser@16.0.3':
+    resolution: {integrity: sha512-7lZp4XCTZhU/AgiGpIG+j4uJeWPdGbpQ+8wqXrzuHy+tboKsjSacjGH9/kNThRDIFhMWHF3ba+ejS8J3PeSI1Q==}
+    engines: {node: '>=22.19.0'}
+    peerDependencies:
+      '@types/json-schema': ^7.0.15
 
   '@apidevtools/openapi-schemas@2.1.0':
     resolution: {integrity: sha512-Zc1AlqrJlX3SlpupFGpiLi2EbteyP7fXmUOGup6/DnkRgjP9bgMM/ag+n91rsv0U1Gpz0H3VILA/o3bW7Ua6BQ==}
@@ -207,8 +209,9 @@ packages:
   '@apidevtools/swagger-methods@3.0.2':
     resolution: {integrity: sha512-QAkD5kK2b1WfjDS/UQn/qQkbwF31uqRjPTrsCs5ZG9BQGAkjwvqGFjjPqAuzac/IYzpPtRzjCP1WrTuAIjMrXg==}
 
-  '@apidevtools/swagger-parser@12.1.0':
-    resolution: {integrity: sha512-e5mJoswsnAX0jG+J09xHFYQXb/bUc5S3pLpMxUuRUA2H8T2kni3yEoyz2R3Dltw5f4A6j6rPNMpWTK+iVDFlng==}
+  '@apidevtools/swagger-parser@13.1.0':
+    resolution: {integrity: sha512-dkCuqCWh5U7u0aurmmc/qvel2KeKDxHTwVtUdYonndIpD7mXV6AVaWNdvaja2HAy628z7FT/Qdz8sCgzwhgwKg==}
+    engines: {node: '>=22.19.0'}
     peerDependencies:
       openapi-types: '>=7'
 
@@ -323,6 +326,16 @@ packages:
 
   '@modelcontextprotocol/sdk@1.30.0':
     resolution: {integrity: sha512-xKd8OIzlqNzcqcNumGAa6g+PW2kjD5vrpcKOnfldAUPP3j7lnqMPwlTXQm8gF+UwH72z0lqaRbjr9hqGz0eITA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.1
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      '@cfworker/json-schema':
+        optional: true
+
+  '@modelcontextprotocol/sdk@1.30.1':
+    resolution: {integrity: sha512-H2HxLvC3HDNybePJaLdSrU1hhUK5iQw+WvV1b01myFyI7sdVGe1u/IPTE5D9fGCiJDVtgMV/lmFkQXLmQyIFYA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -1179,8 +1192,8 @@ packages:
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
 
-  fastmcp@4.20.14:
-    resolution: {integrity: sha512-Cbw0oIJdpOnbFEign0h44hAQ71HTvMbSeS3irR/WtArOiI8nkg4e6E/P1WDaSDJ/V2qpL/77FwCQmeM3z+jYYg==}
+  fastmcp@4.20.16:
+    resolution: {integrity: sha512-37WNlVlr3qifxXsthZFgdPxfCF/ghnQrbwrLbUHZomHd4F7s6smKrJsm2fLqzXW4D4XceW2Vz9gDeF280gIHCw==}
     hasBin: true
     peerDependencies:
       ajv: ^8.0.0
@@ -2288,8 +2301,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@19.0.0:
-    resolution: {integrity: sha512-zzGz8/V/bbJjhTHuUc8AUJTF3iPozG2b+IwJjiqYNtxGNTq4zgfQocXbzx2WoyTJo4xpvjWefUGthwzjL0Dqjg==}
+  rulesync@21.0.0:
+    resolution: {integrity: sha512-lvhPrhAJpYZgu82LrjkeF8FoWJSI6zno4s955XKJkZrlRHrhuJxHtN/vZw3tlFgqpHiliM2zbmwFoiOgCl8MWw==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -2402,8 +2415,8 @@ packages:
   slide@1.1.6:
     resolution: {integrity: sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==}
 
-  smol-toml@1.8.0:
-    resolution: {integrity: sha512-kCZr2V3ch9i00x8zXRhjUNVcjG9ijES5dDudkXvUVCT5QlJNQWElSJdZqyPemffHoLNUYwOcou0Fy+ojN0uHSQ==}
+  smol-toml@1.9.0:
+    resolution: {integrity: sha512-hpd+HLON7HdZXqYchMM/+LaTTbdK0AU3NngIJ4KVyWbY9bfQqdL9cD+4yf6dUoU2Ap4VsU0JkQi6FxAI1B2mXQ==}
     engines: {node: '>= 18'}
 
   space-separated-tokens@1.1.5:
@@ -2748,6 +2761,10 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  undici@8.11.2:
+    resolution: {integrity: sha512-u4UB2/IrKdU6lFxumHmmo1a3fCQO5tzQllRorfoRS63txhrB7xTpSn1PftwC4qEHkOaqP95fCWW4lJzwErwzhQ==}
+    engines: {node: '>=22.19.0'}
+
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
     engines: {node: '>=18'}
@@ -2950,20 +2967,22 @@ packages:
 
 snapshots:
 
-  '@apidevtools/json-schema-ref-parser@14.0.1':
+  '@apidevtools/json-schema-ref-parser@16.0.3(@types/json-schema@7.0.15)':
     dependencies:
       '@types/json-schema': 7.0.15
-      js-yaml: 4.3.0
+      js-yaml: 5.4.2
+      undici: 8.11.2
 
   '@apidevtools/openapi-schemas@2.1.0': {}
 
   '@apidevtools/swagger-methods@3.0.2': {}
 
-  '@apidevtools/swagger-parser@12.1.0(openapi-types@12.1.3)':
+  '@apidevtools/swagger-parser@13.1.0(openapi-types@12.1.3)':
     dependencies:
-      '@apidevtools/json-schema-ref-parser': 14.0.1
+      '@apidevtools/json-schema-ref-parser': 16.0.3(@types/json-schema@7.0.15)
       '@apidevtools/openapi-schemas': 2.1.0
       '@apidevtools/swagger-methods': 3.0.2
+      '@types/json-schema': 7.0.15
       ajv: 8.20.0
       ajv-draft-04: 1.0.0(ajv@8.20.0)
       call-me-maybe: 1.0.2
@@ -3083,6 +3102,28 @@ snapshots:
       zod: 4.6.2
 
   '@modelcontextprotocol/sdk@1.30.0(supports-color@7.2.0)(zod@4.6.5)':
+    dependencies:
+      '@hono/node-server': 1.19.14(hono@4.12.30)
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
+      content-type: 1.0.5
+      cors: 2.8.6
+      cross-spawn: 7.0.6
+      eventsource: 3.0.7
+      eventsource-parser: 3.1.0
+      express: 5.2.1(supports-color@7.2.0)
+      express-rate-limit: 8.6.0(express@5.2.1(supports-color@7.2.0))(supports-color@7.2.0)
+      hono: 4.12.30
+      jose: 6.2.3
+      json-schema-typed: 8.0.2
+      pkce-challenge: 5.0.1
+      raw-body: 3.0.2
+      zod: 4.6.5
+      zod-to-json-schema: 3.25.2(zod@4.6.5)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@modelcontextprotocol/sdk@1.30.1(supports-color@7.2.0)(zod@4.6.5)':
     dependencies:
       '@hono/node-server': 1.19.14(hono@4.12.30)
       ajv: 8.20.0
@@ -4105,9 +4146,9 @@ snapshots:
     dependencies:
       fast-string-width: 3.0.2
 
-  fastmcp@4.20.14(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4):
+  fastmcp@4.20.16(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4):
     dependencies:
-      '@apidevtools/swagger-parser': 12.1.0(openapi-types@12.1.3)
+      '@apidevtools/swagger-parser': 13.1.0(openapi-types@12.1.3)
       '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.6.5)
       '@standard-schema/spec': 1.1.0
       execa: 9.6.1
@@ -5364,10 +5405,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@19.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0):
+  rulesync@21.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0):
     dependencies:
       '@inquirer/checkbox': 5.2.5
-      '@modelcontextprotocol/sdk': 1.30.0(supports-color@7.2.0)(zod@4.6.5)
+      '@modelcontextprotocol/sdk': 1.30.1(supports-color@7.2.0)(zod@4.6.5)
       '@octokit/request-error': 7.1.2
       '@octokit/rest': 22.0.1
       '@toon-format/toon': 4.1.1
@@ -5376,13 +5417,13 @@ snapshots:
       commander: 15.0.0
       effect: 3.22.2
       es-toolkit: 1.52.0
-      fastmcp: 4.20.14(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4)
+      fastmcp: 4.20.16(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4)
       globby: 16.2.4
       gray-matter: 4.0.3
       js-yaml: 5.4.2
       jsonc-parser: 3.3.1
       minisearch: 7.2.0
-      smol-toml: 1.8.0
+      smol-toml: 1.9.0
       sury: 10.0.4
       zod: 4.6.5
     transitivePeerDependencies:
@@ -5551,7 +5592,7 @@ snapshots:
 
   slide@1.1.6: {}
 
-  smol-toml@1.8.0: {}
+  smol-toml@1.9.0: {}
 
   space-separated-tokens@1.1.5: {}
 
@@ -6089,6 +6130,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici@8.11.2: {}
 
   unicorn-magic@0.1.0: {}
 
