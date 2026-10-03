@@ -1,0 +1,22 @@
+{
+  "target_skill": "industry-research",
+  "version": "1",
+  "cases": [
+    {"id": "i01", "prompt": "物流SaaSの業界調査をして", "should_trigger": true, "rationale": "業界調査の直接依頼", "tags": ["explicit"]},
+    {"id": "i02", "prompt": "リーガルテックを業界DBに追加して", "should_trigger": true, "rationale": "業界DBへの追加", "tags": ["explicit"]},
+    {"id": "i03", "prompt": "建設テックの日米の業界比較をしたい", "should_trigger": true, "rationale": "日米比較", "tags": ["explicit"]},
+    {"id": "i04", "prompt": "この業界の市場規模、本当? 調査会社でバラバラなんだけど", "should_trigger": true, "rationale": "市場規模の検証", "tags": ["explicit"]},
+    {"id": "i05", "prompt": "介護業界を調べて。主要プレイヤーと規制も", "should_trigger": true, "rationale": "業界の構造・プレイヤー・規制", "tags": ["explicit"]},
+    {"id": "i06", "prompt": "米国の同業スタートアップと比べて日本はどう違う?", "should_trigger": true, "rationale": "日米スタートアップ比較の口語", "tags": ["ambiguous"]},
+    {"id": "i07", "prompt": "この業界の主要プレイヤーは?", "should_trigger": true, "rationale": "業界のプレイヤー把握", "tags": ["ambiguous"]},
+    {"id": "i08", "prompt": "フィンテックってこの先伸びる業界? エグジットはIPOとM&Aどっちが多い?", "should_trigger": true, "rationale": "業界の成長性とエグジット", "tags": ["ambiguous"]},
+    {"id": "i09", "prompt": "A社について網羅的に調べて", "should_trigger": false, "rationale": "特定企業の評価は company-research", "tags": ["adjacent"]},
+    {"id": "i10", "prompt": "この会社IPOできる?", "should_trigger": false, "rationale": "企業の IPO 見立ては company-research", "tags": ["adjacent"]},
+    {"id": "i11", "prompt": "キャリア壁打ちしたい。どの業界に行くべきか迷ってる", "should_trigger": false, "rationale": "キャリア相談は career-grilling", "tags": ["adjacent"]},
+    {"id": "i12", "prompt": "PostgreSQLとMySQLどっちを採用すべきか調べて", "should_trigger": false, "rationale": "技術選定は research-practices", "tags": ["adjacent"]},
+    {"id": "i13", "prompt": "量子コンピュータの研究動向について文献を集めてレポートにして", "should_trigger": false, "rationale": "業界DBに残さない学術調査は deep-research / research-practices", "tags": ["distractor"]},
+    {"id": "i14", "prompt": "B社の外部発信を外部発信DBに取り込んで", "should_trigger": false, "rationale": "外部発信の取り込みは company-research", "tags": ["distractor"]},
+    {"id": "i15", "prompt": "README.mdの業界経験の書き方を直して", "should_trigger": false, "rationale": "経歴書の編集", "tags": ["distractor"]},
+    {"id": "i16", "prompt": "業界DBのStatusの選択肢に「保留」を追加して", "should_trigger": false, "rationale": "DB スキーマ編集であり調査ではない", "tags": ["distractor"]}
+  ]
+}

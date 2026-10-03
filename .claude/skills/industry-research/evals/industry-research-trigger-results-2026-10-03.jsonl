@@ -1,0 +1,16 @@
+{"id":"i01","predicted":true,"actual":true,"reason":"blind sonnet rater (5 skill descriptions): industry-research"}
+{"id":"i02","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i03","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i04","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i05","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i06","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i07","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i08","predicted":true,"actual":true,"reason":"blind rater: industry-research"}
+{"id":"i09","predicted":false,"actual":false,"reason":"blind rater: company-research"}
+{"id":"i10","predicted":false,"actual":false,"reason":"blind rater: company-research"}
+{"id":"i11","predicted":false,"actual":false,"reason":"blind rater: career-grilling"}
+{"id":"i12","predicted":false,"actual":false,"reason":"blind rater: research-practices"}
+{"id":"i13","predicted":false,"actual":false,"reason":"blind rater: deep-research"}
+{"id":"i14","predicted":false,"actual":false,"reason":"blind rater: company-research"}
+{"id":"i15","predicted":false,"actual":false,"reason":"blind rater: none"}
+{"id":"i16","predicted":false,"actual":false,"reason":"blind rater: none"}

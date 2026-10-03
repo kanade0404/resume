@@ -1,4 +1,7 @@
 {
+  "enabledPlugins": {
+    "notion@claude-plugins-official": true
+  },
   "permissions": {
     "allow": [
       "Read(.github/workflows/**)",
