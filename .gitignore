@@ -121,3 +121,4 @@ dist
 # pointer and in-session scratch files must never be committed.
 .claude/skills/career-grilling/vault-paths.local
 .claude/skills/career-grilling/scratch/
+.playwright-mcp/
