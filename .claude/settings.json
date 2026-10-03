@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(.github/workflows/ *)",
-      "Write(.github/workflows/ *)"
+      "Read(.github/workflows/**)",
+      "Edit(.github/workflows/**)"
     ]
   }
 }
