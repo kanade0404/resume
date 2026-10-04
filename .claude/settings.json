@@ -1,11 +1,15 @@
 {
-  "enabledPlugins": {
-    "notion@claude-plugins-official": true
+  "env": {
+    "CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION": "1000"
   },
   "permissions": {
     "allow": [
       "Read(.github/workflows/**)",
       "Edit(.github/workflows/**)"
     ]
+  },
+  "enabledPlugins": {
+    "notion@claude-plugins-official": true,
+    "exa@claude-plugins-official": true
   }
 }
