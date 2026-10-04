@@ -1,0 +1,22 @@
+{
+  "target_skill": "company-research",
+  "version": "1",
+  "cases": [
+    {"id": "c01", "prompt": "企業DBのA社を企業調査して", "should_trigger": true, "rationale": "企業調査の直接依頼", "tags": ["explicit"]},
+    {"id": "c02", "prompt": "X社について網羅的に調べて", "should_trigger": true, "rationale": "特定企業の網羅的調査", "tags": ["explicit"]},
+    {"id": "c03", "prompt": "転職先候補のB社を調べて、Notionにまとめておいて", "should_trigger": true, "rationale": "転職先候補の企業調査+DB書き込み", "tags": ["explicit"]},
+    {"id": "c04", "prompt": "この会社、IPOできると思う? 決算公告と資金調達から見て", "should_trigger": true, "rationale": "IPO 見立て・決算は Phase 2", "tags": ["explicit"]},
+    {"id": "c05", "prompt": "C社の公式noteとテックブログを外部発信DBに取り込んで", "should_trigger": true, "rationale": "外部発信の取り込み(Phase 4)", "tags": ["explicit"]},
+    {"id": "c06", "prompt": "この会社どう?", "should_trigger": true, "rationale": "口語の企業評価依頼", "tags": ["ambiguous"]},
+    {"id": "c07", "prompt": "D社のCTOって何代目? 退職エントリとかも含めてエンジニア組織を見たい", "should_trigger": true, "rationale": "組織・人(Phase 3)", "tags": ["ambiguous"]},
+    {"id": "c08", "prompt": "面談前にE社のこと一通り押さえたい。聞くべき質問も出して", "should_trigger": true, "rationale": "企業調査+面談質問(Phase 6)", "tags": ["ambiguous"]},
+    {"id": "c09", "prompt": "HR SaaS業界の日米比較をして業界DBに追加して", "should_trigger": false, "rationale": "業界調査は industry-research", "tags": ["adjacent"]},
+    {"id": "c10", "prompt": "転職の相談をしたい。今の会社に残るべきか迷ってる", "should_trigger": false, "rationale": "キャリア相談は career-grilling", "tags": ["adjacent"]},
+    {"id": "c11", "prompt": "状態管理ライブラリのZustandとJotaiを比較して", "should_trigger": false, "rationale": "技術選定は research-practices", "tags": ["adjacent"]},
+    {"id": "c12", "prompt": "生成AI業界の歴史を網羅的なレポートにまとめて", "should_trigger": false, "rationale": "企業DBに紐付かない一般レポートは deep-research", "tags": ["adjacent"]},
+    {"id": "c13", "prompt": "職務経歴書のdetail.mdに前職の実績を追記して", "should_trigger": false, "rationale": "経歴書編集であり企業調査ではない", "tags": ["distractor"]},
+    {"id": "c14", "prompt": "A社からのオファー、受けるべきか壁打ちして", "should_trigger": false, "rationale": "オファーの意思決定支援は career-grilling", "tags": ["distractor"]},
+    {"id": "c15", "prompt": "この市場規模の数字、本当? 調査会社ごとに違うんだけど", "should_trigger": false, "rationale": "業界の市場規模検証は industry-research", "tags": ["distractor"]},
+    {"id": "c16", "prompt": "Notionの企業DBに列を1つ追加して", "should_trigger": false, "rationale": "DB スキーマ編集であり調査ではない", "tags": ["distractor"]}
+  ]
+}

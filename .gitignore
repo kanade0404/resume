@@ -121,4 +121,8 @@ dist
 # pointer and in-session scratch files must never be committed.
 .claude/skills/career-grilling/vault-paths.local
 .claude/skills/career-grilling/scratch/
+# company-research / industry-research skills (local): Notion IDs, Obsidian paths and
+# scratch files are machine/person specific and must never be committed.
+.claude/skills/*/*.local
+.claude/skills/*/scratch/
 .playwright-mcp/

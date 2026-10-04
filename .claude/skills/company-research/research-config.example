@@ -1,0 +1,17 @@
+# company-research / industry-research 共通設定のテンプレート(コミット可。値はダミー)
+# 実値は同じディレクトリの research-config.local に書く(gitignore 対象)。
+# 形式: key=value(1行1項目)。# 以降はコメント。
+company_db_data_source=collection://00000000-0000-0000-0000-000000000000
+company_db_parent_page=https://www.notion.so/00000000000000000000000000000000
+industry_db_page=https://www.notion.so/00000000000000000000000000000000
+industry_db_data_source=collection://00000000-0000-0000-0000-000000000000
+publications_db_page=https://www.notion.so/00000000000000000000000000000000
+publications_db_data_source=collection://00000000-0000-0000-0000-000000000000
+# Obsidian 控え先(企業ごとの .md を置くディレクトリ)と、その git リポジトリ
+obsidian_dir=/path/to/vault/company-notes/
+obsidian_repo=/path/to/vault
+obsidian_remote=owner/vault-repo
+# pr = ブランチを切って PR で反映 / direct = 控えファイルを書くだけ(git 操作しない)
+obsidian_merge=pr
+# セッション全体の WebSearch 上限(既定 200)
+web_search_budget=200
