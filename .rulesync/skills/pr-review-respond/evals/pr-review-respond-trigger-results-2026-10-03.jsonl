@@ -1,0 +1,28 @@
+{"id":"t01","predicted":true,"actual":true,"reason":"「コードラビット対応」「CodeRabbit の指摘対応」に直接合致"}
+{"id":"t02","predicted":true,"actual":true,"reason":"「レビュー対応して」「コメント見て対応して」に合致"}
+{"id":"t03","predicted":true,"actual":true,"reason":"「Devin の指摘片付けて」が description にそのまま書かれている"}
+{"id":"t04","predicted":true,"actual":true,"reason":"「PR のコメント全部捌いて」と同趣旨"}
+{"id":"t05","predicted":true,"actual":true,"reason":"人間レビュアーのコメント対応も対象と明記されている"}
+{"id":"t06","predicted":true,"actual":true,"reason":"PR のコメントが溜まっている状況で、コメント対応の文脈と読める"}
+{"id":"t07","predicted":true,"actual":true,"reason":"文脈上は PR の指摘を見て対応する依頼で、新規コメント対応に該当する"}
+{"id":"t08","predicted":true,"actual":true,"reason":"CodeRabbit スレッドの resolve は、スレッド対応・resolve を扱う本スキルの領域"}
+{"id":"t09","predicted":true,"actual":true,"reason":"review feedback はレビューコメントのことで、「レビューコメント見て」に近い"}
+{"id":"t10","predicted":true,"actual":true,"reason":"「PR のコメント全部捌いて」に合致"}
+{"id":"t11","predicted":false,"actual":false,"reason":"PR 起票前のセルフレビューなので code-review の領域"}
+{"id":"t12","predicted":false,"actual":false,"reason":"CI 失敗の修復は ci-self-heal の領域"}
+{"id":"t13","predicted":false,"actual":false,"reason":"テストを書く作業は tdd の領域で、PR コメントとは無関係"}
+{"id":"t14","predicted":false,"actual":false,"reason":"設計レビューは design-review の領域"}
+{"id":"t15","predicted":false,"actual":false,"reason":"テストコードのレビューは test-review の領域"}
+{"id":"t16","predicted":false,"actual":false,"reason":"description に「レビュー自体の実行 (CodeRabbit / Devin の呼び出し) はしない」とあり、coderabbit:code-review の領域"}
+{"id":"t17","predicted":false,"actual":false,"reason":"PR の概念説明で、コメント対応ではない"}
+{"id":"t18","predicted":false,"actual":false,"reason":"自分発のコメント追加とリリースノート作成で、既存指摘への対応ではない"}
+{"id":"t19","predicted":true,"actual":true,"reason":"「既存 PR ブランチへの push 直後 (レビュー対応後の再 push を含む)」に合致"}
+{"id":"t20","predicted":true,"actual":true,"reason":"レビュー対応後の再 push と未解決スレッドの終端に該当"}
+{"id":"t21","predicted":true,"actual":true,"reason":"「指摘確認して」が確認だけの依頼 (読み取り専用モード) のトリガ語として明記"}
+{"id":"t22","predicted":true,"actual":true,"reason":"「レビュー指摘を確認」+ 修正しない = 読み取り専用モード"}
+{"id":"t23","predicted":true,"actual":true,"reason":"「指摘ある?」が確認だけの依頼のトリガ語として明記"}
+{"id":"t24","predicted":true,"actual":true,"reason":"「レビュー本文 (折りたたみ内の Outside diff range 等を含む)」の取得が本スキルの対象と明記"}
+{"id":"t25","predicted":true,"actual":true,"reason":"「subagent に PR 指摘の取得を委譲する場合も本スキルの prr fetch を使わせる」に合致"}
+{"id":"t26","predicted":false,"actual":false,"reason":"PR ではなく設計への意見要求で、design-review の領域"}
+{"id":"t27","predicted":false,"actual":false,"reason":"PR 前の自己差分レビューを生成する依頼で、code-review の領域"}
+{"id":"t28","predicted":false,"actual":false,"reason":"issue のコメントで PR レビューではない"}

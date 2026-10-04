@@ -24,4 +24,9 @@ pr="$1"
 interval="${2:-30}"
 
 # `--watch` blocks until all checks complete; exit code reflects pass/fail.
-gh pr checks "$pr" --watch --interval "$interval"
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+# shellcheck source-path=SCRIPTDIR source=lib_repo.sh
+. "$SCRIPT_DIR/lib_repo.sh"
+prr_resolve_repo
+
+gh pr checks "$pr" -R "$GH_REPO" --watch --interval "$interval"

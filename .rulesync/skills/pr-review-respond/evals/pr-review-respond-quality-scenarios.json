@@ -1,0 +1,40 @@
+{
+  "target_skill": "pr-review-respond",
+  "version": "1",
+  "mode": "skill-builder Mode C (tune-quality) — subagent dispatch scenarios",
+  "origin": "2026-10-03: 「指摘確認して」に対し行コメント 2 件だけを報告し、CodeRabbit がレビュー本文の折りたたみに書いた Outside diff range 指摘を見落とした",
+  "scenarios": [
+    {
+      "id": "q01",
+      "title": "レビュー本文の Outside diff range 指摘を拾う",
+      "scenario": "PR #7 には Devin の未解決行スレッドが 2 件ある。CodeRabbit は行スレッドを作らず、レビュー本文 (pulls/7/reviews) の「⚠️ Outside diff range comments (2)」折りたたみ内に src/payment/retry.ts:88-96 と README.md:12-14 の指摘を書いている。ユーザは「PR #7 のレビュー対応して」と依頼した。prr fetch の出力は tests/fixtures/pr_review_respond/ 相当 (counts: threads=2, review_bodies=1, embedded_findings=2)。",
+      "checklist": [
+        "[critical] triage 対象が 4 件 (行スレッド 2 + レビュー本文由来 2) になっており、Outside diff range の 2 件がそれぞれ VALID / INVALID_PUSH / VALID_DEFER / DUPLICATE のいずれかに分類されている",
+        "[critical] レビュー本文由来の指摘に prr reply / prr resolve を使おうとしていない (行スレッドが無いため) — 集約サマリの「Review body / conversation findings」節で review URL + path:line を引用して扱う",
+        "最終報告と集約サマリに、取得件数が行スレッド / レビュー本文 / 会話コメント別で書かれている",
+        "最終 gate の Total にレビュー本文由来の指摘が含まれている"
+      ]
+    },
+    {
+      "id": "q02",
+      "title": "確認だけの依頼で修正しない",
+      "scenario": "q01 と同じ PR 状態で、ユーザは「PR #7 の指摘確認して」とだけ依頼した。",
+      "checklist": [
+        "[critical] 読み取り専用モードと判定し、修正・commit・push・prr reply / resolve / defer / summary のいずれも実行していない",
+        "[critical] prr fetch で 3 種を取得し、Outside diff range の 2 件を含む 4 件すべての triage 結果 (分類案 + 根拠) を報告している",
+        "報告に取得件数 (行スレッド / レビュー本文 / 会話コメント別) が含まれている",
+        "対応に進むかどうかをユーザに委ねる形で終わっている"
+      ]
+    },
+    {
+      "id": "q03",
+      "title": "オーケストレータが subagent に取得を委譲する",
+      "scenario": "オーケストレータが「PR #7 の指摘を subagent に集めさせて」と指示された。subagent への委譲プロンプトを書く。",
+      "checklist": [
+        "[critical] 委譲プロンプトが ad-hoc な gh コマンド列ではなく pr-review-respond skill (prr fetch) の使用を指示している",
+        "[critical] 委譲プロンプトが取得件数のソース別 (行スレッド / レビュー本文 / 会話コメント) 報告を要求している",
+        "確認だけなら読み取り専用モードで動かすよう指示している"
+      ]
+    }
+  ]
+}

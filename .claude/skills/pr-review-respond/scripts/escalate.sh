@@ -61,8 +61,13 @@ fi
 # the comment was ever posted. Labeling is now best-effort and non-fatal —
 # if it fails (missing label, permissions, etc.) we warn to stderr but still
 # exit 0, because the comment (the actual escalation) already succeeded.
-gh pr comment "$pr" --body-file "$body_file"
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+# shellcheck source-path=SCRIPTDIR source=lib_repo.sh
+. "$SCRIPT_DIR/lib_repo.sh"
+prr_resolve_repo
 
-if ! gh pr edit "$pr" --add-label needs-human >/dev/null 2>&1; then
+gh pr comment "$pr" -R "$GH_REPO" --body-file "$body_file"
+
+if ! gh pr edit "$pr" -R "$GH_REPO" --add-label needs-human >/dev/null 2>&1; then
   echo "warning: failed to add 'needs-human' label (it may not exist in this repo); escalation comment was posted regardless" >&2
 fi

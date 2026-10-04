@@ -27,6 +27,11 @@ if [ ! -f "$body_file" ]; then
   exit 2
 fi
 
-resp=$(gh pr comment "$pr" --body-file "$body_file")
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+# shellcheck source-path=SCRIPTDIR source=lib_repo.sh
+. "$SCRIPT_DIR/lib_repo.sh"
+prr_resolve_repo
+
+resp=$(gh pr comment "$pr" -R "$GH_REPO" --body-file "$body_file")
 # `gh pr comment` already prints the URL on success; relay it.
 echo "$resp"
