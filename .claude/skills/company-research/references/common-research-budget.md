@@ -24,7 +24,8 @@ WebSearch には**セッション全体で共有される上限**がある(既�
 
 ## 検索ログ(scratchpad)
 
-ファイル: `<scratchpad>/search-log.md`。形式:
+ファイル: main は `<scratchpad>/search-log.md`、並列 subagent は実行者ごとの
+`<scratchpad>/search-log-<実行者>.md`(1ファイルに複数 agent が同時に書くと追記が衝突するため)。形式:
 
 ```markdown
 | # | 実行者 | 手段 | query または URL | 要点(1行) | 日付 |
@@ -32,8 +33,9 @@ WebSearch には**セッション全体で共有される上限**がある(既�
 | 1 | sub-business | WebSearch | "A社 資金調達 シリーズB" | 2024年にB調達、額は未開示 | 2026-10-03 |
 ```
 
-- subagent には「**検索前に search-log.md を読み、同じ query/URL を繰り返さない**」「実行後に1行追記する」と指示する
-- 並列 subagent の追記は行単位の Edit(末尾追記)で行い、ファイル全体を Write で上書きさせない
+- subagent には「**検索前に `search-log*.md` をすべて読み、同じ query/URL を繰り返さない**」「実行後に
+  自分の `search-log-<実行者>.md` にだけ1行追記する」と指示する。他の agent のログには書かせない
+- main は subagent の完了ごとに各 `search-log-<実行者>.md` を `search-log.md` に統合する(予算表の更新と同時に行う)
 
 ## Codex CLI に任せる探索
 

@@ -24,12 +24,13 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 ## 依存(company-research と共有)
 
 設定ファイルと共通ルールは `company-research` 側に1か所だけ置き、ここから参照する。
-次のファイルが無い場合は「company-research skill が見つからないため設定と共通ルールを読めない」と
-ユーザーに伝えて停止する(推測で進めない)。
+下表の共通参照ファイルが無い場合は「company-research skill が見つからないため共通ルールを読めない」と
+ユーザーに伝えて停止する(推測で進めない)。設定ファイル `research-config.local` が無い場合は停止せず、
+`common-config.md` の手順で必要な値をユーザーに聞いて作成する。
 
 | ファイル | 内容 |
 |---|---|
-| `.claude/skills/company-research/research-config.local` | 業界DB・企業DB の ID(gitignore 対象) |
+| `.claude/skills/company-research/research-config.local` | 業界DB・企業DB の ID(gitignore 対象。無ければ作成する) |
 | [../company-research/references/common-config.md](../company-research/references/common-config.md) | 設定ファイルの読み方・公開範囲 |
 | [../company-research/references/common-sourcing.md](../company-research/references/common-sourcing.md) | 出典・確度ラベル・事実と推測の区別 |
 | [../company-research/references/common-research-budget.md](../company-research/references/common-research-budget.md) | WebSearch 予算・検索ログ・Codex CLI |
@@ -63,7 +64,8 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 1. `common-config.md` に従い設定ファイルを読む
 2. 業界DB を業界名・類義語で検索する
    - 既存レコードがあり `Status=完了` → 再調査するかユーザーに確認(調査日が1年以上前なら再調査を提案)
-   - 既存レコードがあり `調査中` → 空の列だけを埋める方針で続ける
+   - 既存レコードがあり `調査中` → 空の列だけを埋める方針で続ける。既存の列の値を
+     `<scratchpad>/i01-existing.md` に控える(Step 5 で上書きを防ぐため)
    - 無い → `Status=調査中` でレコードを作る
 3. **業界の範囲を1段落で定義**して `<scratchpad>/i00-scope.md` に書く: 含むもの / 含まないもの /
    隣接業界 / 日米で同じ業界として扱う根拠。範囲が曖昧なまま市場規模を集めると、調査会社ごとに
@@ -93,7 +95,9 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 
 1. `common-sourcing.md` のルールで統合稿 `<scratchpad>/i60-draft.md` を確認(出典・確度ラベル・仮定の明記・
    訂正の全箇所反映・[Codex報告] が残っていないこと)
-2. 業界DB のプロパティを書く(列の対応は下表)
+2. 業界DB のプロパティを書く(列の対応は下表)。既存レコード(`調査中` で再開)は `i01-existing.md` で
+   空だった列だけを `update_properties` に入れる。値のある列を変える場合は、新旧の値を示してユーザーに
+   確認してから書く。企業 relation は既存の値を残して追加する
 3. 本文に統合稿を差し込む(既存本文は変更しない、`update_content` / `insert_content`、全文置換禁止、
    前後で diff 比較、表は `<table>`。詳細は `notion-schema.md`)
 4. 企業調査から呼ばれた場合は、企業 relation に対象企業を追加する

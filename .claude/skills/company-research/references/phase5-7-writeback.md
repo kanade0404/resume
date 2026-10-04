@@ -67,7 +67,10 @@ git 操作はしない。`pr` の場合は次の手順を sonnet 以上で1コ�
   対象ファイルと衝突しない起点(ローカル main、または `git fetch` 後の origin/main)を選ぶ。
   `git switch -c research/<slug>-<YYYYMMDD> <起点>` を使う(`checkout` / `branch -m` / `stash` は拒否されうる)
 - **7-3**: `git -C <repo> add <対象ファイルのパス>` のみ。`git add -A` / `git add .` 禁止。無関係な変更に触れない。
-  コミット後に `git -C <repo> show --stat HEAD` で対象ファイルだけが入っていることを確認する
+  コミット前に `git -C <repo> diff --cached --name-only` で staged が対象ファイルだけか確認する。無関係な
+  ファイルが既に staged なら、`git -C <repo> commit --only -m <msg> -- <対象ファイルのパス>` で対象パスだけを
+  コミットする(他の staged は index に残り触らない)。コミット後に `git -C <repo> show --stat HEAD` で
+  対象ファイルだけが入っていることを確認する
 - **7-4**: auto mode で push が拒否されたら回避せず、ユーザーに
   `! git -C <repo> push -u origin <branch>` の実行を依頼する
 - **7-5**: PR 作成後のレビュー指摘の確認は `pr-review-respond` skill(`prr fetch`)を使う

@@ -1,7 +1,7 @@
 # Phase 1: 基本調査(観点ごとに並列)
 
 4観点を並列 subagent(sonnet)で調べる。各 subagent は `00-identity.md` と `01-seed-urls.md` と
-`search-log.md` を最初に読む。出力は `<scratchpad>/10-<観点>.md`。
+`search-log*.md` を最初に読む(追記は自分の `search-log-<実行者>.md` だけ)。出力は `<scratchpad>/10-<観点>.md`。
 
 ## 評価スケール(4観点共通)
 
