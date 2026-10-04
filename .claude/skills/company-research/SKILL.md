@@ -49,7 +49,7 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 - **出典と確度**: すべての主張に出典URLと日付、確度ラベル `[照合済]` / `[二次]` / `[Codex報告]` / `未確認`。
   推測は推測、仮定は仮定と書く。「確認できない」は「無い」ではない →
   [references/common-sourcing.md](references/common-sourcing.md)
-- **検索予算**: WebSearch はセッション全体で共有(既定 200)。URL が分かるものは WebFetch / API。
+- **検索予算**: WebSearch はセッション全体で共有(`web_search_budget` 未設定なら環境変数の上限、無ければ 200)。URL が分かるものは WebFetch / API。
   subagent ごとに上限を数字で指示し、scratchpad の検索ログで重複を防ぐ。広い探索は Codex CLI →
   [references/common-research-budget.md](references/common-research-budget.md)
 - **subagent 運用**: main は計画・判断・統合だけ。観点別に並列、出力は scratchpad の .md。

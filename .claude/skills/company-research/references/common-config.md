@@ -19,7 +19,7 @@
 | `obsidian_dir` | Obsidian控えの置き場所(企業ごとの `.md`) | 控えを省略してよいか聞く |
 | `obsidian_repo` / `obsidian_remote` | 控え先のgitリポジトリのローカルパスとremote | 同上 |
 | `obsidian_merge` | `pr`(ブランチ+PR)/ `direct`(書くだけ、git操作なし) | `pr` |
-| `web_search_budget` | セッション全体のWebSearch上限 | 200 |
+| `web_search_budget` | セッション全体のWebSearch上限 | 環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` の値、無ければ 200 |
 
 ### 読み方
 
