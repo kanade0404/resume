@@ -47,7 +47,7 @@ main(または opus subagent)が scratchpad の全ファイルを読み、`<scra
 ### Obsidian 控え
 
 - 設定ファイルの `obsidian_dir` に `<正式社名>.md` を書く(既存ファイルがあれば同じ方針で末尾追記、既存部分は変更しない)
-- 内容は統合稿と同じ。Notion のページ URL を frontmatter かリンクで残す
+- 内容は統合稿と同じ。frontmatter は使わず(控え先 vault の規約がフロントマター無しのプレーン Markdown のため)、冒頭のリンク行で Notion ページ URL・業界ページ URL・調査日を残す
 - Obsidian はパイプ表でよい
 
 ## Phase 7: 反映(Obsidian リポジトリ)
