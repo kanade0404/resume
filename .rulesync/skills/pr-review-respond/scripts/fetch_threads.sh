@@ -1,13 +1,30 @@
 #!/usr/bin/env bash
-# Fetch unresolved review threads + general PR comments for a given PR.
-# Outputs a single JSON document on stdout with normalized fields.
+# Fetch ALL review feedback for a given PR and emit one normalized JSON doc.
 #
-# Usage: fetch_threads.sh <pr-number>
+# Three sources, all required — reading only one of them is how findings get
+# missed (observed: only Devin's 2 inline comments were picked up while
+# CodeRabbit's "Outside diff range" findings lived in the review body):
+#   1. inline review threads        (GraphQL reviewThreads)
+#   2. review bodies                (REST pulls/{n}/reviews — CodeRabbit puts
+#                                    "Outside diff range" / "Nitpick" /
+#                                    "Additional" / "Duplicate" comments in
+#                                    collapsed <details> here; Devin and humans
+#                                    may also write findings only here)
+#   3. PR conversation comments     (REST issues/{n}/comments — walkthroughs,
+#                                    summaries, free-form findings)
+#
+# Usage: fetch_threads.sh <pr-number>      (normally via `prr [-R owner/repo] fetch`)
 # Requires: gh (authenticated), jq
+#
+# Repository: GH_REPO (set by `prr -R owner/repo`) or the current directory's
+# repository — see lib_repo.sh. The resolved repository is printed on stderr.
+# Exits non-zero (stderr says why) when the PR does not exist in that
+# repository or belongs to another one, instead of emitting an empty document.
 #
 # Output schema:
 # {
-#   "pr": { "number": int, "title": str, "url": str, "head_oid": str, "base": str },
+#   "pr": { "number": int, "title": str, "url": str, "head_oid": str, "base": str,
+#           "repo": "owner/repo" (base repository), "head_repo": "owner/repo" | null },
 #   "threads": [
 #     {
 #       "thread_id": str,        # GraphQL node id
@@ -28,18 +45,41 @@
 #       "self_replied": bool     # true if any subsequent comment in thread is by the PR author
 #     }
 #   ],
-#   "issue_comments": [           # PR-level (non-inline) comments
+#   "review_bodies": [            # submitted reviews with a non-blank body (PENDING excluded)
+#     {
+#       "id": int, "author": str, "vendor": str,
+#       "state": "COMMENTED" | "APPROVED" | "CHANGES_REQUESTED" | "DISMISSED",
+#       "body": str,             # full body, ALWAYS kept verbatim
+#       "submitted_at": str, "url": str, "commit_id": str,
+#       "embedded_findings": [   # best-effort split of CodeRabbit <details> sections;
+#         {                      # [] when the body does not follow that layout
+#           "category": "outside_diff_range" | "nitpick" | "additional" | "duplicate",
+#           "path": str, "start_line": int, "end_line": int,
+#           "title": str, "body": str
+#         }
+#       ]
+#     }
+#   ],
+#   "issue_comments": [           # PR-level (non-inline) comments, full body kept
 #     { "id": int, "author": str, "vendor": str, "body": str, "url": str, "created_at": str }
-#   ]
+#   ],
+#   "counts": {                   # report these per source — never just "N comments"
+#     "threads": int, "unresolved_threads": int,
+#     "eligible_threads": int,   # unresolved ∧ ¬outdated ∧ ¬self_replied (= Phase A triage target)
+#     "skipped_threads": int,    # unresolved but outdated or self_replied
+#     "review_bodies": int, "embedded_findings": int, "issue_comments": int
+#   }
 # }
 #
 # Design notes:
-# - Vendor detection is based on author login + body shape, not bot suffix.
+# - Vendor detection is based on author login, not bot suffix.
 #   - login starts with "coderabbit" → coderabbit
-#   - login starts with "devin" or contains "devin-ai-integration" → devin
+#   - login starts with "devin" or contains "devin-ai" → devin
 #   - everything else → human (safe default to avoid resolve-misfire)
 # - is_resolved/is_outdated filtering is the caller's responsibility; this
 #   script returns ALL threads so the caller can audit history if needed.
+# - The pure normalization lives in normalize_fetch.jq so it can be tested
+#   against fixtures without network access.
 
 set -euo pipefail
 
@@ -54,17 +94,52 @@ if [ "$#" -ne 1 ]; then
   exit 2
 fi
 
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+# shellcheck source-path=SCRIPTDIR source=lib_repo.sh
+. "$SCRIPT_DIR/lib_repo.sh"
 pr="$1"
-owner=$(gh repo view --json owner --jq '.owner.login')
-repo=$(gh repo view --json name --jq '.name')
+prr_resolve_repo
 
-# PR metadata
-pr_meta=$(gh pr view "$pr" --json number,title,url,headRefOid,baseRefName \
-  --jq '{number, title, url, head_oid: .headRefOid, base: .baseRefName}')
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+wrong_repo_hint() {
+  if [ "$repo_source" = "cwd" ]; then
+    echo "hint: the repository was taken from the current directory; if the PR lives elsewhere, run 'prr -R owner/repo fetch $pr'" >&2
+  fi
+}
+
+# PR metadata. This also proves the PR exists in the resolved repository —
+# a missing PR must be an error, never an empty (= "no findings") document.
+if ! gh pr view "$pr" -R "$GH_REPO" \
+  --json number,title,url,headRefOid,baseRefName,headRepository,headRepositoryOwner \
+  >"$tmp/pr.json" 2>"$tmp/pr.err"; then
+  echo "error: PR #$pr not found in $owner/$repo (source: $repo_source): $(tr '\n' ' ' <"$tmp/pr.err")" >&2
+  wrong_repo_hint
+  exit 1
+fi
+jq '{
+    number, title, url, head_oid: .headRefOid, base: .baseRefName,
+    repo: (.url | capture("^https?://[^/]+/(?<o>[^/]+)/(?<r>[^/]+)/pull/") | "\(.o)/\(.r)"),
+    head_repo: (if .headRepositoryOwner.login and .headRepository.name
+                then "\(.headRepositoryOwner.login)/\(.headRepository.name)" else null end)
+  }' "$tmp/pr.json" >"$tmp/meta.json"
+# The PR must belong to the resolved repository (as its base, or as the head
+# of a same-repo PR). Anything else means we are about to read another
+# repository's threads under this PR's name.
+target=$(printf '%s/%s' "$owner" "$repo" | tr '[:upper:]' '[:lower:]')
+if ! jq -e --arg t "$target" \
+  '[.repo, .head_repo] | map(select(. != null) | ascii_downcase) | index($t) != null' \
+  "$tmp/meta.json" >/dev/null; then
+  echo "error: PR #$pr resolved to $(jq -r '.url' "$tmp/meta.json"), which is not in $owner/$repo (source: $repo_source)" >&2
+  wrong_repo_hint
+  exit 1
+fi
 
 # Review threads (with cursor pagination)
 threads_json='[]'
 cursor=""
+pr_author=""
 while :; do
   args=(-F owner="$owner" -F repo="$repo" -F pr="$pr")
   if [ -n "$cursor" ]; then
@@ -98,63 +173,29 @@ while :; do
       }
     }
   }')
+  if ! jq -e '.data.repository.pullRequest != null' >/dev/null <<<"$resp"; then
+    echo "error: GraphQL returned no pull request #$pr for $owner/$repo: $(jq -c '.errors // empty' <<<"$resp" 2>/dev/null)" >&2
+    exit 1
+  fi
   threads_json=$(jq -c --argjson r "$resp" '. + $r.data.repository.pullRequest.reviewThreads.nodes' <<<"$threads_json")
   hasNext=$(jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage' <<<"$resp")
   cursor=$(jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.endCursor // empty' <<<"$resp")
   pr_author=$(jq -r '.data.repository.pullRequest.author.login // ""' <<<"$resp")
   [ "$hasNext" = "true" ] || break
 done
+printf '%s\n' "$threads_json" >"$tmp/threads.json"
+
+# Review bodies — CodeRabbit "Outside diff range" / "Nitpick" etc. live ONLY here.
+gh api --paginate "repos/$owner/$repo/pulls/$pr/reviews" \
+  | jq -s 'add // []' >"$tmp/reviews.json"
 
 # General (issue-level) comments — coderabbit summary, devin overview, etc.
-issue_comments=$(gh api --paginate "repos/$owner/$repo/issues/$pr/comments" \
-  --jq '[.[] | {id, author: .user.login, body, url: .html_url, created_at}]' \
-  | jq -s 'add // []')
+gh api --paginate "repos/$owner/$repo/issues/$pr/comments" \
+  | jq -s 'add // []' >"$tmp/issue_comments.json"
 
-vendor_filter='
-def vendor(login):
-  (login // "" | ascii_downcase) as $l
-  | if   ($l | startswith("coderabbit")) then "coderabbit"
-    elif ($l | startswith("devin")) or ($l | contains("devin-ai")) then "devin"
-    else "human" end;
-'
-
-normalized=$(jq -n \
-  --argjson meta "$pr_meta" \
-  --argjson threads "$threads_json" \
-  --argjson issue_comments "$issue_comments" \
-  --arg pr_author "${pr_author:-}" \
-  "$vendor_filter"'
-{
-  pr: $meta,
-  threads: [
-    $threads[]
-    | . as $t
-    | ($t.comments.nodes[0]) as $root
-    | {
-        thread_id: $t.id,
-        is_resolved: $t.isResolved,
-        is_outdated: $t.isOutdated,
-        root_comment: {
-          id: $root.databaseId,
-          author: $root.author.login,
-          vendor: vendor($root.author.login),
-          path: $root.path,
-          line: $root.line,
-          start_line: $root.startLine,
-          original_line: $root.originalLine,
-          body: $root.body,
-          url: $root.url,
-          created_at: $root.createdAt
-        },
-        self_replied: ([$t.comments.nodes[1:][] | select(.author.login == $pr_author)] | length > 0)
-      }
-  ],
-  issue_comments: [
-    $issue_comments[]
-    | . + { vendor: vendor(.author) }
-  ]
-}
-'
-)
-
-echo "$normalized"
+jq -n -f "$SCRIPT_DIR/normalize_fetch.jq" \
+  --slurpfile meta "$tmp/meta.json" \
+  --slurpfile threads "$tmp/threads.json" \
+  --slurpfile reviews "$tmp/reviews.json" \
+  --slurpfile issue_comments "$tmp/issue_comments.json" \
+  --arg pr_author "$pr_author"

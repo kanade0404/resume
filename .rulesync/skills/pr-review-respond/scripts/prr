@@ -3,6 +3,7 @@
 # Dispatches to per-action scripts in this same directory.
 #
 # Usage:
+#   prr [-R owner/repo] <subcommand> ...   (-R may also follow the subcommand)
 #   prr fetch    <pr-number>
 #   prr reply    <pr-number> <root-comment-id> <body-file>
 #   prr resolve  <pr-number> <root-comment-id> <classification> <vendor> [body-file]
@@ -45,6 +46,7 @@ usage() {
 prr — pr-review-respond entry point
 
 Usage:
+  prr [-R owner/repo] <subcommand> <args>
   prr fetch    <pr>
   prr reply    <pr> <root-comment-id> <body-file>
   prr resolve  <pr> <root-comment-id> <classification> <vendor> [body-file]
@@ -54,11 +56,58 @@ Usage:
   prr escalate <pr> <reason> <body-file>
 
 All subcommands shell out to <scripts-dir>/<action>_*.sh.
+
+-R / --repo owner/repo targets that repository explicitly (also honored via
+the GH_REPO environment variable). Without it, the repository of the current
+directory is used — run outside the PR's clone, that is the wrong repository.
+-R may be given before or right after the subcommand.
 EOF
 }
 
+# -R / --repo is exported as GH_REPO; lib_repo.sh (sourced by each action
+# script) turns it into the single owner/repo every gh call uses.
+set_repo() {
+  if [[ ! "$1" =~ ^([^/[:space:]]+/)?[^/[:space:]]+/[^/[:space:]]+$ ]]; then
+    printf 'error: -R expects owner/repo, got: %s\n' "$1" >&2
+    exit 2
+  fi
+  export GH_REPO="$1" PRR_REPO_SOURCE="-R"
+}
+
+nshift=0
+repo_opts() {
+  nshift=0
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -R|--repo)
+        if [ "$#" -lt 2 ]; then
+          printf 'error: %s requires owner/repo\n' "$1" >&2
+          exit 2
+        fi
+        set_repo "$2"
+        nshift=$((nshift + 2))
+        shift 2
+        ;;
+      --repo=*)
+        set_repo "${1#--repo=}"
+        nshift=$((nshift + 1))
+        shift
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+}
+
+repo_opts "$@"
+shift "$nshift"
+
 cmd="${1:-}"
 shift || true
+
+repo_opts "$@"
+shift "$nshift"
 
 case "$cmd" in
   fetch)

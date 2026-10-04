@@ -21,6 +21,14 @@
     {"id":"t17","prompt":"PR とは何か説明して","should_trigger":false,"rationale":"概念照会、コメント対応ではない","tags":["distractor"]},
     {"id":"t18","prompt":"PR にコメントを追加して、リリースノート書いて","should_trigger":false,"rationale":"自分発のコメント追加であり既存指摘対応ではない","tags":["distractor"]},
     {"id":"t19","prompt":"修正を push したので PR のスレッド対応と監視お願い","should_trigger":true,"rationale":"push 直後のスレッド終端は本スキルの起動点 (2026-07-05 の放置事例由来)","tags":["explicit"]},
-    {"id":"t20","prompt":"レビュー対応を push した。残ってるスレッド閉じておいて","should_trigger":true,"rationale":"再 push 後の未解決スレッド終端","tags":["ambiguous"]}
+    {"id":"t20","prompt":"レビュー対応を push した。残ってるスレッド閉じておいて","should_trigger":true,"rationale":"再 push 後の未解決スレッド終端","tags":["ambiguous"]},
+    {"id":"t21","prompt":"PR #42 の指摘確認して","should_trigger":true,"rationale":"確認だけの依頼 = 読み取り専用モード。ad-hoc な gh で行コメントだけ拾う取りこぼしの起点 (2026-10-03)","tags":["explicit","read-only"]},
+    {"id":"t22","prompt":"レビュー指摘を確認して。まだ直さなくていい","should_trigger":true,"rationale":"修正しない明示つきの確認依頼 = 読み取り専用モード","tags":["explicit","read-only"]},
+    {"id":"t23","prompt":"この PR、指摘ある?","should_trigger":true,"rationale":"口語の確認依頼 = 読み取り専用モード","tags":["ambiguous","read-only"]},
+    {"id":"t24","prompt":"CodeRabbit がレビュー本文に書いてる Outside diff range のやつも拾って","should_trigger":true,"rationale":"レビュー本文 (折りたたみ内) の指摘取得 = 本スキルの取得対象","tags":["explicit","review-body"]},
+    {"id":"t25","prompt":"subagent に PR のレビューコメントを集めさせて件数を教えて","should_trigger":true,"rationale":"委譲時も prr fetch を使わせる規律の対象","tags":["ambiguous","orchestration"]},
+    {"id":"t26","prompt":"この設計に指摘ある?","should_trigger":false,"rationale":"PR レビューコメントではなく設計への意見要求 = design-review","tags":["distractor","read-only"]},
+    {"id":"t27","prompt":"PR 出す前に自分の差分に指摘を出して","should_trigger":false,"rationale":"レビュー実行 (指摘を生成する側) = code-review","tags":["adjacent"]},
+    {"id":"t28","prompt":"issue #10 のコメント確認して","should_trigger":false,"rationale":"PR ではなく issue のコメント閲覧","tags":["distractor"]}
   ]
 }
