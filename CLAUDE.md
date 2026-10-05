@@ -45,6 +45,15 @@ pnpm run rulesync:check           # ドリフト検出(CI 用)
 `career-grilling` もこのリポジトリ固有のローカルskillで、配布物ではない。
 `company-research`(企業調査)と`industry-research`(業界調査)もこのリポジトリ固有のローカルskillで、配布物ではない。共通参照は`company-research/references/common-*.md`に置く。NotionのIDやObsidianのパスは`.claude/skills/company-research/research-config.local`(gitignore対象)から読む。
 
+## Claude Code プラグイン
+
+`.claude/settings.json` の `enabledPlugins`(notion, exa)は有効化の共有のみで、プラグイン本体は各自の環境に入らない。初回に次を実行し、各プラグインの認証手順に従って認証も済ませる。
+
+```bash
+claude plugin install exa@claude-plugins-official --scope project
+claude plugin install notion@claude-plugins-official --scope project
+```
+
 ## CI / 自動化
 
 - `textlint.yaml` — masterへのpushと全PRでlintを実行。textlintを通らない文章はマージできない

@@ -1,7 +1,8 @@
 # 共通: 検索予算と検索ログ
 
-WebSearch には**セッション全体で共有される上限**がある(既定 200 回。設定ファイルの
-`web_search_budget` を優先)。subagent の検索も同じ枠から引かれる。並列 subagent が
+WebSearch には**セッション全体で共有される上限**がある(設定ファイルの `web_search_budget` を優先。
+未設定なら環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` の値(プロジェクト設定で 1000)、
+それも無ければ 200)。subagent の検索も同じ枠から引かれる。並列 subagent が
 無制限に検索すると途中で枯渇し、後半の観点が調べられなくなる。
 
 ## 回数に数える/数えない
@@ -59,5 +60,5 @@ codex --search exec -m gpt-5.5 --sandbox read-only --skip-git-repo-check \
 ## 枯渇したとき
 
 - 残予算が 10% を切ったら新規の並列 dispatch を止め、未調査の観点を「未確認(検索予算枯渇)」として記録する
-- 上限を引き上げる環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` は**保険**。ユーザーに設定して
-  セッションを再起動してもらう必要があるため、最初から当てにしない
+- 環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` はプロジェクトの `.claude/settings.json` で 1000 に
+  設定済み。ただし未設定の環境では効かないため、枯渇後に引き上げる前提にはしない
