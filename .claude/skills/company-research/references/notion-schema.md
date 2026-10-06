@@ -58,7 +58,7 @@ ID・URL は設定ファイル(`research-config.local`)から取る。ここに�
 ## 書き込みの共通ルール
 
 - Notion 本文ではパイプ表(`| a | b |`)が崩れるため `<table>` 記法を使う
-- 既存ページ本文は**変更しない**。差し込みは `notion-update-page` の `update_content` で行う
+- 既存ページ本文は**変更しない**(誤りが確定した記述の訂正は `phase5-7-writeback.md` / `phase8-crosscheck.md` の部分置換だけ)。差し込みは `notion-update-page` の `update_content` で行う
   (`old_str` = 既存の見出しなど一意なアンカー、`new_str` = 同じアンカー + 追加セクション。アンカー自体の文言は変えない)。
   末尾追記だけなら `insert_content`(`position: end`)。全文置換の `replace_content` は使わない。
   挿入前後で本文を fetch し、追加部分を除いた既存部分のハッシュ/diff が一致することを確認する
