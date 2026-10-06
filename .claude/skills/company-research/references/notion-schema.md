@@ -15,7 +15,7 @@ ID・URL は設定ファイル(`research-config.local`)から取る。ここに�
 | 創業日 | date | 設立日。出典は登記・会社概要 |
 | 従業員数 | number | 最新の公表値。出典と時点を本文に書く |
 | 旧Tags | multi_select | 旧列(廃止扱い)。**書き込まない**。分類は業界 relation を使う。過去の選択肢: EC, ERP, HR, SIer, VR, ギフト, グループウェア, ゲーム, コーポレート, コールセンター, セールイネーブルメント, ノンデスクワーカー, フィンテック, ヘルスケア, メディア, モビリティ, ライフスタイル, リーガルテック, 医療, 営業, 家計管理, 介護, 教育, 経理, 警備, 建設, 交通, 広告, 製造業, 製薬, 不動産, 物流, 保育, 保険, 法律, 旅行, 労務 |
-| Status | status | Queued / In-Progress / Error / Done。調査開始で In-Progress、書き込み完了で Done、途中断念で Error |
+| Status | status | Queued / In-Progress / Error / Done。調査開始で In-Progress、Phase 8-5 の最終更新で Done(Phase 5 の書き込み直後は In-Progress のまま)、途中断念で Error |
 | 志望度 | select | 判定中 / 高 / 中 / 低。**本 skill は変更しない**(ユーザーが決める) |
 | 英語利用 | checkbox | 社内公用語・業務で英語を使う証拠があれば true |
 | 業界 | relation → 業界DB | 該当する業界レコード |
