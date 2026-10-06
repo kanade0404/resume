@@ -131,8 +131,8 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
 - **Phase 6(先に実行)**: 訂正の全箇所反映、仮定/上限の明記、確度ラベルの確認、未確認リスト、
   面談で確認すべき質問(カテゴリ別)
 - **Phase 5**: Notion 企業ページ本文へ差し込み(既存本文は変更しない。`update_content` / `insert_content`、
-  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・要約・業界 relation・Status)、
-  Obsidian 控え。**志望度は変更しない**
+  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・Status)、
+  Obsidian 控え。**志望度と要約(Notion AI が生成する列)は変更しない**
 - **Phase 7**: Obsidian リポジトリでブランチを切り、対象ファイルだけ add/commit。push が拒否されたら
   ユーザーに `!` で依頼。PR の指摘確認は `pr-review-respond`
 
