@@ -17,6 +17,9 @@
     {"id": "c13", "prompt": "職務経歴書のdetail.mdに前職の実績を追記して", "should_trigger": false, "rationale": "経歴書編集であり企業調査ではない", "tags": ["distractor"]},
     {"id": "c14", "prompt": "A社からのオファー、受けるべきか壁打ちして", "should_trigger": false, "rationale": "オファーの意思決定支援は career-grilling", "tags": ["distractor"]},
     {"id": "c15", "prompt": "この市場規模の数字、本当? 調査会社ごとに違うんだけど", "should_trigger": false, "rationale": "業界の市場規模検証は industry-research", "tags": ["distractor"]},
-    {"id": "c16", "prompt": "Notionの企業DBに列を1つ追加して", "should_trigger": false, "rationale": "DB スキーマ編集であり調査ではない", "tags": ["distractor"]}
+    {"id": "c16", "prompt": "Notionの企業DBに列を1つ追加して", "should_trigger": false, "rationale": "DB スキーマ編集であり調査ではない", "tags": ["distractor"]},
+    {"id": "c17", "prompt": "F社の企業調査の最後に、Codexにクロスチェックさせて誤りがあれば企業ページと業界DBも直しておいて", "should_trigger": true, "rationale": "企業調査の Phase 8(Codex クロスチェックと最終更新)", "tags": ["ambiguous"]},
+    {"id": "c18", "prompt": "G社の企業DBの事業内容とURLが実態とずれてるから、公式サイトを見て訂正して", "should_trigger": true, "rationale": "企業レコードの事業内容・URL の一次情報による訂正(Phase 5)", "tags": ["ambiguous"]},
+    {"id": "c19", "prompt": "この差分をCodexにレビューさせて", "should_trigger": false, "rationale": "コードレビューは企業調査ではない", "tags": ["distractor"]}
   ]
 }
