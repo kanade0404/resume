@@ -173,8 +173,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 25.0.0
-        version: 25.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0)
+        specifier: 26.0.0
+        version: 26.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0)
       textlint:
         specifier: 15.8.0
         version: 15.8.0(supports-color@7.2.0)
@@ -326,6 +326,16 @@ packages:
 
   '@modelcontextprotocol/sdk@1.30.1':
     resolution: {integrity: sha512-H2HxLvC3HDNybePJaLdSrU1hhUK5iQw+WvV1b01myFyI7sdVGe1u/IPTE5D9fGCiJDVtgMV/lmFkQXLmQyIFYA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@cfworker/json-schema': ^4.1.1
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      '@cfworker/json-schema':
+        optional: true
+
+  '@modelcontextprotocol/sdk@1.31.0':
+    resolution: {integrity: sha512-UvTMgnNlnIBO/22ob2RcVGDlcvOslQs8T59+FTGdA0L27a39fdGF/EDETNtDVK4DZGpwomlsYpRdA8UXcVL/pw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@cfworker/json-schema': ^4.1.1
@@ -1182,8 +1192,8 @@ packages:
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
 
-  fastmcp@4.20.16:
-    resolution: {integrity: sha512-37WNlVlr3qifxXsthZFgdPxfCF/ghnQrbwrLbUHZomHd4F7s6smKrJsm2fLqzXW4D4XceW2Vz9gDeF280gIHCw==}
+  fastmcp@4.22.1:
+    resolution: {integrity: sha512-/cvc5uTD7XfMUU2jhcnMFJvdGILwYvx2KsNwtmEkFn9gJmCVmNcHWDBHc1oYQpwru3570kgjoGqM/i25uOWFNQ==}
     hasBin: true
     peerDependencies:
       ajv: ^8.0.0
@@ -1847,8 +1857,8 @@ packages:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
 
-  mcp-proxy@6.7.16:
-    resolution: {integrity: sha512-AxbY46o5fxsCwx7wu1D0G5TGjEkrgkuBd5J0NYkvxgo1RkLQc/2aqqcCaKOIlquuH2lPBFM0T5nCmYtNsic9Ig==}
+  mcp-proxy@6.7.19:
+    resolution: {integrity: sha512-Nbfjj4VwVka1yAR/0fdD2G8borGOfjHEmfUzPFCH2nfQUNjWIij6s3gXMUhi2GUYE3FpUu8iFKE75ZQe/g1n8Q==}
     hasBin: true
 
   md-to-pdf@5.2.5:
@@ -2291,8 +2301,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@25.0.0:
-    resolution: {integrity: sha512-2Hnk7ZJWfpUVw0e8nhlaEzU9Ef5wCuHcO9Dp9asUpuxT+mNYI1YQZrE8fOPlVDMa5lkKzKoSqY/wnnMSKb58/g==}
+  rulesync@26.0.0:
+    resolution: {integrity: sha512-l6XBgMtObwdBP7V15+KXgVb2D8if1FvfBF4P33AXDZcz2z9c7vb1T6xPm5ALGpp/6KI/IM78anj2bEbRlLIjpg==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -3092,6 +3102,28 @@ snapshots:
       zod: 4.6.2
 
   '@modelcontextprotocol/sdk@1.30.1(supports-color@7.2.0)(zod@4.6.5)':
+    dependencies:
+      '@hono/node-server': 1.19.14(hono@4.12.30)
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
+      content-type: 1.0.5
+      cors: 2.8.6
+      cross-spawn: 7.0.6
+      eventsource: 3.0.7
+      eventsource-parser: 3.1.0
+      express: 5.2.1(supports-color@7.2.0)
+      express-rate-limit: 8.6.0(express@5.2.1(supports-color@7.2.0))(supports-color@7.2.0)
+      hono: 4.12.30
+      jose: 6.2.3
+      json-schema-typed: 8.0.2
+      pkce-challenge: 5.0.1
+      raw-body: 3.0.2
+      zod: 4.6.5
+      zod-to-json-schema: 3.25.2(zod@4.6.5)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@modelcontextprotocol/sdk@1.31.0(supports-color@7.2.0)(zod@4.6.5)':
     dependencies:
       '@hono/node-server': 1.19.14(hono@4.12.30)
       ajv: 8.20.0
@@ -4114,7 +4146,7 @@ snapshots:
     dependencies:
       fast-string-width: 3.0.2
 
-  fastmcp@4.20.16(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4):
+  fastmcp@4.22.1(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4):
     dependencies:
       '@apidevtools/swagger-parser': 13.1.0(openapi-types@12.1.3)
       '@modelcontextprotocol/sdk': 1.30.1(supports-color@7.2.0)(zod@4.6.5)
@@ -4123,7 +4155,7 @@ snapshots:
       file-type: 21.3.4(supports-color@7.2.0)
       fuse.js: 7.5.0
       hono: 4.12.30
-      mcp-proxy: 6.7.16(supports-color@7.2.0)
+      mcp-proxy: 6.7.19(supports-color@7.2.0)
       strict-event-emitter-types: 2.0.0
       uri-templates: 0.2.0
       xsschema: 0.4.4(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(effect@3.22.2)(sury@10.0.4)(zod-to-json-schema@3.25.2(zod@4.6.5))(zod@4.6.5)
@@ -4812,7 +4844,7 @@ snapshots:
 
   math-intrinsics@1.1.0: {}
 
-  mcp-proxy@6.7.16(supports-color@7.2.0):
+  mcp-proxy@6.7.19(supports-color@7.2.0):
     dependencies:
       '@modelcontextprotocol/client': 2.0.0
       '@modelcontextprotocol/server': 2.0.0
@@ -5373,10 +5405,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@25.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0):
+  rulesync@26.0.0(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(valibot@1.5.0):
     dependencies:
       '@inquirer/checkbox': 5.2.5
-      '@modelcontextprotocol/sdk': 1.30.1(supports-color@7.2.0)(zod@4.6.5)
+      '@modelcontextprotocol/sdk': 1.31.0(supports-color@7.2.0)(zod@4.6.5)
       '@octokit/request-error': 7.1.2
       '@octokit/rest': 22.0.1
       '@toon-format/toon': 4.1.1
@@ -5385,7 +5417,7 @@ snapshots:
       commander: 15.0.0
       effect: 3.22.2
       es-toolkit: 1.52.0
-      fastmcp: 4.20.16(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4)
+      fastmcp: 4.22.1(@valibot/to-json-schema@1.8.0(valibot@1.5.0))(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.22.2)(jose@6.2.3)(openapi-types@12.1.3)(supports-color@7.2.0)(sury@10.0.4)
       globby: 16.2.4
       gray-matter: 4.0.3
       js-yaml: 5.4.2
