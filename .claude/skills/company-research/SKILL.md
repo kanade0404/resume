@@ -90,7 +90,7 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 3. 業界DB に該当業界が無ければ `industry-research` を先に実行。あれば参照が基本で、書き換えは一次情報で誤りが確定した数値・記述の部分訂正だけ。業界分類のずれは書かずに `industry-research` を提案
 4. 起点URLリスト(公式、PR TIMES、note/RSS/API、テックブログ、採用ページ、SpeakerDeck、connpass、GitHub org)
 5. scratchpad に検索ログと予算表を作り、subagent ごとの WebSearch 上限を決める
-6. 企業DB の Status を In-Progress にする
+6. Notion 書き込み範囲の承認(手順1 の告知)を得たうえで、企業DB の Status を In-Progress にする。承認前に Notion へ書き込まない
 
 ### Phase 1: 基本調査
 
