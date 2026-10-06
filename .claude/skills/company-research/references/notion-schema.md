@@ -15,7 +15,7 @@ ID・URL は設定ファイル(`research-config.local`)から取る。ここに�
 | 創業日 | date | 設立日。出典は登記・会社概要 |
 | 従業員数 | number | 最新の公表値。出典と時点を本文に書く |
 | 旧Tags | multi_select | 旧列(廃止扱い)。**書き込まない**。分類は業界 relation を使う。過去の選択肢: EC, ERP, HR, SIer, VR, ギフト, グループウェア, ゲーム, コーポレート, コールセンター, セールイネーブルメント, ノンデスクワーカー, フィンテック, ヘルスケア, メディア, モビリティ, ライフスタイル, リーガルテック, 医療, 営業, 家計管理, 介護, 教育, 経理, 警備, 建設, 交通, 広告, 製造業, 製薬, 不動産, 物流, 保育, 保険, 法律, 旅行, 労務 |
-| Status | status | Queued / In-Progress / Error / Done。調査開始で In-Progress、書き込み完了で Done、途中断念で Error |
+| Status | status | Queued / In-Progress / Error / Done。調査開始で In-Progress、Phase 8-5 の最終更新で Done(Phase 5 の書き込み直後は In-Progress のまま)、途中断念で Error |
 | 志望度 | select | 判定中 / 高 / 中 / 低。**本 skill は変更しない**(ユーザーが決める) |
 | 英語利用 | checkbox | 社内公用語・業務で英語を使う証拠があれば true |
 | 業界 | relation → 業界DB | 該当する業界レコード |
@@ -58,7 +58,7 @@ ID・URL は設定ファイル(`research-config.local`)から取る。ここに�
 ## 書き込みの共通ルール
 
 - Notion 本文ではパイプ表(`| a | b |`)が崩れるため `<table>` 記法を使う
-- 既存ページ本文は**変更しない**。差し込みは `notion-update-page` の `update_content` で行う
+- 既存ページ本文は**変更しない**(誤りが確定した記述の訂正は `phase5-7-writeback.md` / `phase8-crosscheck.md` の部分置換だけ)。差し込みは `notion-update-page` の `update_content` で行う
   (`old_str` = 既存の見出しなど一意なアンカー、`new_str` = 同じアンカー + 追加セクション。アンカー自体の文言は変えない)。
   末尾追記だけなら `insert_content`(`position: end`)。全文置換の `replace_content` は使わない。
   挿入前後で本文を fetch し、追加部分を除いた既存部分のハッシュ/diff が一致することを確認する

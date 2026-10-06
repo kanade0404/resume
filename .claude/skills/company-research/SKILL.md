@@ -73,6 +73,7 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 - [ ] Phase 6 整合チェック(書き込み前に実行)
 - [ ] Phase 5 書き込み(Notion / Obsidian)
 - [ ] Phase 7 反映(Obsidian リポジトリへ PR)
+- [ ] Phase 8 Codex クロスチェックと最終更新(Phase 5 の書き込み後)
 ```
 
 ユーザーが一部の Phase だけを依頼した場合(例:「外部発信だけ取り込んで」)は、Phase 0 の企業特定と
@@ -82,13 +83,14 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 
 → [references/phase0-setup.md](references/phase0-setup.md)
 
-1. 設定ファイル `research-config.local` を読む。無い/欠けている key はまとめて1回ユーザーに聞いて作る
+1. 設定ファイル `research-config.local` を読む。無い/欠けている key はまとめて1回ユーザーに聞いて作る。
+   あわせて **Notion 書き込み範囲**(企業ページ本文・プロパティ・業界DB の訂正・外部発信DB)を1回で告知して確認する。承認後は以降の Phase で再確認しない
 2. 企業DB の対象レコードを fetch し、事業内容・URL・要約から企業を**一意に特定**する。
    同名・類似名の別会社がありうる場合は決めきれるまで並列調査を出さない。迷ったらユーザーに確認
-3. 業界DB に該当業界が無ければ `industry-research` を先に実行。あれば参照のみ
+3. 業界DB に該当業界が無ければ `industry-research` を先に実行。あれば参照が基本で、書き換えは一次情報で誤りが確定した数値・記述の部分訂正だけ。業界分類のずれは書かずに `industry-research` を提案
 4. 起点URLリスト(公式、PR TIMES、note/RSS/API、テックブログ、採用ページ、SpeakerDeck、connpass、GitHub org)
 5. scratchpad に検索ログと予算表を作り、subagent ごとの WebSearch 上限を決める
-6. 企業DB の Status を In-Progress にする
+6. Notion 書き込み範囲の承認(手順1 の告知)を得たうえで、企業DB の Status を In-Progress にする。承認前に Notion へ書き込まない
 
 ### Phase 1: 基本調査
 
@@ -131,12 +133,20 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
 - **Phase 6(先に実行)**: 訂正の全箇所反映、仮定/上限の明記、確度ラベルの確認、未確認リスト、
   面談で確認すべき質問(カテゴリ別)
 - **Phase 5**: Notion 企業ページ本文へ差し込み(既存本文は変更しない。`update_content` / `insert_content`、
-  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・Status)、
-  Obsidian 控え。**志望度と要約(Notion AI が生成する列)は変更しない**
+  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・Status、
+  実態とずれた事業内容・URL は一次情報で訂正し旧値は本文の訂正節に残す)、Obsidian 控え。**志望度・英語利用と要約(Notion AI が生成する列)は変更しない**
 - **Phase 7**: Obsidian リポジトリでブランチを切り、対象ファイルだけ add/commit。push が拒否されたら
   ユーザーに `!` で依頼。PR の指摘確認は `pr-review-respond`
 
 Notion の列名と意味 → [references/notion-schema.md](references/notion-schema.md)
+
+### Phase 8: Codex クロスチェックと最終更新
+
+→ [references/phase8-crosscheck.md](references/phase8-crosscheck.md)
+
+Phase 5 の書き込み後、統合稿を Codex CLI に渡して事実主張を独立検証させ、不一致・追加事実を subagent が
+URL を開いて照合する。確定した誤りだけを企業ページ・業界DB へ部分置換で反映し、Status を確定する。
+Codex が使えない環境では実施せず、最終報告に「未実施」と書く。
 
 ## 出力フォーマット(ユーザーへの最終報告)
 
@@ -145,9 +155,11 @@ Notion の列名と意味 → [references/notion-schema.md](references/notion-sc
 
 ## 結論(5行)
 ## 書き込み先
-- Notion 企業ページ: 追加したセクション名 / 更新したプロパティ
+- Notion 企業ページ: 追加したセクション名 / 更新したプロパティ(訂正した事業内容・URL は旧値→新値)
+- 業界DB: 訂正した箇所(無ければ「訂正なし」。分類のずれは提案)
 - 外部発信DB: 登録 N 件(重複除外 M 件、本文未取得 K 件)
 - Obsidian: <ファイル名> / ブランチ / PR(未 push ならユーザーに依頼するコマンド)
+## Codex クロスチェック: 実施 / 未実施(不一致 N 件、うち確定した誤り M 件)
 ## 未確認の主要事項(上位5件)
 ## 面談で確認すべき質問(上位5件)
 ## 検索予算: WebSearch 使用 N / 上限 M、Codex 実行 K 回
@@ -157,7 +169,8 @@ Notion の列名と意味 → [references/notion-schema.md](references/notion-sc
 
 - 業界レベルの市場規模・日米比較の作成(`industry-research`)
 - 転職するかどうか・オファー比較の意思決定支援(`career-grilling`)
-- 企業DB の「志望度」の設定、社員DB への書き込み
+- 企業DB の「志望度」「英語利用」の設定、社員DB への書き込み
+- 業界DB の全面改稿(誤りが確定した数値・記述の部分訂正のみ)
 - このリポジトリ(経歴書)への調査結果の記載
 - 私生活・個人攻撃につながる情報の収集
 
@@ -172,3 +185,4 @@ Notion の列名と意味 → [references/notion-schema.md](references/notion-sc
 | [references/notion-schema.md](references/notion-schema.md) | Notion を読み書きする前 |
 | [references/phase0-setup.md](references/phase0-setup.md) 〜 [references/phase5-7-writeback.md](references/phase5-7-writeback.md) | 各 Phase の開始時 |
 | [references/external-publications.md](references/external-publications.md) | Phase 4 |
+| [references/phase8-crosscheck.md](references/phase8-crosscheck.md) | Phase 5 の書き込み後 |
