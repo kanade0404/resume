@@ -44,6 +44,7 @@ pnpm run rulesync:check           # ドリフト検出(CI 用)
 `grill-me` と `grilling` はこのリポジトリ固有のローカルskillで、配布物ではない。
 `career-grilling` もこのリポジトリ固有のローカルskillで、配布物ではない。
 `company-research`(企業調査)と`industry-research`(業界調査)もこのリポジトリ固有のローカルskillで、配布物ではない。共通参照は`company-research/references/common-*.md`に置く。NotionのIDやObsidianのパスは`.claude/skills/company-research/research-config.local`(gitignore対象)から読む。
+`.claude/agents/company-researcher.md`(企業調査を1社1エージェントで回すsubagent)もこのリポジトリ固有で、配布物ではない。
 
 ## Claude Code プラグイン
 
