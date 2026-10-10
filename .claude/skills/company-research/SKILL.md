@@ -133,7 +133,7 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
 - **Phase 6(先に実行)**: 訂正の全箇所反映、仮定/上限の明記、確度ラベルの確認、未確認リスト、
   面談で確認すべき質問(カテゴリ別)
 - **Phase 5**: Notion 企業ページ本文へ差し込み(既存本文は変更しない。`update_content` / `insert_content`、
-  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・要約・業界 relation・Status、
+  全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・Status。要約プロパティは Notion AI に任せて書かない、
   実態とずれた事業内容・URL は一次情報で訂正し旧値は本文の訂正節に残す)、Obsidian 控え。**志望度・英語利用は変更しない**
 - **Phase 7**: Obsidian リポジトリでブランチを切り、対象ファイルだけ add/commit。push が拒否されたら
   ユーザーに `!` で依頼。PR の指摘確認は `pr-review-respond`
@@ -145,8 +145,22 @@ Notion の列名と意味 → [references/notion-schema.md](references/notion-sc
 → [references/phase8-crosscheck.md](references/phase8-crosscheck.md)
 
 Phase 5 の書き込み後、統合稿を Codex CLI に渡して事実主張を独立検証させ、不一致・追加事実を subagent が
-URL を開いて照合する。確定した誤りだけを企業ページ・業界DB へ部分置換で反映し、Status を確定する。
-Codex が使えない環境では実施せず、最終報告に「未実施」と書く。
+URL を開いて照合する。反映候補は提案表にまとめて main に返し、main が裏取りして ID 単位で承認した
+ものだけを企業ページ・業界DB へ部分置換・追記で反映し、Status を確定する。Codex CLI が無い、または
+エラーで動かないときだけ実施せず、最終報告に「未実施」とエラー内容を書く。
+
+## 複数社をまとめて調べる場合
+
+複数社の調査は、[.claude/agents/company-researcher.md](../../agents/company-researcher.md)(このリポジトリ固有の
+subagent)を1社1体で並列起動する。1体に複数社を任せない。
+
+1. main は各社について、企業の特定材料(企業名・公式URL・企業DBレコードURL・取り違えやすい別会社)と
+   Notion 書き込みの承認範囲を集める。承認範囲は main が依頼文で明示する(定義ファイルは承認を与えない)
+2. 作業ディレクトリ名を社ごとに決め、WebSearch 上限を割り振って、company-researcher を同時に3体までを
+   上限に並列起動する。残りは完了を待って起動する
+3. 各エージェントは Phase 7 を実施せず、Obsidian 控えを scratchpad の `obsidian-note.md` に書き出す。
+   Phase 8 は反映前に提案表で main に返るので、main が根拠を裏取りして ID 単位で承認する
+4. 全社完了後に、main(または sonnet subagent)が Phase 7 を1本のブランチ・1本の PR にまとめる
 
 ## 出力フォーマット(ユーザーへの最終報告)
 
@@ -159,7 +173,7 @@ Codex が使えない環境では実施せず、最終報告に「未実施」�
 - 業界DB: 訂正した箇所(無ければ「訂正なし」。分類のずれは提案)
 - 外部発信DB: 登録 N 件(重複除外 M 件、本文未取得 K 件)
 - Obsidian: <ファイル名> / ブランチ / PR(未 push ならユーザーに依頼するコマンド)
-## Codex クロスチェック: 実施 / 未実施(不一致 N 件、うち確定した誤り M 件)
+## Codex クロスチェック: 実施 / 未実施(A 不一致 N 件、うち確定 M 件 / B 追加観点 N 件、うち追記 M 件)
 ## 未確認の主要事項(上位5件)
 ## 面談で確認すべき質問(上位5件)
 ## 検索予算: WebSearch 使用 N / 上限 M、Codex 実行 K 回
@@ -186,3 +200,4 @@ Codex が使えない環境では実施せず、最終報告に「未実施」�
 | [references/phase0-setup.md](references/phase0-setup.md) 〜 [references/phase5-7-writeback.md](references/phase5-7-writeback.md) | 各 Phase の開始時 |
 | [references/external-publications.md](references/external-publications.md) | Phase 4 |
 | [references/phase8-crosscheck.md](references/phase8-crosscheck.md) | Phase 5 の書き込み後 |
+| [.claude/agents/company-researcher.md](../../agents/company-researcher.md) | 複数社を1社1体で並列に調べるとき |
