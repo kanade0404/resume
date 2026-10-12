@@ -1,11 +1,12 @@
 {
-  "enabledPlugins": {
-    "notion@claude-plugins-official": true
-  },
   "permissions": {
     "allow": [
       "Read(.github/workflows/**)",
       "Edit(.github/workflows/**)"
     ]
+  },
+  "enabledPlugins": {
+    "notion@claude-plugins-official": true,
+    "exa@claude-plugins-official": true
   }
 }
