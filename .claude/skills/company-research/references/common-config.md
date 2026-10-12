@@ -16,6 +16,7 @@
 | `company_db_parent_page` | 企業DBを置いている親ページURL | 任意。DB を探すときの起点 |
 | `industry_db_page` / `industry_db_data_source` | 業界DBのページURLとdata source | ユーザーに聞く |
 | `publications_db_page` / `publications_db_data_source` | 外部発信DBのページURLとdata source | ユーザーに聞く |
+| `business_db_data_source` | 事業DBのdata source(`collection://...`) | ユーザーに聞く |
 | `obsidian_dir` | Obsidian控えの置き場所(企業ごとの `.md`) | 控えを省略してよいか聞く |
 | `obsidian_repo` / `obsidian_remote` | 控え先のgitリポジトリのローカルパスとremote | 同上 |
 | `obsidian_merge` | `pr`(ブランチ+PR)/ `direct`(書くだけ、git操作なし) | `pr` |

@@ -7,6 +7,7 @@ industry_db_page=https://www.notion.so/00000000000000000000000000000000
 industry_db_data_source=collection://00000000-0000-0000-0000-000000000000
 publications_db_page=https://www.notion.so/00000000000000000000000000000000
 publications_db_data_source=collection://00000000-0000-0000-0000-000000000000
+business_db_data_source=collection://00000000-0000-0000-0000-000000000000
 # Obsidian 控え先(企業ごとの .md を置くディレクトリ)と、その git リポジトリ
 obsidian_dir=/path/to/vault/company-notes/
 obsidian_repo=/path/to/vault
