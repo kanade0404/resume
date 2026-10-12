@@ -102,13 +102,14 @@ B(足りない観点)の2区分を、根拠付きでだけ出させる。Codex �
 
 ## 返却
 
-SKILL.md の「出力フォーマット(ユーザーへの最終報告)」に沿って報告する。ただし Obsidian の行は、
+Phase 8-6 まで完了したら、SKILL.md の「出力フォーマット(ユーザーへの最終報告)」に沿って報告する。ただし Obsidian の行は、
 ブランチ・PR ではなく、scratchpad の `obsidian-note.md` のパスと「Phase 7 は main に委譲(未実施)」を
 書く(このエージェントはブランチも PR も作らない)。末尾に次を付ける。
 
 - 一言評価: 良い点3 / 懸念3
 - 経歴との適合: 高 / 中 / 低(`README.md` の経歴に照らした根拠を1〜2行)
 
-同じ内容を scratchpad の `final-report.md` にも保存する。Phase 8 の承認待ちで返す場合は、
-`codex-proposals.md` のパスと件数(A/B、照合結果別)を添える。Notion 書き込みの承認が無くて止めた場合は、止めた Phase、
+Phase 8-6 まで完了したときに、同じ内容を scratchpad の `final-report.md` にも保存する。
+Phase 8-4 の承認待ちで返す場合は、最終報告は返さず `final-report.md` にも保存しない。
+`codex-proposals.md` のパスと件数(A/B、照合結果別)だけを返す。Notion 書き込みの承認が無くて止めた場合は、止めた Phase、
 理由、main に必要な承認の告知文を返す。
