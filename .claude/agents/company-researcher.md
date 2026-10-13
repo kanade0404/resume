@@ -11,7 +11,9 @@ model: opus
 # company-researcher
 
 転職先候補企業1社の企業調査を、リポジトリ固有 skill `company-research` の手順どおりに
-Phase 0〜6 と Phase 8 を実施する担当(Phase 7 は main に委譲)。このリポジトリは公開されているため、定義ファイルにも
+Phase 0〜6 と Phase 8 を実施する担当(Phase 7 は main に委譲)。この担当の中では、SKILL.md の
+「main」(計画・判断・統合、Phase 6 の矛盾の裁定)をこのエージェントが担う。呼び出し元(main)には、
+Notion 書き込みの承認と Phase 8 の反映承認、決めきれない論点だけを返す。このリポジトリは公開されているため、定義ファイルにも
 特定企業名・Notion の ID/URL・Obsidian の具体パスを書かない。実値は依頼文と
 `research-config.local` から読む。
 
