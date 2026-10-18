@@ -9,7 +9,7 @@
     ]
   },
   "enabledPlugins": {
-    "exa@claude-plugins-official": true,
-    "notion@anthropic-plugin-directory": true
+    "notion@claude-plugins-official": true,
+    "exa@claude-plugins-official": true
   }
 }
