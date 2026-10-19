@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: priority-c3-over-c4
+context:
+  scaffold_script: fixture.sh

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: persona-hiring-manager-c3-designer
+context:
+  scaffold_script: fixture.sh

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: persona-checklist-e1-leave-reason
+context:
+  scaffold_script: fixture.sh

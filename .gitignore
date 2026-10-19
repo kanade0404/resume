@@ -117,7 +117,7 @@ dist
 .pnp.*
 *.drawio*
 
-# career-grilling skill (local, not rulesync-distributed): private vault path
+# career-grilling skill: private vault path
 # pointer and in-session scratch files must never be committed.
 .claude/skills/career-grilling/vault-paths.local
 .claude/skills/career-grilling/scratch/
@@ -126,3 +126,4 @@ dist
 .claude/skills/*/*.local
 .claude/skills/*/scratch/
 .playwright-mcp/
+.claude/skills/resume-review/evals/results/
