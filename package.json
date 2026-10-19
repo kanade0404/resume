@@ -5,7 +5,6 @@
   "devDependencies": {
     "fixpack": "4.0.0",
     "md-to-pdf": "5.2.5",
-    "rulesync": "33.0.0",
     "textlint": "15.8.0",
     "textlint-filter-rule-allowlist": "4.0.0",
     "textlint-rule-preset-ai-words-ja": "1.2.1",
@@ -20,10 +19,7 @@
     "fix": "fixpack",
     "generate": "./convert.sh",
     "lint": "textlint *.md docs/*.md",
-    "lint:fix": "textlint --fix *.md docs/*.md",
-    "rulesync:check": "rulesync generate --targets claudecode --features skills,rules --check",
-    "rulesync:fetch": "rulesync fetch kanade0404/skills@v0.11.0 --features skills,rules",
-    "rulesync:generate": "rulesync generate --targets claudecode --features skills,rules"
+    "lint:fix": "textlint --fix *.md docs/*.md"
   },
   "type": "module",
   "packageManager": "pnpm@12.13.0"

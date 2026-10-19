@@ -238,6 +238,6 @@ Laravelのモデルに処理が密結合し、テストがほぼ無い状態で�
 
 いずれも利用者は私のみです。
 
-- [skills](https://github.com/kanade0404/skills): 開発ハーネスの配布元リポジトリです。このリポジトリもrulesyncで取得しています。
+- [skills](https://github.com/kanade0404/skills): 開発ハーネスの配布元リポジトリです。
 - agegis: AIエージェントの実行環境です。
 - private-infra: Terraformで管理する個人用インフラのリポジトリです。

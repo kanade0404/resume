@@ -36,11 +36,4 @@
   (報酬額・企業名・退職理由内情)を削いだ表現に変換し、`README.md`/`detail.md`
   編集時は既存の `pnpm run lint`(textlint)を必ず通す
 - `README.pdf` はCIが自動生成・自動コミットする対象であり、本skill(または
-  人手)が手動でコミットしてはならない(既存CLAUDE.mdの規約を継承、変更なし)
-
-## 配布物との関係
-
-`career-grilling` はこのリポジトリ固有のローカルskillであり、
-[kanade0404/skills](https://github.com/kanade0404/skills) からのrulesync配布物
-ではない(`grill-me`/`grilling` と同列)。したがって `.rulesync/` の管理対象外
-であり、直接編集してよい。
+  人手)が手動でコミットしてはならない
