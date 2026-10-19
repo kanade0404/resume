@@ -9,7 +9,6 @@
     ],
     "deny": [
       "Edit(**/*.pdf)",
-      "Write(**/*.pdf)",
       "Bash(git add *.pdf*)",
       "Bash(git add -A*)",
       "Bash(git add .)",
