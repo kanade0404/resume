@@ -6,11 +6,19 @@
     "allow": [
       "Read(.github/workflows/**)",
       "Edit(.github/workflows/**)"
+    ],
+    "deny": [
+      "Edit(**/*.pdf)",
+      "Write(**/*.pdf)",
+      "Bash(git add *.pdf*)",
+      "Bash(git add -A*)",
+      "Bash(git add .)",
+      "Bash(git commit -a*)",
+      "Bash(git commit -am*)"
     ]
   },
   "enabledPlugins": {
     "notion@claude-plugins-official": true,
-    "exa@claude-plugins-official": true,
-    "notion@anthropic-plugin-directory": true
+    "exa@claude-plugins-official": true
   }
 }
