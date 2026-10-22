@@ -173,8 +173,8 @@ importers:
         specifier: 5.2.5
         version: 5.2.5
       rulesync:
-        specifier: 37.1.0
-        version: 37.1.0(supports-color@7.2.0)
+        specifier: 38.0.0
+        version: 38.0.0(supports-color@7.2.0)
       textlint:
         specifier: 15.8.0
         version: 15.8.0(supports-color@7.2.0)
@@ -2015,8 +2015,8 @@ packages:
     resolution: {integrity: sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==}
     engines: {node: '>= 18'}
 
-  rulesync@37.1.0:
-    resolution: {integrity: sha512-w+bcVGKaxWiwjvqsfX+kMMJ8cn7TkntaDELyKG9nTiBfGN7bKj4K+znyjlYi2uO+jfemNCnC6455ME9CAZ9NoQ==}
+  rulesync@38.0.0:
+    resolution: {integrity: sha512-FgM6mlDMAvgzsifZ+j5Amd/znPsQWc9ruRb3YsvkIvqIWfzm2TUSOG3vG78uoDJW7ADNC//rEb9XIWOOBYPwQA==}
     engines: {node: '>=22.0.0', pnpm: '>=10'}
     hasBin: true
 
@@ -4692,7 +4692,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  rulesync@37.1.0(supports-color@7.2.0):
+  rulesync@38.0.0(supports-color@7.2.0):
     dependencies:
       '@inquirer/checkbox': 5.2.6
       '@modelcontextprotocol/sdk': 1.32.1(supports-color@7.2.0)(zod@4.6.7)
