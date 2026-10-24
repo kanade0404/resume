@@ -1,7 +1,16 @@
 # DECISION-TREE-FORMAT: 決定木のノード形式
 
-Phase 2 で構築する決定木のノードスキーマ。`grilling` の「decision tree の各枝を
-歩く」を、キャリア壁打ち向けに具体化したもの。
+Phase 2 で構築する決定木のノードスキーマ。`grilling` の「design tree をfrontier
+ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `status: open`
+かつ `depends_on` のノードがすべてresolvedで、`kind: decision` または `ask: user` の
+`fact` であるノード集合。各ラウンドでfrontierをまとめて聞き(重い要求は
+[QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の「1ラウンド1重要求ルール」で1件に絞る)、
+回答ごとに再計算する。`fact` ノードは原則ユーザに聞かず、既知台帳・コードベース・
+sub-agent調査(構築手順5)で埋める。sub-agentの返却でfactが埋まったら `status: resolved` に
+更新し、その時点でfrontierを再計算する。返却でも埋まらなかったfactは本人しか知らない事実
+として `kind: fact` のまま `ask: user` を付け、`question` を書いてfrontierに入れる。これは
+決定ではなく事実確認なので、回答は `resolution` に記録するだけで Decision Journal
+(Phase 4)には載せない。
 
 ## 保存場所
 
@@ -17,11 +26,12 @@ Phase 2 で構築する決定木のノードスキーマ。`grilling` の「deci
 ```text
 ### Node <id>: <ノード名>
 - kind: fact | decision
+- ask: <fact のみ。調査で埋まらずユーザに確認する場合は "user"、それ以外は省略>
 - depends_on: [<親ノードid>, ...]
 - framework: <Phase2で選定した補助線名、無ければ "none">
 - status: open | resolved | resolved (from ledger)
-- question: <decision の場合のみ。実際にユーザへ投げる質問文の下書き>
-- resolution: <resolved になったら書く。ユーザの決定そのもの>
+- question: <decision と `ask: user` の fact のみ。実際にユーザへ投げる質問文の下書き>
+- resolution: <resolved になったら書く。fact は確認した事実(出典つき)、decision はユーザの決定>
 - confidence_followup: <ユーザが確度%を自己申告した場合、次アクション子ノードのid>
 ```
 
@@ -41,20 +51,23 @@ Phase 2 で構築する決定木のノードスキーマ。`grilling` の「deci
    データ構造**であり、事前承認を求めてユーザに提示することはしない。木の設計品質を
    評価させるのはユーザの仕事ではなく、承認待ちの往復自体が本skillの主目的である
    暗黙知の抽出から逸れる、という過去セッションの反省による。ユーザに見せるのは
-   既知台帳の5行要約・Phase1の方針宣言1行・Node 1 の実質設問(`question` の下書きを
-   [QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の5点固定手順と `<question-priority>`
-   の優先順位に沿って書いたもの)を**同じ1メッセージ**にまとめたものだけであり、これが
+   既知台帳の5行要約・Phase1の方針宣言1行・初期frontierの第1ラウンド(各ノードの
+   `question` の下書きを [QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の5点固定手順と
+   `<question-priority>` の優先順位に沿って書いたもの)を**同じ1メッセージ**にまとめたものだけであり、これが
    セッションの初回メッセージになる。木の形についての承認を求める文言は書かない
-5. 初回メッセージの送信と並行して、`status: open` のまま残る葉ノードのうち既知台帳や
-   コードベース調査で埋まらないものだけを `Skill` ツールで `research-practices` へ
-   発注してよい。発注は葉ノード単位、事前の全面発注はせず、ユーザの設問1への回答を
-   待たずに裏で進めてよい。発注時のサニタイズ・完全スコープ済みプロンプトの要件は
-   [SKILL.md](../SKILL.md) の Phase 2 手順4 と同一(勝手に緩めない)
+5. 初回メッセージの送信と並行して、`status: open` で `depends_on` が解決済みの `fact`
+   ノード(葉かどうかを問わない)のうち、既知台帳やコードベース調査で埋まらないものを
+   `Agent` ツールでsub-agentへ発注する。発注はノード単位、事前の全面発注はせず、ユーザの
+   第1ラウンドへの回答を待たずに裏で進めてよい。frontierを再計算するたびに、新たに依存が
+   解決した `fact` ノードも同様に発注する(openのまま放置されるfactを作らない)。調査中のノードはresolvedでないため、それに依存するノードは
+   返却までfrontierに入らない。発注時のサニタイズ・完全スコープ済みプロンプト・返却文の
+   扱いの要件は [SKILL.md](../SKILL.md) の Phase 2 手順4 と同一(勝手に緩めない)
 
 ## Resolved 時の追加ルール
 
 - ユーザが確度%を自己申告したら、`confidence_followup` に子ノード(kind: decision,
   question: "その確度を上げる次アクションは何か、誰に何を確認するか")を自動追加し、
-  そのノードも resolved になるまで木を完了とみなさない
+  そのノードも resolved になるまで木を完了とみなさない。この子ノードは次ラウンドの
+  frontierに入る
 - 内省差分(Tier4サンプル vs profile)が見つかったら、その場で
   `kind: decision, framework: none` の新規ノードを追加する(Phase4参照)
