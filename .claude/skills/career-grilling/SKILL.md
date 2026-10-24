@@ -28,7 +28,7 @@ disable-model-invocation: false
 
 本skillは `.claude/skills/grilling/SKILL.md` の質問エンジン(design tree / frontierを
 ラウンド単位でまとめて聞く / fact-vs-decision分離 / shared understandingまでenactしない)を
-**継承・委譲**する。frontierは決定木で `depends_on` がすべてresolvedの未解決 `decision` ノードを指す(`fact` ノードは聞かずに調べる)
+**継承・委譲**する。frontierは決定木で `depends_on` がすべてresolvedの未解決 `decision` ノードを指す(`fact` ノードは原則聞かずに調べ、調査で埋まらない本人しか知らない事実だけを `ask: user` として聞く)
 ([references/DECISION-TREE-FORMAT.md](references/DECISION-TREE-FORMAT.md))。継承する原則を
 ここで再定義しない — 本文はキャリア壁打ち特有の前段(文脈接地・補助線選定・決定木構築)と
 後段(Decision Journal・書き戻し)、および過去セッションで露呈した弱点を潰す追加ルールだけを足す。
@@ -145,7 +145,9 @@ vaultパス解決は `.claude/skills/career-grilling/vault-paths.local`(gitignor
 
 ## Phase 3: 尋問ループ(frontierラウンド)
 
-木をラウンド単位で降りる。各ラウンドではfrontier上のノードをまとめて番号付きで聞き、
+木をラウンド単位で降りる。各ラウンドではfrontier上のノードをまとめて番号付きで聞く。
+ただし重い要求のノードは1ラウンドに1件だけ入れ、残りは次ラウンドに回す
+([references/QUESTION-PROTOCOL.md](references/QUESTION-PROTOCOL.md) の「1ラウンド1重要求ルール」)。
 回答を受けたら木を更新してfrontierを再計算し、次のラウンドを出す。直前の回答に依存する
 深掘り(Whyチェーン・具体化の要求・確度フォローアップ)はそのノードの子として次ラウンドに
 入り、同じラウンドに束ねない。各ノードの質問は `<question-priority>` の優先順位((a)矛盾対決型

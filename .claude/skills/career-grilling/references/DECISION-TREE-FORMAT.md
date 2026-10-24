@@ -1,12 +1,16 @@
 # DECISION-TREE-FORMAT: 決定木のノード形式
 
 Phase 2 で構築する決定木のノードスキーマ。`grilling` の「design tree をfrontier
-ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `kind: decision`
-かつ `status: open` かつ `depends_on` のノードがすべてresolvedのノード集合。各ラウンドで
-frontierをまとめて聞き、回答ごとに再計算する。`fact` ノードはユーザに聞かず、既知台帳・
-コードベース・sub-agent調査(構築手順5)で埋める。sub-agentの返却でfactが埋まったら
-`status: resolved` に更新し、その時点でfrontierを再計算する。返却でも埋まらなかったfactは
-本人しか知らない事実として `kind: decision` に変更し、`question` を書いてfrontierに入れる。
+ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `status: open`
+かつ `depends_on` のノードがすべてresolvedで、`kind: decision` または `ask: user` の
+`fact` であるノード集合。各ラウンドでfrontierをまとめて聞き(重い要求は
+[QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の「1ラウンド1重要求ルール」で1件に絞る)、
+回答ごとに再計算する。`fact` ノードは原則ユーザに聞かず、既知台帳・コードベース・
+sub-agent調査(構築手順5)で埋める。sub-agentの返却でfactが埋まったら `status: resolved` に
+更新し、その時点でfrontierを再計算する。返却でも埋まらなかったfactは本人しか知らない事実
+として `kind: fact` のまま `ask: user` を付け、`question` を書いてfrontierに入れる。これは
+決定ではなく事実確認なので、回答は `resolution` に記録するだけで Decision Journal
+(Phase 4)には載せない。
 
 ## 保存場所
 
@@ -22,11 +26,12 @@ frontierをまとめて聞き、回答ごとに再計算する。`fact` ノー�
 ```text
 ### Node <id>: <ノード名>
 - kind: fact | decision
+- ask: <fact のみ。調査で埋まらずユーザに確認する場合は "user"、それ以外は省略>
 - depends_on: [<親ノードid>, ...]
 - framework: <Phase2で選定した補助線名、無ければ "none">
 - status: open | resolved | resolved (from ledger)
-- question: <decision の場合のみ。実際にユーザへ投げる質問文の下書き>
-- resolution: <resolved になったら書く。ユーザの決定そのもの>
+- question: <decision と `ask: user` の fact のみ。実際にユーザへ投げる質問文の下書き>
+- resolution: <resolved になったら書く。fact は確認した事実(出典つき)、decision はユーザの決定>
 - confidence_followup: <ユーザが確度%を自己申告した場合、次アクション子ノードのid>
 ```
 
