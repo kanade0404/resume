@@ -6,6 +6,14 @@
     "allow": [
       "Read(.github/workflows/**)",
       "Edit(.github/workflows/**)"
+    ],
+    "deny": [
+      "Edit(**/*.pdf)",
+      "Bash(git add *.pdf*)",
+      "Bash(git add -A*)",
+      "Bash(git add .)",
+      "Bash(git commit -a*)",
+      "Bash(git commit -am*)"
     ]
   },
   "enabledPlugins": {

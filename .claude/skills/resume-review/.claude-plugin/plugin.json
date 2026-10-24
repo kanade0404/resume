@@ -1,0 +1,7 @@
+{
+  "name": "resume-review",
+  "description": "職務経歴書をペルソナ別のsubagentで多角的にレビューする",
+  "author": {
+    "name": "kanade0404"
+  }
+}
