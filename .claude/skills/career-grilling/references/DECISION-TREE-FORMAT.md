@@ -1,7 +1,9 @@
 # DECISION-TREE-FORMAT: 決定木のノード形式
 
-Phase 2 で構築する決定木のノードスキーマ。`grilling` の「decision tree の各枝を
-歩く」を、キャリア壁打ち向けに具体化したもの。
+Phase 2 で構築する決定木のノードスキーマ。`grilling` の「design tree をfrontier
+ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `status: open`
+かつ `depends_on` のノードがすべてresolvedのノード集合。各ラウンドでfrontierをまとめて
+聞き、回答ごとに再計算する。
 
 ## 保存場所
 
@@ -41,20 +43,22 @@ Phase 2 で構築する決定木のノードスキーマ。`grilling` の「deci
    データ構造**であり、事前承認を求めてユーザに提示することはしない。木の設計品質を
    評価させるのはユーザの仕事ではなく、承認待ちの往復自体が本skillの主目的である
    暗黙知の抽出から逸れる、という過去セッションの反省による。ユーザに見せるのは
-   既知台帳の5行要約・Phase1の方針宣言1行・Node 1 の実質設問(`question` の下書きを
-   [QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の5点固定手順と `<question-priority>`
-   の優先順位に沿って書いたもの)を**同じ1メッセージ**にまとめたものだけであり、これが
+   既知台帳の5行要約・Phase1の方針宣言1行・初期frontierの第1ラウンド(各ノードの
+   `question` の下書きを [QUESTION-PROTOCOL.md](QUESTION-PROTOCOL.md) の5点固定手順と
+   `<question-priority>` の優先順位に沿って書いたもの)を**同じ1メッセージ**にまとめたものだけであり、これが
    セッションの初回メッセージになる。木の形についての承認を求める文言は書かない
 5. 初回メッセージの送信と並行して、`status: open` のまま残る葉ノードのうち既知台帳や
-   コードベース調査で埋まらないものだけを `Skill` ツールで `research-practices` へ
-   発注してよい。発注は葉ノード単位、事前の全面発注はせず、ユーザの設問1への回答を
-   待たずに裏で進めてよい。発注時のサニタイズ・完全スコープ済みプロンプトの要件は
-   [SKILL.md](../SKILL.md) の Phase 2 手順4 と同一(勝手に緩めない)
+   コードベース調査で埋まらない `fact` ノードだけを `Agent` ツールでsub-agentへ
+   発注してよい。発注は葉ノード単位、事前の全面発注はせず、ユーザの第1ラウンドへの回答を
+   待たずに裏で進めてよい。調査中のノードはresolvedでないため、それに依存するノードは
+   返却までfrontierに入らない。発注時のサニタイズ・完全スコープ済みプロンプト・返却文の
+   扱いの要件は [SKILL.md](../SKILL.md) の Phase 2 手順4 と同一(勝手に緩めない)
 
 ## Resolved 時の追加ルール
 
 - ユーザが確度%を自己申告したら、`confidence_followup` に子ノード(kind: decision,
   question: "その確度を上げる次アクションは何か、誰に何を確認するか")を自動追加し、
-  そのノードも resolved になるまで木を完了とみなさない
+  そのノードも resolved になるまで木を完了とみなさない。この子ノードは次ラウンドの
+  frontierに入る
 - 内省差分(Tier4サンプル vs profile)が見つかったら、その場で
   `kind: decision, framework: none` の新規ノードを追加する(Phase4参照)
