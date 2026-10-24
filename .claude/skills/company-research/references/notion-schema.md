@@ -1,6 +1,6 @@
 # Notion DB スキーマ(列名と意味)
 
-ID・URL は設定ファイル(`research-config.local`)から取る。ここには列名と型、選択肢だけを書く。
+ID・URL は設定ファイル(`~/.config/kanade0404-resume/research-config`)から取る。ここには列名と型、選択肢だけを書く。
 書き込み前に毎回 `notion-fetch` で data source を取得し、列名・選択肢が下表と一致するか確認する
 (ユーザーが Notion 側で列を変えている可能性がある。差異があれば Notion 側を正とし、ユーザーに報告する)。
 

@@ -25,12 +25,12 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 
 設定ファイルと共通ルールは `company-research` 側に1か所だけ置き、ここから参照する。
 下表の共通参照ファイルが無い場合は「company-research skill が見つからないため共通ルールを読めない」と
-ユーザーに伝えて停止する(推測で進めない)。設定ファイル `research-config.local` が無い場合は停止せず、
-`common-config.md` の手順で必要な値をユーザーに聞いて作成する。
+ユーザーに伝えて停止する(推測で進めない)。設定ファイルが無い場合は停止せず、
+`common-config.md` の手順(タイトル検索 → ユーザーに確認)で必要な値を埋めて作成する。
 
 | ファイル | 内容 |
 |---|---|
-| `.claude/skills/company-research/research-config.local` | 業界DB・企業DB の ID(gitignore 対象。無ければ作成する) |
+| `~/.config/kanade0404-resume/research-config` | 業界DB・企業DB の ID(リポジトリの外。無ければ作成する) |
 | [../company-research/references/common-config.md](../company-research/references/common-config.md) | 設定ファイルの読み方・公開範囲 |
 | [../company-research/references/common-sourcing.md](../company-research/references/common-sourcing.md) | 出典・確度ラベル・事実と推測の区別 |
 | [../company-research/references/common-research-budget.md](../company-research/references/common-research-budget.md) | WebSearch 予算・検索ログ・Codex CLI |

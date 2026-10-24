@@ -21,7 +21,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 既存の Notion 本文の上書き、前半と後半で矛盾した結論)を手順として潰してある。
 
 **このリポジトリは公開されている。** skill 本文・references・evals に特定企業名・Notion の ID/URL・
-Obsidian の具体パスを書かない。実値は gitignore 対象の設定ファイルから読む
+Obsidian の具体パスを書かない。実値はリポジトリの外の設定ファイルから読む
 ([references/common-config.md](references/common-config.md))。
 
 ## いつ使うか / 使わないか
@@ -83,7 +83,8 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 
 → [references/phase0-setup.md](references/phase0-setup.md)
 
-1. 設定ファイル `research-config.local` を読む。無い/欠けている key はまとめて1回ユーザーに聞いて作る。
+1. 設定ファイル `~/.config/kanade0404-resume/research-config` を読む。無い/欠けている key は
+   `common-config.md` の手順(タイトル検索 → それでも埋まらない key だけまとめて1回ユーザーに聞く)で埋めて書く。
    あわせて **Notion 書き込み範囲**(企業ページ本文・プロパティ・業界DB の訂正・外部発信DB)を1回で告知して確認する。承認後は以降の Phase で再確認しない
 2. 企業DB の対象レコードを fetch し、事業内容・URL・要約から企業を**一意に特定**する。
    同名・類似名の別会社がありうる場合は決めきれるまで並列調査を出さない。迷ったらユーザーに確認
