@@ -1,5 +1,5 @@
-# company-research / industry-research 共通設定のテンプレート(コミット可。値はダミー)
-# 実値は同じディレクトリの research-config.local に書く(gitignore 対象)。
+# company-research / industry-research / company-screening 共通設定のテンプレート(コミット可。値はダミー)
+# 実値はリポジトリの外の ~/.config/kanade0404-resume/research-config に書く(worktree をまたいで使うため)。
 # 形式: key=value(1行1項目)。# 以降はコメント。
 company_db_data_source=collection://00000000-0000-0000-0000-000000000000
 company_db_parent_page=https://www.notion.so/00000000000000000000000000000000
@@ -8,11 +8,17 @@ industry_db_data_source=collection://00000000-0000-0000-0000-000000000000
 publications_db_page=https://www.notion.so/00000000000000000000000000000000
 publications_db_data_source=collection://00000000-0000-0000-0000-000000000000
 business_db_data_source=collection://00000000-0000-0000-0000-000000000000
-# Obsidian 控え先(企業ごとの .md を置くディレクトリ)と、その git リポジトリ
-obsidian_dir=/path/to/vault/company-notes/
-obsidian_repo=/path/to/vault
-obsidian_remote=owner/vault-repo
-# pr = ブランチを切って PR で反映 / direct = 控えファイルを書くだけ(git 操作しない)
-obsidian_merge=pr
+# company-screening が使う key(意味は company-screening/SKILL.md の「設定」表)
+scout_db_data_source=collection://00000000-0000-0000-0000-000000000000
+screening_root_page=https://www.notion.so/00000000000000000000000000000000
+screening_criteria_page=https://www.notion.so/00000000000000000000000000000000
+screening_strategy_page=https://www.notion.so/00000000000000000000000000000000
+screening_career_page=https://www.notion.so/00000000000000000000000000000000
+screening_viewpoints_page=https://www.notion.so/00000000000000000000000000000000
+screening_persona_page=https://www.notion.so/00000000000000000000000000000000
+screening_direction_page=https://www.notion.so/00000000000000000000000000000000
+screening_calibration_log_page=https://www.notion.so/00000000000000000000000000000000
+screening_domain_interest_page=https://www.notion.so/00000000000000000000000000000000
+screening_headcount_log_page=https://www.notion.so/00000000000000000000000000000000
 # セッション全体の WebSearch 上限(未設定なら環境変数 CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION の値、無ければ 200)
 # web_search_budget=1000

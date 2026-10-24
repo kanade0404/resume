@@ -1,7 +1,7 @@
 # Phase 3: 組織・人
 
 **扱うのは職業上の経歴だけ。** 私生活・家族・健康・SNS の私的投稿は、公開されていても収集しない。
-個人名は Notion/Obsidian(private)にだけ書き、この repo には書かない。社員DB には書き込まない。
+個人名は Notion(private)にだけ書き、この repo には書かない。社員DB には書き込まない。
 
 分担の目安: 3-A・3-E を 1 subagent、3-B・3-C を 1 subagent、3-D を 1 subagent(いずれも sonnet)。
 出力は `<scratchpad>/30-<観点>.md`。

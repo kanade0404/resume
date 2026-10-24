@@ -8,7 +8,8 @@
       "Edit(.github/workflows/**)"
     ],
     "deny": [
-      "Edit(**/*.pdf)",
+      "Edit(README.pdf)",
+      "Edit(detail.pdf)",
       "Bash(git add *.pdf*)",
       "Bash(git add -A*)",
       "Bash(git add .)",

@@ -1,0 +1,22 @@
+{
+  "target_skill": "company-screening",
+  "version": "1",
+  "cases": [
+    {"id": "s01", "prompt": "未判定のスカウトを一次レビューして", "should_trigger": true, "rationale": "一次レビューの直接依頼", "tags": ["explicit"]},
+    {"id": "s02", "prompt": "今週来たスカウト捌いて", "should_trigger": true, "rationale": "スカウトの一括判定", "tags": ["explicit"]},
+    {"id": "s03", "prompt": "A社って足切り通る?", "should_trigger": true, "rationale": "足切り判定の直接質問", "tags": ["explicit"]},
+    {"id": "s04", "prompt": "エージェントから紹介されたB社を判定して", "should_trigger": true, "rationale": "紹介案件の判定", "tags": ["explicit"]},
+    {"id": "s05", "prompt": "この判定は違う。C社は通過でいい", "should_trigger": true, "rationale": "較正ログ追記", "tags": ["explicit"]},
+    {"id": "s06", "prompt": "問い合わせ来た会社見ておいて", "should_trigger": true, "rationale": "口語の一次レビュー依頼", "tags": ["ambiguous"]},
+    {"id": "s07", "prompt": "Xで声かけてきたD社、会ったほうがいい?", "should_trigger": true, "rationale": "問い合わせの可否判断", "tags": ["ambiguous"]},
+    {"id": "s08", "prompt": "スカウトDBの未対応、どれから返すべきか志望度つけて", "should_trigger": true, "rationale": "志望度付けの依頼", "tags": ["ambiguous"]},
+    {"id": "s09", "prompt": "A社について網羅的に調べて。IPOできそう?", "should_trigger": false, "rationale": "網羅的な企業調査は company-research", "tags": ["adjacent"]},
+    {"id": "s10", "prompt": "コンタクトセンター業界の市場規模を調べて業界DBに入れて", "should_trigger": false, "rationale": "業界調査は industry-research", "tags": ["adjacent"]},
+    {"id": "s11", "prompt": "そもそも転職するべきか壁打ちしたい", "should_trigger": false, "rationale": "キャリア相談は career-grilling", "tags": ["adjacent"]},
+    {"id": "s12", "prompt": "足切りの基準にTAMの条件を足したい。正本を直して", "should_trigger": false, "rationale": "判定基準の見直しは career-grilling、正本の書き換えは範囲外", "tags": ["adjacent"]},
+    {"id": "s13", "prompt": "B社のスカウトに返信する文面を書いて", "should_trigger": false, "rationale": "返信文の作成は範囲外", "tags": ["adjacent"]},
+    {"id": "s14", "prompt": "Gmailに来たスカウトをスカウトDBに登録して", "should_trigger": false, "rationale": "取得・登録は範囲外", "tags": ["distractor"]},
+    {"id": "s15", "prompt": "スカウトDBに「返答期限」のビューを作って", "should_trigger": false, "rationale": "DB のビュー編集であり判定ではない", "tags": ["distractor"]},
+    {"id": "s16", "prompt": "README.mdの「連絡をご遠慮いただきたい企業」を書き直して", "should_trigger": false, "rationale": "経歴書の編集", "tags": ["distractor"]}
+  ]
+}

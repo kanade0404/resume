@@ -1,7 +1,7 @@
-# Phase 5〜7: 書き込み・整合チェック・反映
+# Phase 5・6: 整合チェック・書き込み
 
-順序は **6(整合チェック)→ 5(書き込み)→ 7(反映)** で実行する。整合チェック前の内容を
-書き込むと、Notion と Obsidian の両方を後から直すことになるため。番号は成果物の論理順。
+順序は **6(整合チェック)→ 5(書き込み)** で実行する。整合チェック前の内容を
+書き込むと、Notion を後から直すことになるため。番号は成果物の論理順。
 
 ## Phase 6: 整合チェック(書き込み前)
 
@@ -52,36 +52,3 @@ main(または opus subagent)が scratchpad の全ファイルを読み、`<scra
   旧値は本文の訂正節(`## 訂正(調査日)`: 旧値 → 新値、出典、確度ラベル)に残す。ずれていなければ触らない
 - 業界DB: `phase0-setup.md` 0-3 の方針で、確定した誤りだけを部分置換で訂正する(全面改稿はしない)
 - 書き込み後に fetch し、プロパティと本文の追加部分を確認する(事業行は企業ページの「事業」relation と rollup でも確認する)
-
-### Obsidian 控え
-
-- 設定ファイルの `obsidian_dir` に `<正式社名>.md` を書く(既存ファイルがあれば同じ方針で末尾追記、既存部分は変更しない)
-- 内容は統合稿と同じ。frontmatter は使わず(控え先 vault の規約がフロントマター無しのプレーン Markdown のため)、リンク行で Notion ページ URL・業界ページ URL・調査日を残す。新規ファイルならファイル冒頭、既存ファイルへの追記なら追記する調査セクションの冒頭に置く(既存部分の先頭は変更しない)
-- Obsidian はパイプ表でよい
-
-## Phase 7: 反映(Obsidian リポジトリ)
-
-Obsidian の控え先は**別の git リポジトリ**(設定ファイルの `obsidian_repo`)。`obsidian_merge=direct` なら
-git 操作はしない。`pr` の場合は次の手順を sonnet 以上で1コマンドずつ実行する。
-
-```
-- [ ] 7-1 git -C <repo> status で無関係な変更を把握した(触らない)
-- [ ] 7-2 起点を決めてブランチを切った
-- [ ] 7-3 対象ファイルだけを add / commit した
-- [ ] 7-4 push した(拒否されたらユーザーに依頼)
-- [ ] 7-5 PR を作り、指摘を確認した
-```
-
-- **7-2 起点**: ローカル main が origin/main より遅れていても、`origin/main` 起点にこだわらない。
-  対象ファイルと衝突しない起点(ローカル main、または `git fetch` 後の origin/main)を選ぶ。
-  `git switch -c research/<slug>-<YYYYMMDD> <起点>` を使う(`checkout` / `branch -m` / `stash` は拒否されうる)
-- **7-3**: `git -C <repo> add <対象ファイルのパス>` のみ。`git add -A` / `git add .` 禁止。無関係な変更に触れない。
-  コミット前に `git -C <repo> diff --cached --name-only` で staged が対象ファイルだけか確認する。無関係な
-  ファイルが既に staged なら、`git -C <repo> commit --only -m <msg> -- <対象ファイルのパス>` で対象パスだけを
-  コミットする(他の staged は index に残り触らない)。コミット後に `git -C <repo> show --stat HEAD` で
-  対象ファイルだけが入っていることを確認する
-- **7-4**: auto mode で push が拒否されたら回避せず、ユーザーに
-  `! git -C <repo> push -u origin <branch>` の実行を依頼する
-- **7-5**: PR 作成後のレビュー指摘の確認は `pr-review-respond` skill(`prr fetch`)を使う
-- subagent に任せた場合、報告されたブランチ・コミット・push 状態を main が `git -C <repo> log --oneline -3` /
-  `git -C <repo> status -sb` で検証してからユーザーに伝える

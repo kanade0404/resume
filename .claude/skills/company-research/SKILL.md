@@ -3,7 +3,7 @@ name: company-research
 description: >-
   転職先候補の企業を、Notion の企業DB のレコードを起点に再現性のある手順で調べ、事業・投資家目線
   (IPO 規模、資本構成、決算、ユニットエコノミクス、TAM 検証)・組織と人・外部発信の取り込みまでを
-  subagent 並列で調査して、企業ページ・外部発信DB・Obsidian 控えへ書き込む。「企業調査して」
+  subagent 並列で調査して、Notion の企業ページ・外部発信DB へ書き込む。「企業調査して」
   「〇〇について網羅的に調べて」「転職先候補を調べて」「この会社どう?」「IPOできる?」「この会社の
   資金調達と決算を見て」「外部発信を企業DBに取り込んで」「退職エントリや CTO の変遷も調べて」の
   ような、特定の企業を評価する依頼で必ず起動する。業界DB に該当業界が無ければ先に
@@ -20,8 +20,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 (同名の別会社の取り違え、検索予算の枯渇、記事の冒頭だけで要約、仮定値を事実として記載、
 既存の Notion 本文の上書き、前半と後半で矛盾した結論)を手順として潰してある。
 
-**このリポジトリは公開されている。** skill 本文・references・evals に特定企業名・Notion の ID/URL・
-Obsidian の具体パスを書かない。実値は gitignore 対象の設定ファイルから読む
+**このリポジトリは公開されている。** skill 本文・references・evals に特定企業名・Notion の ID/URL を書かない。実値はリポジトリの外の設定ファイルから読む
 ([references/common-config.md](references/common-config.md))。
 
 ## いつ使うか / 使わないか
@@ -71,8 +70,7 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 - [ ] Phase 3 組織・人
 - [ ] Phase 4 外部発信の取り込み
 - [ ] Phase 6 整合チェック(書き込み前に実行)
-- [ ] Phase 5 書き込み(Notion / Obsidian)
-- [ ] Phase 7 反映(Obsidian リポジトリへ PR)
+- [ ] Phase 5 書き込み(Notion)
 - [ ] Phase 8 Codex クロスチェックと最終更新(Phase 5 の書き込み後)
 ```
 
@@ -83,7 +81,8 @@ Obsidian の具体パスを書かない。実値は gitignore 対象の設定フ
 
 → [references/phase0-setup.md](references/phase0-setup.md)
 
-1. 設定ファイル `research-config.local` を読む。無い/欠けている key はまとめて1回ユーザーに聞いて作る。
+1. 設定ファイル `~/.config/kanade0404-resume/research-config` を読む。無い/欠けている key は
+   `common-config.md` の手順(タイトル検索 → それでも埋まらない key だけまとめて1回ユーザーに聞く)で埋めて書く。
    あわせて **Notion 書き込み範囲**(企業ページ本文・プロパティ・業界DB の訂正・外部発信DB)を1回で告知して確認する。承認後は以降の Phase で再確認しない
 2. 企業DB の対象レコードを fetch し、事業内容・URL・要約から企業を**一意に特定**する。
    同名・類似名の別会社がありうる場合は決めきれるまで並列調査を出さない。迷ったらユーザーに確認
@@ -126,7 +125,7 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
 記事が多い場合(目安: 100件超)は、この Phase を独立したセッションに分けてよい。参照ファイルは単体で
 完結するように書いてある。
 
-### Phase 6 → 5 → 7: 整合チェック・書き込み・反映
+### Phase 6 → 5: 整合チェック・書き込み
 
 → [references/phase5-7-writeback.md](references/phase5-7-writeback.md)
 
@@ -135,9 +134,8 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
 - **Phase 5**: Notion 企業ページ本文へ差し込み(既存本文は変更しない。`update_content` / `insert_content`、
   全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・資本状況・Status、
   実態とずれた事業内容・URL は一次情報で訂正し旧値は本文の訂正節に残す。旧Tags は書かない)、
-  事業DB への事業行作成(既存行は重複作成しない)、Obsidian 控え。**志望度・英語利用と要約(Notion AI が生成する列)は変更しない**
-- **Phase 7**: Obsidian リポジトリでブランチを切り、対象ファイルだけ add/commit。push が拒否されたら
-  ユーザーに `!` で依頼。PR の指摘確認は `pr-review-respond`
+  事業DB への事業行作成(既存行は重複作成しない)。**志望度・英語利用と要約(Notion AI が生成する列)は変更しない**
+- 旧 Phase 7(Obsidian 控えと PR)は Obsidian の廃止に伴い廃止した。書き込み先は Notion だけ
 
 Notion の列名と意味 → [references/notion-schema.md](references/notion-schema.md)
 
@@ -159,9 +157,7 @@ subagent)を1社1体で並列起動する。1体に複数社を任せない。
    Notion 書き込みの承認範囲を集める。承認範囲は main が依頼文で明示する(定義ファイルは承認を与えない)
 2. 作業ディレクトリ名を社ごとに決め、WebSearch 上限を割り振って、company-researcher を同時に3体までを
    上限に並列起動する。残りは完了を待って起動する
-3. 各エージェントは Phase 7 を実施せず、Obsidian 控えを scratchpad の `obsidian-note.md` に書き出す。
-   Phase 8 は反映前に提案表で main に返るので、main が根拠を裏取りして ID 単位で承認する
-4. 全社完了後に、main(または sonnet subagent)が Phase 7 を1本のブランチ・1本の PR にまとめる
+3. Phase 8 は反映前に提案表で main に返るので、main が根拠を裏取りして ID 単位で承認する
 
 ## 出力フォーマット(ユーザーへの最終報告)
 
@@ -173,7 +169,6 @@ subagent)を1社1体で並列起動する。1体に複数社を任せない。
 - Notion 企業ページ: 追加したセクション名 / 更新したプロパティ(訂正した事業内容・URL は旧値→新値)
 - 業界DB: 訂正した箇所(無ければ「訂正なし」。分類のずれは提案)
 - 外部発信DB: 登録 N 件(重複除外 M 件、本文未取得 K 件)
-- Obsidian: <ファイル名> / ブランチ / PR(未 push ならユーザーに依頼するコマンド)
 ## Codex クロスチェック: 実施 / 未実施(A 不一致 N 件、うち確定 M 件 / B 追加観点 N 件、うち追記 M 件)
 ## 未確認の主要事項(上位5件)
 ## 面談で確認すべき質問(上位5件)
