@@ -1,9 +1,12 @@
 # DECISION-TREE-FORMAT: 決定木のノード形式
 
 Phase 2 で構築する決定木のノードスキーマ。`grilling` の「design tree をfrontier
-ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `status: open`
-かつ `depends_on` のノードがすべてresolvedのノード集合。各ラウンドでfrontierをまとめて
-聞き、回答ごとに再計算する。
+ラウンドで歩く」を、キャリア壁打ち向けに具体化したもの。**frontier** = `kind: decision`
+かつ `status: open` かつ `depends_on` のノードがすべてresolvedのノード集合。各ラウンドで
+frontierをまとめて聞き、回答ごとに再計算する。`fact` ノードはユーザに聞かず、既知台帳・
+コードベース・sub-agent調査(構築手順5)で埋める。sub-agentの返却でfactが埋まったら
+`status: resolved` に更新し、その時点でfrontierを再計算する。返却でも埋まらなかったfactは
+本人しか知らない事実として `kind: decision` に変更し、`question` を書いてfrontierに入れる。
 
 ## 保存場所
 

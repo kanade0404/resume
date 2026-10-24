@@ -28,7 +28,7 @@ disable-model-invocation: false
 
 本skillは `.claude/skills/grilling/SKILL.md` の質問エンジン(design tree / frontierを
 ラウンド単位でまとめて聞く / fact-vs-decision分離 / shared understandingまでenactしない)を
-**継承・委譲**する。frontierは決定木で `depends_on` がすべてresolvedの未解決ノードを指す
+**継承・委譲**する。frontierは決定木で `depends_on` がすべてresolvedの未解決 `decision` ノードを指す(`fact` ノードは聞かずに調べる)
 ([references/DECISION-TREE-FORMAT.md](references/DECISION-TREE-FORMAT.md))。継承する原則を
 ここで再定義しない — 本文はキャリア壁打ち特有の前段(文脈接地・補助線選定・決定木構築)と
 後段(Decision Journal・書き戻し)、および過去セッションで露呈した弱点を潰す追加ルールだけを足す。
