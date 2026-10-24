@@ -1,6 +1,6 @@
 # 共通: 出典・確度・事実と推測の区別
 
-`company-research` と `industry-research` の全成果物(scratchpad の中間 .md、Notion、Obsidian)に適用する。
+`company-research` と `industry-research` の全成果物(scratchpad の中間 .md、Notion)に適用する。
 
 ## 必須ルール
 

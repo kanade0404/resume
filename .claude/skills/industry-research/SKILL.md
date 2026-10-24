@@ -113,9 +113,6 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 | 日米スタートアップの違い | Step 4 の要点3〜5行 |
 | 調査日 / Status | 調査日 / 完了 |
 
-Obsidian 控えが必要な場合(ユーザーが求めたとき、または company-research から呼ばれたとき)は、
-company-research の Phase 5・7 と同じ方法で行う(`../company-research/references/phase5-7-writeback.md`)。
-
 ## 出力フォーマット(ユーザーへの最終報告)
 
 ```

@@ -8,12 +8,6 @@ industry_db_data_source=collection://00000000-0000-0000-0000-000000000000
 publications_db_page=https://www.notion.so/00000000000000000000000000000000
 publications_db_data_source=collection://00000000-0000-0000-0000-000000000000
 business_db_data_source=collection://00000000-0000-0000-0000-000000000000
-# Obsidian 控え先(企業ごとの .md を置くディレクトリ)と、その git リポジトリ
-obsidian_dir=/path/to/vault/company-notes/
-obsidian_repo=/path/to/vault
-obsidian_remote=owner/vault-repo
-# pr = ブランチを切って PR で反映 / direct = 控えファイルを書くだけ(git 操作しない)
-obsidian_merge=pr
 # company-screening が使う key(意味は company-screening/SKILL.md の「設定」表)
 scout_db_data_source=collection://00000000-0000-0000-0000-000000000000
 screening_root_page=https://www.notion.so/00000000000000000000000000000000
