@@ -17,8 +17,17 @@
       "Bash(git commit -am*)"
     ]
   },
+  "extraKnownMarketplaces": {
+    "imozuru": {
+      "source": {
+        "source": "github",
+        "repo": "MaryCache/imozuru"
+      }
+    }
+  },
   "enabledPlugins": {
     "notion@claude-plugins-official": true,
-    "exa@claude-plugins-official": true
+    "exa@claude-plugins-official": true,
+    "imozuru@imozuru": true
   }
 }
