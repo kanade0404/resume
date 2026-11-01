@@ -21,7 +21,8 @@
     "imozuru": {
       "source": {
         "source": "github",
-        "repo": "MaryCache/imozuru"
+        "repo": "MaryCache/imozuru",
+        "ref": "v2.2.0"
       }
     }
   },
