@@ -17,6 +17,10 @@
       "Bash(git commit -am*)"
     ]
   },
+  "enabledPlugins": {
+    "notion@claude-plugins-official": true,
+    "imozuru@imozuru": true
+  },
   "extraKnownMarketplaces": {
     "imozuru": {
       "source": {
@@ -25,10 +29,5 @@
         "ref": "v2.2.0"
       }
     }
-  },
-  "enabledPlugins": {
-    "notion@claude-plugins-official": true,
-    "exa@claude-plugins-official": true,
-    "imozuru@imozuru": true
   }
 }
