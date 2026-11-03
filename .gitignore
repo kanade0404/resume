@@ -120,7 +120,7 @@ dist
 # career-grilling skill: in-session scratch files must never be committed.
 .claude/skills/career-grilling/scratch/
 # Skill-local files: *.local and scratch/ are machine-specific and must never be committed.
-# Notion IDs are not stored locally; skills resolve them from the page map at run time.
+# Notion IDs other than the page-map ID are not stored locally; skills resolve them from the page map at run time.
 .claude/skills/*/*.local
 .claude/skills/*/scratch/
 .playwright-mcp/
