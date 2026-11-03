@@ -51,7 +51,7 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 ## ワークフロー
 
 ```
-- [ ] Step 0 準備: 設定読込、業界DB の既存レコード確認、業界の範囲定義、予算と検索ログ
+- [ ] Step 0 準備: common-config.md の読込とページのマップからの data source 解決、業界DB の既存レコード確認、業界の範囲定義、予算と検索ログ
 - [ ] Step 1 日本(並列 subagent)
 - [ ] Step 2 米国(並列 subagent)
 - [ ] Step 3 市場規模の検証
