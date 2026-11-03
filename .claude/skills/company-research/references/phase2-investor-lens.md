@@ -1,7 +1,8 @@
 # Phase 2: 投資家目線
 
 「この会社は IPO できるか、できるならどの規模か、従業員として株式に期待できるか」を判断する材料を作る。
-数値の多くは推定になるため、**仮定と事実の区別**(`common-sourcing.md`)を最も厳しく守る Phase。
+数値の多くは推定になるため、**仮定と事実の区別**(調査の playbook の「出典の扱い」)を最も厳しく守る Phase。
+調べる段は playbook の段を ToDo に写して進め、下の各節を imozuru に渡す論点の中身にする。
 
 分担の目安: 2-A〜2-C を 1 subagent(opus)、2-D〜2-F を 1 subagent(sonnet)、2-G・2-H を 1 subagent(opus)。
 出力は `<scratchpad>/20-<観点>.md`。

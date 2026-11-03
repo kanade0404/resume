@@ -1,7 +1,8 @@
 # Step 1・2: 日本と米国の業界調査
 
-日本と米国を別の subagent(sonnet)に出す。指示文には `i00-scope.md`(業界の範囲定義)と
-`search-log*.md` を読ませ(追記は自分の `search-log-<実行者>.md` だけ)、WebSearch 上限(目安: 各 15 回)を明記する。
+日本と米国を別の subagent(sonnet)に出し、それぞれを imozuru の親にする(調査の playbook の段1〜3)。
+指示文には `i00-scope.md`(業界の範囲定義)を読ませ、WebSearch 上限(目安は各 15 回)を明記する。
+下の各節の項目が、imozuru に渡す論点の中身になる。表は止めたあと、保存した原文から作る。
 
 ## 日本(出力: `<scratchpad>/i10-japan.md`)
 

@@ -1,44 +1,58 @@
 # WRITEBACK-SCHEMA: Phase 6 書き戻しの一般化パターン
 
+書き戻し先はすべて Notion で、置き場は [CONTEXT-INVENTORY.md](CONTEXT-INVENTORY.md) の
+「0. Notion の置き場の解決」の表でマップから辿る。
+
 ## 二層構造
 
 | 層 | 保存先 | 内容 |
 |---|---|---|
-| 生ログ | `<private>/転職/<year>/グリルセッション成果_<YYYY-MM>.md` 相当(日付入り専用ファイル) | 逐語+導出過程。数値・社名・内情もここには許される(private側のみ) |
-| 蒸留 | `<private>/profile/<topic>.md` | frontmatter付き要約+`[[出典]]`リンクのみ。生の数値・社名は書かない |
+| 生ログ | 年度ページの子「グリルセッション成果_<YYYY-MM>」(その月のページが無ければ年度ページの子として作る) | 逐語+導出過程。数値・社名・内情もここには許される(Notion 側のみ) |
+| 蒸留 | profile の root の子にある各トピックのページ | 要約+出典ページへのメンションのみ。生の数値・社名は書かない |
 
-蒸留層から生ログ層へのリンクは `[[転職/<year>/グリルセッション成果_<YYYY-MM>]]`
-のようなObsidian wiki-linkで持つ。
+蒸留層から生ログ層へのリンクは、生ログページへの Notion のページメンションで持つ。
+節を指すときはメンションの後ろに「§3」のように節番号を添える。
 
-## profile frontmatter 仕様
+## profile のメタ情報
 
-```yaml
----
-sensitivity: low | medium | high
-status: filled | stub | needs-interview
-updated: YYYY-MM-DD
-sources:
-  - "[[転職/<year>/グリルセッション成果_<YYYY-MM>]]"
----
-```
+Notion のページには frontmatter が無い。旧 frontmatter の4項目は次の場所で持つ。
 
-- `sensitivity` は記述内容の機微度(vault内での取り扱い基準。private vault の
-  既存運用に従う)
+| 項目 | 置き場 | 値 |
+|---|---|---|
+| `sensitivity` | profile の索引のカタログ表の列 | `low` / `medium` / `high` |
+| `status` | profile の索引のカタログ表の列 | `filled` / `stub` / `needs-interview` |
+| `updated` | 各トピックのページ末尾の「出典」節の1行目 | `更新 YYYY-MM-DD` |
+| `sources` | 同じ「出典」節の箇条書き | 生ログページへのメンション(複数可) |
+
+- `sensitivity` は記述内容の機微度(Notion 側での取り扱い基準。索引の注入ガイドの既存運用に従う)
 - `status` は Phase 0 の stub 抽出で使うキー。書き戻し後は `filled` に更新する
-- `sources` は複数可。壁打ちで参照した過去ログ・台帳をすべて列挙する
+- `sources` は壁打ちで参照した過去ログ・台帳をすべて列挙する
+- カタログ表に無いトピックのページを新しく作るときは、索引のカタログ表にも行を足す
 
-## 台帳ファイルの更新
+## 台帳ページの更新
 
-`<private>/転職/<year>/grill-ledger.md` を [LEDGER-FORMAT.md](LEDGER-FORMAT.md)
-のスキーマで更新する。次回セッションのPhase 0がこれを読むことで、同じ問いを
-繰り返さないループを閉じる。
+年度ページの子「grill-ledger」の表を [LEDGER-FORMAT.md](LEDGER-FORMAT.md) のスキーマで更新する。
+次回セッションの Phase 0 がこれを読むことで、同じ問いを繰り返さないループを閉じる。
+その年度ページに「grill-ledger」が無ければ、年度ページの子として作る。
+この作成は、年度ページをマップから辿れたときに限って許す。
+月次ログの作成も同じで、ラベル欠落時に止める規則の例外にあたる。
+作る前に年度ページの子を `notion-fetch` し、同名のページが無いことを確かめる。
+
+## Notion に書く内容の制約
+
+- 手元のファイルパスを書かない。Notion はこの端末の外で読まれるため、パスは開けない
+- 決定木や Decision Journal のスクラッチ(手元のファイル)は、パスではなく中身を要約して載せる
+- 本リポジトリの文書は「resume リポジトリの action-plan」のように名前で指す
 
 ## diff提示と適用の順序
 
-1. 生ログファイルへの追記diff、profile各ファイルへの要約diff、grill-ledger.md
-   への追記diffを**すべてscratch diffとして1メッセージにまとめて提示**する
-2. ユーザ承認後にのみ `Write`/`Edit` で適用する
-3. 本skillはgit commitを一切行わない(private vaultはユーザ自身が別途コミットする)
+1. 生ログページへの追記、profile 各ページへの要約、索引のカタログ表の更新、grill-ledger への行追加を、
+   **すべて差分として1メッセージにまとめて提示**する
+2. ユーザ承認後にのみ、Notion の MCP ツール(`ToolSearch` で読み込む)で適用する
+3. 書き込みの直前に書き込み先を `notion-fetch` し、親がマップから辿ったページと一致するか確かめる。
+   一致しなければ書き込まずに止め、ユーザに報告する
+4. 年度ページが無いときは書き込まずに止め、マップと転職の root の修正を頼む。年度ページは本skillが作らない
+5. 本skillはgit commitを一切行わない
 
 ## 公開リポジトリへの反映が必要な場合
 

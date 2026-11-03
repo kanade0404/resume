@@ -2,7 +2,8 @@
 
 このファイルは単体で完結するように書いてある。記事数が多く company-research から分割する場合は、
 このファイルを新しい skill の `SKILL.md` 本文として移し、frontmatter を足せばよい。
-依存するのは下の「入力」と、共通参照 `common-*.md` / `notion-schema.md` だけ。
+依存するのは下の「入力」と、リポジトリ直下の `AGENTS.md`、調査の playbook(`.claude/playbooks/research.md`)、
+`notion-schema.md` だけ。
 
 ## 入力 / 出力
 
@@ -10,7 +11,7 @@
 |---|---|
 | `<scratchpad>/00-identity.md` | 対象企業の特定情報(取り違え防止) |
 | `<scratchpad>/01-seed-urls.md` | note / RSS / テックブログ / SpeakerDeck / PR TIMES の起点 |
-| 設定ファイル | 外部発信DB・企業DB の data source(`common-config.md`) |
+| ページのマップ | 外部発信DB・企業DB の data source(ラベルは SKILL.md の「Notion の置き場」、規則は `AGENTS.md`) |
 | 企業ページ URL | 外部発信DB の「企業」relation に入れる |
 
 | 出力 | 内容 |

@@ -6,18 +6,19 @@
 ## チェックリスト
 
 ```
-- [ ] 0-1 設定ファイルを読んだ(common-config.md)
+- [ ] 0-1 ページのマップから各DB の data source を辿った(SKILL.md の「Notion の置き場」と AGENTS.md)
 - [ ] 0-2 企業DBの対象レコードを fetch し、企業を一意に特定した
 - [ ] 0-3 業界DBを確認し、industry-research の要否を判断した
 - [ ] 0-4 起点URLリストを作った
-- [ ] 0-5 scratchpad に search-log.md と budget.md を作った
+- [ ] 0-5 scratchpad に budget.md を作り、観点ごとの WebSearch の割り当てを決めた
 - [ ] 0-6 Notion 書き込み範囲をユーザーに告知し、承認を得た
 - [ ] 0-7 企業DBの Status を In-Progress にした(承認後に行う。承認前に Notion へ書き込まない)
 ```
 
 ## 0-2 企業の特定
 
-1. 企業DB の data source を `notion-query-data-sources` / `notion-search` で検索し、対象レコードを `notion-fetch` する
+1. 0-1 で辿った企業DB の data source を `notion-query-data-sources` で検索し、対象レコードを `notion-fetch` する
+   - ワークスペース全体への `notion-search` で探さない(同名の別ページを拾いうるため)
    - レコードが無ければユーザーに「新規作成してよいか」を確認してから作る(Name・URL・事業内容だけ埋める)
 2. レコードの **事業内容・URL・要約** を手がかりに公式サイトを開き、次を照合する
    - 正式社名(商号)、本店所在地、代表者名、設立年、主力プロダクト名
@@ -42,8 +43,9 @@
 
 ## 0-4 起点URLリスト
 
-`<scratchpad>/01-seed-urls.md` に、見つかった URL と取得手段を表で書く。WebSearch より先に
-公式サイトのフッター・会社概要・採用ページのリンクから辿る(予算を使わない)。
+`<scratchpad>/01-seed-urls.md` に、見つかった URL と取得手段を表で書く。公式サイトのフッター・会社概要・
+採用ページのリンクから辿る。このリストは Phase 1〜4 で imozuru に渡す媒体の論点の候補で、当たり先をこの表だけに
+閉じない(playbook の段1)。官報・登記・決算公告のように企業調査で決まって当たる先は、毎回この表に入れる。
 
 | 種別 | 探す場所 | 取得手段 |
 |---|---|---|
@@ -60,11 +62,12 @@
 
 見つからない種別は「未確認」と書く(無いとは書かない)。
 
-## 0-5 予算と検索ログ
+## 0-5 予算
 
-- `common-research-budget.md` に従い `<scratchpad>/search-log.md` を作る
-- `<scratchpad>/budget.md` に「総予算 / 使用済み / 観点ごとの割り当て」を書く。
-  目安(総予算 200、業界調査を同セッションで行う場合はその分を先に引く):
+- 上限 `web_search_budget` と `budget.md` の書き方は playbook の「WebSearch の上限と配分」に従う
+- 検索の記録は imozuru の話題のフォルダごとの `queries.jsonl` に残る。別の検索ログは作らない
+- `<scratchpad>/budget.md` の観点ごとの割り当ては、次の目安で決める
+  (総予算 200 の場合。業界調査を同じセッションで行う場合はその分を先に引く)
 
 | 観点 | 目安 |
 |---|---|
@@ -82,5 +85,6 @@ auto mode では Notion への書き込みが拒否されうるため、開始�
 
 - 企業ページ本文への調査セクションの追記(既存本文は変更しない)
 - 企業DB のプロパティ更新(創業日・従業員数・業界 relation・Status、実態とずれた事業内容・URL の訂正)。志望度・英語利用と要約(Notion AI が生成する列。skill は書き込まない)は触らない
+- 事業DB への事業行の作成(既存行は重複作成しない。既存行は変更しない)
 - 業界DB の部分訂正(一次情報で誤りが確定した数値・記述のみ)
 - 外部発信DB への登録(Phase 4 を行う場合)

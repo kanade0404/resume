@@ -10,9 +10,8 @@
   私的・機微な情報を一切書かない。フレームワーク解説・フォーマット定義・
   手順の説明はすべて一般論・ダミー値・公開情報(README/detail.mdに既にある
   情報)の範囲に留める
-- vaultの実パスをSKILL本文・referencesに書かない。実行時に
-  `.claude/skills/career-grilling/vault-paths.local`(gitignore対象)から解決する。
-  このファイル自体は `.gitignore` に登録済み
+- Notion の ID・URL を SKILL本文・references に書かない。置き場は実行のたびに
+  「ページのマップ」から辿る。マップの ID はリポジトリ直下の `AGENTS.md` にだけある
 - 決定木・台帳のscratchファイル(`decision-tree.md` 等)は、本リポジトリの外と
   確認できるセッションのscratchpadディレクトリ、またはgitignore対象の
   `.claude/skills/career-grilling/scratch/` のいずれかに限定し、コミット対象に
@@ -21,13 +20,13 @@
 
 ## write-back(書き戻し)の境界
 
-- デフォルトの書き戻し先はprivate vaultの `profile/<topic>.md` および
-  `転職/<year>/` 配下のみ。private vaultは明示的 `/add-dir` が無い限り
-  デフォルトで触らず、自動addもしない
-- `profile/<topic>.md` には生の数値・社名を書かず要約+`[[出典]]`リンクのみ、
-  生の逐語・数値は一次ログ(日付ファイル、private側)にのみ許す
+- 書き戻し先は Notion の profile の各トピックのページ、および年度ページの配下のみ。
+  いずれもマップから辿った置き場に限り、辿れなければ書かずにマップの修正を頼む
+- profile の各トピックのページには生の数値・社名を書かず、要約と出典ページへのメンションのみ書く。
+  生の逐語・数値は一次ログ(Notion の日付入りの生ログページ)にのみ許す
+- Notion には手元のファイルパスを書かない
 - 本skill自身はgit commitを一切実行しない。Phase6はdiff提示のみ、適用も
-  承認後に `Write`/`Edit` で行うだけ
+  承認後に Notion の MCP ツールで行うだけ
 
 ## resumeリポジトリ(公開側)への書き込み禁止事項
 

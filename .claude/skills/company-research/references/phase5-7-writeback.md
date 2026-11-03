@@ -34,6 +34,9 @@ main(または opus subagent)が scratchpad の全ファイルを読み、`<scra
 
 ## Phase 5: 書き込み
 
+各書き込みの直前に対象を fetch し、親がマップから辿った data source・ページと一致するか確かめる(`AGENTS.md` の規則)。
+出典はリンクで載せ、手元のパス(`~/research/` 以下や scratchpad)は Notion に書かない。
+
 ### Notion 企業ページ
 
 - 本文: 統合稿を差し込む。`notion-schema.md` の「書き込みの共通ルール」に従う
@@ -46,7 +49,7 @@ main(または opus subagent)が scratchpad の全ファイルを読み、`<scra
   - 資本状況の設定: `notion-schema.md` の「資本状況の判定」に従い、Phase 2 の資本構成の調査結果から選ぶ。根拠が無ければ「不明」
 - 事業DB に事業行を作成: Phase 1 の調査結果から、1プロダクト/事業ラインにつき1行(1社1〜3行、主力は最低1つ)。
   列の埋め方と判定ルールは `notion-schema.md` の「事業DB」に従う。
-  事業DB の検索・fetch・作成・更新は、設定ファイルの `business_db_data_source`(`common-config.md`)で指定された data source を対象にする。
+  事業DB の検索・fetch・作成・更新は、ページのマップから辿った事業DB の data source(SKILL.md の「Notion の置き場」)を対象にする。
   作成前に事業DB で当該企業の既存行を検索し、同じ事業の行があれば重複作成せず、必要な列だけ更新する
 - 事業内容・URL(公式サイト): 企業DB の値が実態とずれている場合に、一次情報(公式サイト・登記)で訂正する。
   旧値は本文の訂正節(`## 訂正(調査日)`: 旧値 → 新値、出典、確度ラベル)に残す。ずれていなければ触らない
