@@ -1,8 +1,7 @@
 # 共通: 検索予算と検索ログ
 
-WebSearch には**セッション全体で共有される上限**がある(設定ファイルの `web_search_budget` を優先。
-未設定なら環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` の値(プロジェクト設定で 1000)、
-それも無ければ 200)。subagent の検索も同じ枠から引かれる。並列 subagent が
+WebSearch には**セッション全体で共有される上限** `web_search_budget` がある。
+値は環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`(プロジェクト設定で 1000)を使い、無ければ 200 とする。subagent の検索も同じ枠から引かれる。並列 subagent が
 無制限に検索すると途中で枯渇し、後半の観点が調べられなくなる。
 
 ## 回数に数える/数えない

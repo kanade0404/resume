@@ -20,8 +20,8 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 (同名の別会社の取り違え、検索予算の枯渇、記事の冒頭だけで要約、仮定値を事実として記載、
 既存の Notion 本文の上書き、前半と後半で矛盾した結論)を手順として潰してある。
 
-**このリポジトリは公開されている。** skill 本文・references・evals に特定企業名・Notion の ID/URL を書かない。実値はリポジトリの外の設定ファイルから読む
-([references/common-config.md](references/common-config.md))。
+**このリポジトリは公開されている。** skill 本文・references・evals に特定企業名・Notion の ID/URL を書かない。
+Notion の置き場は実行のたびに「ページのマップ」から辿る([references/common-config.md](references/common-config.md))。
 
 ## いつ使うか / 使わないか
 
@@ -48,7 +48,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 - **出典と確度**: すべての主張に出典URLと日付、確度ラベル `[照合済]` / `[二次]` / `[Codex報告]` / `未確認`。
   推測は推測、仮定は仮定と書く。「確認できない」は「無い」ではない →
   [references/common-sourcing.md](references/common-sourcing.md)
-- **検索予算**: WebSearch はセッション全体で共有(`web_search_budget` 未設定なら環境変数の上限、無ければ 200)。URL が分かるものは WebFetch / API。
+- **検索予算**: WebSearch はセッション全体で共有(`web_search_budget` は環境変数の上限、無ければ 200)。URL が分かるものは WebFetch / API。
   subagent ごとに上限を数字で指示し、scratchpad の検索ログで重複を防ぐ。広い探索は Codex CLI →
   [references/common-research-budget.md](references/common-research-budget.md)
 - **subagent 運用**: main は計画・判断・統合だけ。観点別に並列、出力は scratchpad の .md。
@@ -81,8 +81,8 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 
 → [references/phase0-setup.md](references/phase0-setup.md)
 
-1. 設定ファイル `~/.config/kanade0404-resume/research-config` を読む。無い/欠けている key は
-   `common-config.md` の手順(タイトル検索 → それでも埋まらない key だけまとめて1回ユーザーに聞く)で埋めて書く。
+1. `common-config.md` の手順で、ページのマップから企業DB・業界DB・外部発信DB・事業DB の data source を辿る。
+   見つからないラベルがあれば止め、ユーザーにマップの修正を頼む(ワークスペース全体の検索で代わりにしない)。
    あわせて **Notion 書き込み範囲**(企業ページ本文・プロパティ・業界DB の訂正・外部発信DB)を1回で告知して確認する。承認後は以降の Phase で再確認しない
 2. 企業DB の対象レコードを fetch し、事業内容・URL・要約から企業を**一意に特定**する。
    同名・類似名の別会社がありうる場合は決めきれるまで並列調査を出さない。迷ったらユーザーに確認
@@ -135,7 +135,7 @@ note API・RSS・テックブログから記事一覧を作り、**本文を全�
   全文置換禁止、前後で diff 比較、表は `<table>`)、プロパティ(創業日・従業員数・業界 relation・資本状況・Status、
   実態とずれた事業内容・URL は一次情報で訂正し旧値は本文の訂正節に残す。旧Tags は書かない)、
   事業DB への事業行作成(既存行は重複作成しない)。**志望度・英語利用と要約(Notion AI が生成する列)は変更しない**
-- 旧 Phase 7(Obsidian 控えと PR)は Obsidian の廃止に伴い廃止した。書き込み先は Notion だけ
+- 旧 Phase 7(ローカルの控えと PR)は廃止した。書き込み先はページのマップから辿った Notion だけ
 
 Notion の列名と意味 → [references/notion-schema.md](references/notion-schema.md)
 
@@ -188,7 +188,7 @@ subagent)を1社1体で並列起動する。1体に複数社を任せない。
 
 | ファイル | いつ読む |
 |---|---|
-| [references/common-config.md](references/common-config.md) | 最初に必ず。設定ファイルと公開範囲 |
+| [references/common-config.md](references/common-config.md) | 最初に必ず。Notion の置き場(マップからの辿り方)と公開範囲 |
 | [references/common-sourcing.md](references/common-sourcing.md) | 調査・統合・書き込みの前 |
 | [references/common-research-budget.md](references/common-research-budget.md) | Phase 0 と subagent 指示文の作成時 |
 | [references/common-subagent-ops.md](references/common-subagent-ops.md) | subagent を出す前、コマンドが拒否されたとき |

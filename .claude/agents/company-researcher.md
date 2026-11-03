@@ -13,8 +13,8 @@ model: opus
 Phase 0〜6 と Phase 8 を実施する担当。この担当の中では、SKILL.md の
 「main」(計画・判断・統合、Phase 6 の矛盾の裁定)をこのエージェントが担う。呼び出し元(main)には、
 Notion 書き込みの承認と Phase 8 の反映承認、決めきれない論点だけを返す。このリポジトリは公開されているため、定義ファイルにも
-特定企業名・Notion の ID/URL を書かない。実値は依頼文と
-設定ファイル(`~/.config/kanade0404-resume/research-config`)から読む。
+特定企業名・Notion の ID/URL を書かない。実値は依頼文から読み、
+Notion の置き場は「ページのマップ」から辿る(`common-config.md`)。
 
 ## 依頼文で受け取るもの
 
@@ -31,8 +31,8 @@ Notion 書き込みの承認と Phase 8 の反映承認、決めきれない論�
 
 1. Skill ツールで `company-research` を起動し、SKILL.md と `references/` 配下を各 Phase の開始時に
    Read して手順に従う
-2. 設定は `~/.config/kanade0404-resume/research-config` を Read して使う
-   (`common-config.md`)。無い・欠けている場合は、作らずに main へ返す
+2. Notion の各DB は `common-config.md` の手順でページのマップから辿る。
+   見つからないラベルがあれば、推測やワークスペース全体の検索で埋めずに main へ返す
 3. 経歴との適合判断のため、リポジトリ直下の `README.md` を Read する
 
 ## 承認範囲

@@ -52,9 +52,10 @@ Decision Journal の記録先は
   確認できる場合のみ、そこの `decision-journal.md` に書く
 - 本リポジトリ内のパスしか得られない場合、または外部であることを確認できない場合は
   `.claude/skills/career-grilling/scratch/decision-journal.md` に書く(gitignore対象)
-- いずれの場合も、vault由来の機微情報を含みうるファイルをコミット対象になり得る
+- いずれの場合も、Notion由来の機微情報を含みうるファイルをコミット対象になり得る
   パスに書かない(gitignore対象であることが確認できないパスには書かない)
 
-最終的な蒸留は Phase 6 の書き戻しで `profile/<topic>.md` の frontmatter
-`sources` 欄と本文要約に反映する([WRITEBACK-SCHEMA.md](WRITEBACK-SCHEMA.md) 参照)。
-逐語(却下した代替案の詳しい経緯等)は日付入りの生ログファイルにのみ残す。
+最終的な蒸留は Phase 6 の書き戻しで、profile の各トピックのページの「出典」節と本文要約に反映する
+([WRITEBACK-SCHEMA.md](WRITEBACK-SCHEMA.md) 参照)。
+逐語(却下した代替案の詳しい経緯等)は Notion の日付入りの生ログページにのみ残す。
+Notion に載せるときは、このスクラッチのパスを書かず中身を載せる。

@@ -10,7 +10,7 @@
 |---|---|
 | `<scratchpad>/00-identity.md` | 対象企業の特定情報(取り違え防止) |
 | `<scratchpad>/01-seed-urls.md` | note / RSS / テックブログ / SpeakerDeck / PR TIMES の起点 |
-| 設定ファイル | 外部発信DB・企業DB の data source(`common-config.md`) |
+| ページのマップ | 外部発信DB・企業DB の data source(辿り方は `common-config.md`) |
 | 企業ページ URL | 外部発信DB の「企業」relation に入れる |
 
 | 出力 | 内容 |

@@ -6,7 +6,7 @@
 ## チェックリスト
 
 ```
-- [ ] 0-1 設定ファイルを読んだ(common-config.md)
+- [ ] 0-1 ページのマップから各DB の data source を辿った(common-config.md)
 - [ ] 0-2 企業DBの対象レコードを fetch し、企業を一意に特定した
 - [ ] 0-3 業界DBを確認し、industry-research の要否を判断した
 - [ ] 0-4 起点URLリストを作った
@@ -17,7 +17,8 @@
 
 ## 0-2 企業の特定
 
-1. 企業DB の data source を `notion-query-data-sources` / `notion-search` で検索し、対象レコードを `notion-fetch` する
+1. 0-1 で辿った企業DB の data source を `notion-query-data-sources` で検索し、対象レコードを `notion-fetch` する
+   - ワークスペース全体への `notion-search` で探さない(同名の別ページを拾いうるため)
    - レコードが無ければユーザーに「新規作成してよいか」を確認してから作る(Name・URL・事業内容だけ埋める)
 2. レコードの **事業内容・URL・要約** を手がかりに公式サイトを開き、次を照合する
    - 正式社名(商号)、本店所在地、代表者名、設立年、主力プロダクト名

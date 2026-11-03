@@ -1,48 +1,56 @@
-# 共通: 設定ファイルと公開範囲
+# 共通: Notion の置き場と公開範囲
 
-`company-research` と `industry-research` の両方が使う。
+`company-research`・`industry-research`・`company-screening` が使う。
 
-## 設定ファイル
+## Notion の置き場(ページのマップから辿る)
 
-- 実値: `~/.config/kanade0404-resume/research-config`(リポジトリの外。Read には `$HOME` を展開した絶対パスで渡す)
-- テンプレート: `.claude/skills/company-research/research-config.example`(ダミー値のみ。コミット可)
-- `industry-research` と `company-screening` も**同じ1ファイル**を読む。2つ目の設定ファイルは作らない
+Notion の置き場の正本は、ワークスペース直下の「ページのマップ」だけにする。
+マップのページ ID はリポジトリ直下の `AGENTS.md` に書いてある。ここには書き写さない。
+ほかのページ・DB・data source の ID は持たず、実行のたびにマップから辿って決める。
 
-実値をリポジトリの外に置くのは、gitignore 対象のファイルが新しい worktree にコピーされず、
-worktree を作るたびに ID を聞き直すことになるため。旧置き場所
-`.claude/skills/company-research/research-config.local`(gitignore 対象)は移行用に読むだけで、新しくは書かない。
+マップは2つのハブにリンクしている。DB は「データベース」ハブに、読み物の文書は「ドキュメント」ハブに置かれる。
 
-形式は `key=value`、1行1項目、`#` 以降はコメント。
-
-| key | 意味 | 無い場合 |
+| 役割 | 辿り方 | 探すラベル |
 |---|---|---|
-| `company_db_data_source` | 企業DBのdata source(`collection://...`) | ユーザーに聞く |
-| `company_db_parent_page` | 企業DBを置いている親ページURL | 任意。DB を探すときの起点 |
-| `industry_db_page` / `industry_db_data_source` | 業界DBのページURLとdata source | ユーザーに聞く |
-| `publications_db_page` / `publications_db_data_source` | 外部発信DBのページURLとdata source | ユーザーに聞く |
-| `business_db_data_source` | 事業DBのdata source(`collection://...`) | ユーザーに聞く |
-| `web_search_budget` | セッション全体のWebSearch上限 | 環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` の値、無ければ 200 |
-| `scout_db_data_source` / `screening_*` | `company-screening` が使うスカウトDB と正本ページ(一覧は同 skill の「設定」表) | タイトル検索 → ユーザーに確認 |
+| 企業DB | マップ → データベース | 「企業」 |
+| 業界DB | マップ → データベース | 「業界」 |
+| 外部発信DB | マップ → データベース | 「外部発信」 |
+| 事業DB | マップ → データベース | 「事業」 |
+| スカウトDB | マップ → データベース | 「スカウト」 |
+| 転職の root | マップ → ドキュメント | 「転職」 |
+| 一次レビューの正本群 | 転職の root → 配下のページ | `company-screening` の「Notion の参照先」表のタイトル |
 
-### 読み方
+### 辿り方
 
-1. Read ツールで `~/.config/kanade0404-resume/research-config` を読む。無ければ旧置き場所
-   `.claude/skills/company-research/research-config.local` を読み、あれば中身を新しい置き場所へ写す
-2. どちらにも無い、または必要な key が欠けている場合は、まず `notion-search` でページ・DB をタイトルで探す
-   (企業DB は「企業」、業界DB は「業界」、外部発信DB は「外部発信」。`company-screening` の key は
-   同 skill の表のタイトル)。同じタイトルの候補が複数ある、または親ページ(パス)が想定と違うときは
-   推測で選ばず、候補を並べてユーザーに確認する。それでも埋まらない key **だけ**をまとめて1回でユーザーに聞く。
-   クラウド実行など設定ファイルを置けない環境でも、この探索で動けるようにする
-3. 確定した値を `research-config.example` の形式で `~/.config/kanade0404-resume/research-config` に書く
-   (ディレクトリが無ければ作る)。以後同じセッションでは再質問しない
-4. **リポジトリ内には書かない**。旧置き場所の `.local` も新しく作らない
+1. `AGENTS.md` からマップの ID を取り、`notion-fetch` でマップを読む
+2. マップ本文のリンクから「データベース」と「ドキュメント」のハブを特定し、それぞれ `notion-fetch` する
+3. ハブの中で上表のラベルと一致する項目を探す。DB はハブの `<database>` タグに
+   `data-source-url`(`collection://...`)が付いているので、それを data source として使う
+4. ページはリンクをたどって `notion-fetch` し、子ページのタイトルで次の階層を決める
+5. 解決した URL は、そのセッションの scratchpad にだけ控える。リポジトリやほかのファイルには書かない
+
+ラベルが見つからない、または同じラベルが複数あるときは、推測で選ばずに止める。
+どのラベルが無かったかをユーザーに伝え、マップの修正を頼む。
+ワークスペース全体への `notion-search` で置き場を探して代わりにしない。
+置き場が決まったあとで、その DB や root ページの配下に絞って中身を検索するのはかまわない。
+
+### 書き込む直前の確認
+
+Notion への書き込みの直前に、書き込み先を `notion-fetch` する。
+その親が、マップから辿った data source やページと一致することを確かめる。
+一致しなければ書き込まずに止め、ユーザーに報告する。
+
+### 置き場以外の設定
+
+WebSearch の上限 `web_search_budget` は、環境変数 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` の値を使う。
+環境変数が無ければ 200 とする。使い方は `common-research-budget.md` に書いてある。
 
 ## 公開範囲(このリポジトリは GitHub で公開されている)
 
-skill 本文(`SKILL.md` / `references/` / `evals/` / `research-config.example`)に次を**書かない**:
+skill 本文(`SKILL.md` / `references/` / `evals/`)に次を**書かない**:
 
 - 特定の企業名・転職先候補名・調査対象の社名(例は「A社」「X社」で書く)
-- Notion の DB / ページ ID、`collection://` URL、Notion のページURL
+- マップ以外の Notion の ID。DB・ページ・data source の ID や URL はマップから辿り、書き写さない
 - private リポジトリ名やローカルの具体パス
 - 報酬・給与・オファー内容などの機微情報
 

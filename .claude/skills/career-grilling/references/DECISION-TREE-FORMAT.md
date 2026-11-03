@@ -18,7 +18,7 @@ sub-agent調査(構築手順5)で埋める。sub-agentの返却でfactが埋ま�
   確認できる場合のみ、そこの `decision-tree.md` に書く
 - 本リポジトリ内のパスしか得られない場合、または外部であることを確認できない場合は
   `.claude/skills/career-grilling/scratch/decision-tree.md` に書く(gitignore対象)
-- いずれの場合も、vault由来の機微情報を含みうるファイルをコミット対象になり得る
+- いずれの場合も、Notion由来の機微情報を含みうるファイルをコミット対象になり得る
   パスに書かない(gitignore対象であることが確認できないパスには書かない)
 
 ## ノードスキーマ
