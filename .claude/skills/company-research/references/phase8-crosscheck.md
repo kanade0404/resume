@@ -17,7 +17,7 @@ Notion に反映しない。main が裏取り・評価して承認したもの�
 
 ## 8-1 / 8-2 Codex による独立検証
 
-- コマンドと timeout は `common-research-budget.md` の「Codex CLI に任せる探索」に従う。出力は
+- コマンドと timeout は調査の playbook(`.claude/playbooks/research.md`)の「WebSearch の上限と配分」にある Codex CLI の節に従う。出力は
   `<scratchpad>/codex-crosscheck.md`
 - 指示文には統合稿(`60-draft.md`)のパスを含め、単なる批判・感想は求めない。出力は次の2区分だけとし、
   **すべての項目に根拠(出典URL・取得日・該当箇所の短い引用)**を付けさせる。根拠を示せない指摘は書かせない
@@ -53,7 +53,7 @@ Codex の出力は `[Codex報告]` のままでは採用しない。
 | Codex誤り | 一次情報では統合稿が正しい / Codex の取り違え | 反映しない。理由を記録し、提案表には載せる |
 | 判定不能 | 一次情報で決められない | 値は変えない。提案表に載せ、承認後に、公開済みの企業ページ本文の該当箇所の確度ラベルを `未確認` に下げ、未確認事項に追加する(8-5 で反映) |
 
-- PDF が WebFetch で読めない場合は `common-research-budget.md` の「PDF が WebFetch で読めないとき」に従う
+- PDF や JavaScript で描くページが WebFetch で読めない場合は、imozuru の `fetch.py`(PDF は文字に起こす)や Playwright で保存して読む
 - subagent の報告に、開いた URL と根拠の該当箇所(引用は短く)を含めさせる。main は抜き取りで再確認する
 - B の「調べたが見つからない」項目は、Codex が挙げた検索場所を subagent が開き直し、確認した場所・検索語・結果を
   記録する。それでも見つからなければ判定不能とし、「見つからない(確認した場所)。不存在の証明ではない」と書く

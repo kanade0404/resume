@@ -20,8 +20,7 @@ allowed-tools: Read, Write, Glob, Grep, Agent, Skill, ToolSearch, WebSearch, Web
 取得もしない。
 
 **このリポジトリは公開されている。** skill 本文・evals に特定企業名・Notion の ID/URL を書かない。
-Notion の置き場は実行のたびに「ページのマップ」から辿る
-([../company-research/references/common-config.md](../company-research/references/common-config.md))。
+Notion の置き場は実行のたびに「ページのマップ」から辿る(規則はリポジトリ直下の `AGENTS.md`)。
 実例が必要な箇所は「較正(日付)、較正ログ参照」とだけ書き、中身は較正ログで読む。
 
 > **Iron Law 1(基準を転記しない)**: 判定基準はこのファイルに書かない。基準は頻繁に改定されるため、
@@ -46,7 +45,7 @@ Notion の置き場は実行のたびに「ページのマップ」から辿る
 
 ## Notion の参照先(転職の root 配下の役割とタイトルの手がかり)
 
-辿り方・書き込み前の確認は [common-config.md](../company-research/references/common-config.md) に従う。
+辿り方・書き込み前の確認は `AGENTS.md` の「リポジトリの外にあるもの」に従う。
 DB はマップの「データベース」ハブから、正本群はマップの「ドキュメント」ハブにある「転職」(転職の root)から辿る。
 この skill が使う役割は次の表のとおり。
 
@@ -144,6 +143,10 @@ WebSearch / WebFetch で次を調べる: 資金調達(時期・額・ラウン�
 AI に関する発信、技術スタック、市場規模、事業モデル、採用の加速度合い、US 等の先行事例、英語要件
 (記録のみ・判定には使わない)。加えて正本の足切り・観測項目、および Step 2.5 の懸念チェックが要求する
 情報があればそれも。
+
+調べる段では、調査の playbook(`.claude/playbooks/research.md`)の段5(WebSearch の上限、
+出典の扱い、人に関する情報の境界)を守る。一次レビューの検索は足切りに要る事実の確認が中心で、
+imozuru の対象外(答えが1つの事実の確認)にあたるため、playbook の段1〜4(imozuru の周)は回さない。
 
 - **クエリに使ってよい語**: 企業名・サービス名・経営者名(公人としての名前)・「資金調達」「採用」
   「技術スタック」「市場規模」等の一般語のみ

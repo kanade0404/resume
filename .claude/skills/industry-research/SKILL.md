@@ -19,22 +19,33 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash, Agent, SendMessage, Skill, W
 転職先候補の企業を評価するための前提となる、業界の構造と市場規模を調べる skill。結果は業界DB に
 1業界1レコードで蓄積し、複数の企業調査から再利用する。
 
-**このリポジトリは公開されている。** skill 本文に特定企業名・Notion の ID/URL・具体パスを書かない。
+**このリポジトリは公開されている。** 公開範囲と Notion の辿り方の規則はリポジトリ直下の `AGENTS.md` に従う。
 
-## 依存(company-research と共有)
+## Notion の置き場
 
-Notion の置き場の辿り方と共通ルールは `company-research` 側に1か所だけ置き、ここから参照する。
-下表の共通参照ファイルが無い場合は「company-research skill が見つからないため共通ルールを読めない」と
-ユーザーに伝えて停止する(推測で進めない)。
-業界DB・企業DB は `common-config.md` の手順でページのマップから辿る。
+この skill が使う役割と、ページのマップから辿るときに探すラベルは次のとおり。
+DB はハブの `<database>` タグに付いた `data-source-url`(`collection://...`)を data source として使う。
 見つからないラベルがあれば止め、ユーザーにマップの修正を頼む。
+
+| 役割 | 辿り方 | 探すラベル |
+|---|---|---|
+| 業界DB | マップ → データベース | 「業界」 |
+| 企業DB | マップ → データベース | 「企業」 |
+
+## 調べ方と参照するファイル
+
+Step 1〜3 の調べる段は、調査の playbook [../../playbooks/research.md](../../playbooks/research.md) の段を
+ToDo に写して進める。調べ方と止め方は imozuru スキルに任せ、WebSearch の上限と配分、subagent の運用、
+出典と確度ラベル、人に関する情報の境界も playbook に従う。各 Step のファイルには、imozuru に渡す論点の中身と
+業界DB への書き方だけを置く。
+
+業界DB の列名は `company-research` 側の `notion-schema.md` を参照する。このファイルが無い場合は
+「company-research skill が見つからないため業界DB の列定義を読めない」とユーザーに伝えて停止する(推測で進めない)。
 
 | ファイル | 内容 |
 |---|---|
-| [../company-research/references/common-config.md](../company-research/references/common-config.md) | ページのマップからの辿り方・公開範囲 |
-| [../company-research/references/common-sourcing.md](../company-research/references/common-sourcing.md) | 出典・確度ラベル・事実と推測の区別 |
-| [../company-research/references/common-research-budget.md](../company-research/references/common-research-budget.md) | WebSearch 予算・検索ログ・Codex CLI |
-| [../company-research/references/common-subagent-ops.md](../company-research/references/common-subagent-ops.md) | subagent 運用・hook/権限の代替 |
+| リポジトリ直下の `AGENTS.md` | 公開範囲と Notion の辿り方の規則 |
+| [../../playbooks/research.md](../../playbooks/research.md) | 調べる段の進め方、WebSearch の上限、subagent 運用、出典・確度ラベル |
 | [../company-research/references/notion-schema.md](../company-research/references/notion-schema.md) | 業界DB の列名と意味 |
 
 ## いつ使うか / 使わないか
@@ -51,7 +62,7 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 ## ワークフロー
 
 ```
-- [ ] Step 0 準備: common-config.md の読込とページのマップからの data source 解決、業界DB の既存レコード確認、業界の範囲定義、予算と検索ログ
+- [ ] Step 0 準備: AGENTS.md の規則と「Notion の置き場」の表で data source を解決、業界DB の既存レコード確認、業界の範囲定義、予算
 - [ ] Step 1 日本(並列 subagent)
 - [ ] Step 2 米国(並列 subagent)
 - [ ] Step 3 市場規模の検証
@@ -61,7 +72,7 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 
 ### Step 0: 準備
 
-1. `common-config.md` に従い、ページのマップから業界DB・企業DB の data source を辿る
+1. `AGENTS.md` の規則と上の「Notion の置き場」の表で、ページのマップから業界DB・企業DB の data source を辿る
 2. 辿った業界DB の data source を業界名・類義語で検索する
    - 既存レコードがあり `Status=完了` → 再調査するかユーザーに確認(調査日が1年以上前なら再調査を提案)
    - 既存レコードがあり `調査中` → 空の列だけを埋める方針で続ける。既存の列の値を
@@ -70,7 +81,7 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 3. **業界の範囲を1段落で定義**して `<scratchpad>/i00-scope.md` に書く: 含むもの / 含まないもの /
    隣接業界 / 日米で同じ業界として扱う根拠。範囲が曖昧なまま市場規模を集めると、調査会社ごとに
    違う範囲の数字を比べることになる
-4. 検索ログと予算(`common-research-budget.md`)。company-research から呼ばれた場合は、
+4. 予算は playbook の「WebSearch の上限と配分」に従って `budget.md` に書く。company-research から呼ばれた場合は、
    その予算表の業界調査枠(目安 40〜50 回)を使う
 
 ### Step 1: 日本 / Step 2: 米国
@@ -93,8 +104,8 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 
 ### Step 5: 整合チェックと書き込み
 
-1. `common-sourcing.md` のルールで統合稿 `<scratchpad>/i60-draft.md` を確認(出典・確度ラベル・仮定の明記・
-   訂正の全箇所反映・[Codex報告] が残っていないこと)
+1. playbook の「出典の扱い」で統合稿 `<scratchpad>/i60-draft.md` を確かめる。見るのは出典・確度ラベル・仮定の明記・
+   訂正の全箇所反映・[Codex報告] が残っていないこと。出典は元の URL で書き、手元のパスを Notion に書かない
 2. 業界DB のプロパティを書く(列の対応は下表)。既存レコード(`調査中` で再開)は `i01-existing.md` で
    空だった列だけを `update_properties` に入れる。値のある列を変える場合は、新旧の値を示してユーザーに
    確認してから書く。企業 relation は既存の値を残して追加する
@@ -142,4 +153,4 @@ Notion の置き場の辿り方と共通ルールは `company-research` 側に1�
 | [references/japan-us.md](references/japan-us.md) | Step 1・2 の subagent 指示文を作るとき |
 | [references/market-size-verification.md](references/market-size-verification.md) | Step 3 |
 | [references/us-japan-comparison.md](references/us-japan-comparison.md) | Step 4 |
-| 共通参照(上の「依存」表) | Step 0 と subagent 指示文の作成時 |
+| 「調べ方と参照するファイル」の表 | Step 0 と subagent 指示文の作成時 |

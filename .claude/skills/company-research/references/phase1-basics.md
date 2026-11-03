@@ -1,7 +1,9 @@
 # Phase 1: 基本調査(観点ごとに並列)
 
-4観点を並列 subagent(sonnet)で調べる。各 subagent は `00-identity.md` と `01-seed-urls.md` と
-`search-log*.md` を最初に読む(追記は自分の `search-log-<実行者>.md` だけ)。出力は `<scratchpad>/10-<観点>.md`。
+4観点を並列 subagent(sonnet)で調べる。調べる段は調査の playbook(`.claude/playbooks/research.md`)の段を
+ToDo に写して進め、各 subagent が観点ごとの imozuru の親になる。下の各節の箇条書きが、その観点で imozuru に渡す
+論点の中身になる。各 subagent は `00-identity.md` と `01-seed-urls.md` を最初に読む。
+5段階評価と根拠は imozuru で止めたあと、保存した原文から書く。出力は `<scratchpad>/10-<観点>.md`。
 
 ## 評価スケール(4観点共通)
 
